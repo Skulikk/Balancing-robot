@@ -1,0 +1,7 @@
+[0.110s] Invoking command in '/home/skulikk/robot/src/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/sensors_pkg -- -j4 -l4
+[0.393s] [ 25%] [32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o[0m
+[0.405s] [ 50%] [32mBuilding CXX object CMakeFiles/encoder_node.dir/src/encoder_node.cpp.o[0m
+[48.479s] [ 75%] [32m[1mLinking CXX executable encoder_node[0m
+[48.506s] [100%] [32m[1mLinking CXX executable imu_node[0m
+[50.696s] [100%] Built target encoder_node
+[50.702s] [100%] Built target imu_node

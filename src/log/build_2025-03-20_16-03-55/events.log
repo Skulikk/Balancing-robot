@@ -1,0 +1,282 @@
+[0.000000] (-) TimerEvent: {}
+[0.002432] (control_pkg) JobQueued: {'identifier': 'control_pkg', 'dependencies': OrderedDict()}
+[0.003228] (sensors_pkg) JobQueued: {'identifier': 'sensors_pkg', 'dependencies': OrderedDict()}
+[0.004121] (control_pkg) JobStarted: {'identifier': 'control_pkg'}
+[0.041104] (sensors_pkg) JobStarted: {'identifier': 'sensors_pkg'}
+[0.079511] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'cmake'}
+[0.086613] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'build'}
+[0.089270] (control_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/src/build/control_pkg', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/src/build/control_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 34026 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-9c472fdb-d295-4031-9f67-bcce556a99c4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '5'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/build/control_pkg'), ('SSH_CONNECTION', '192.168.10.150 34026 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.105049] (-) TimerEvent: {}
+[0.111249] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'cmake'}
+[0.118324] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'build'}
+[0.119803] (sensors_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/src/build/sensors_pkg', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/src/build/sensors_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 34026 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-9c472fdb-d295-4031-9f67-bcce556a99c4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '5'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/build/sensors_pkg'), ('SSH_CONNECTION', '192.168.10.150 34026 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.205320] (-) TimerEvent: {}
+[0.306526] (-) TimerEvent: {}
+[0.407664] (-) TimerEvent: {}
+[0.511792] (-) TimerEvent: {}
+[0.569439] (control_pkg) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target motor_controller_node\x1b[0m\n'}
+[0.615950] (-) TimerEvent: {}
+[0.724045] (-) TimerEvent: {}
+[0.764308] (sensors_pkg) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o\x1b[0m\n'}
+[0.827863] (-) TimerEvent: {}
+[0.885041] (sensors_pkg) StdoutLine: {'line': b'[ 75%] Built target encoder_node\n'}
+[0.932088] (-) TimerEvent: {}
+[0.950549] (control_pkg) StdoutLine: {'line': b'[100%] Built target motor_controller_node\n'}
+[1.032503] (-) TimerEvent: {}
+[1.092547] (control_pkg) CommandEnded: {'returncode': 0}
+[1.112312] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'install'}
+[1.132949] (-) TimerEvent: {}
+[1.233877] (control_pkg) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/skulikk/robot/src/build/control_pkg'], 'cwd': '/home/skulikk/robot/src/build/control_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 34026 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-9c472fdb-d295-4031-9f67-bcce556a99c4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '5'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/build/control_pkg'), ('SSH_CONNECTION', '192.168.10.150 34026 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.239978] (-) TimerEvent: {}
+[1.341213] (control_pkg) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[1.342687] (-) TimerEvent: {}
+[1.355564] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/lib/control_pkg/motor_controller_node\n'}
+[1.361820] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/ament_index/resource_index/package_run_dependencies/control_pkg\n'}
+[1.363195] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/ament_index/resource_index/parent_prefix_path/control_pkg\n'}
+[1.375793] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/environment/ament_prefix_path.sh\n'}
+[1.377869] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/environment/ament_prefix_path.dsv\n'}
+[1.379028] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/environment/path.sh\n'}
+[1.386409] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/environment/path.dsv\n'}
+[1.387706] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/local_setup.bash\n'}
+[1.388818] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/local_setup.sh\n'}
+[1.390001] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/local_setup.zsh\n'}
+[1.391088] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/local_setup.dsv\n'}
+[1.392361] (control_pkg) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/package.dsv\n'}
+[1.393518] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/ament_index/resource_index/packages/control_pkg\n'}
+[1.394709] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/cmake/control_pkgConfig.cmake\n'}
+[1.396827] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/cmake/control_pkgConfig-version.cmake\n'}
+[1.398134] (control_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/src/install/control_pkg/share/control_pkg/package.xml\n'}
+[1.437197] (control_pkg) CommandEnded: {'returncode': 0}
+[1.442927] (-) TimerEvent: {}
+[1.549204] (-) TimerEvent: {}
+[1.651173] (-) TimerEvent: {}
+[1.754863] (-) TimerEvent: {}
+[1.802603] (control_pkg) JobEnded: {'identifier': 'control_pkg', 'rc': 0}
+[1.855178] (-) TimerEvent: {}
+[1.956718] (-) TimerEvent: {}
+[2.058585] (-) TimerEvent: {}
+[2.160258] (-) TimerEvent: {}
+[2.261830] (-) TimerEvent: {}
+[2.363384] (-) TimerEvent: {}
+[2.464799] (-) TimerEvent: {}
+[2.566217] (-) TimerEvent: {}
+[2.667775] (-) TimerEvent: {}
+[2.769216] (-) TimerEvent: {}
+[2.870534] (-) TimerEvent: {}
+[2.971911] (-) TimerEvent: {}
+[3.073295] (-) TimerEvent: {}
+[3.175803] (-) TimerEvent: {}
+[3.277186] (-) TimerEvent: {}
+[3.378888] (-) TimerEvent: {}
+[3.480389] (-) TimerEvent: {}
+[3.581752] (-) TimerEvent: {}
+[3.682959] (-) TimerEvent: {}
+[3.783757] (-) TimerEvent: {}
+[3.884530] (-) TimerEvent: {}
+[3.985293] (-) TimerEvent: {}
+[4.086052] (-) TimerEvent: {}
+[4.186780] (-) TimerEvent: {}
+[4.287583] (-) TimerEvent: {}
+[4.388318] (-) TimerEvent: {}
+[4.489312] (-) TimerEvent: {}
+[4.590420] (-) TimerEvent: {}
+[4.691729] (-) TimerEvent: {}
+[4.792653] (-) TimerEvent: {}
+[4.893550] (-) TimerEvent: {}
+[4.994349] (-) TimerEvent: {}
+[5.095195] (-) TimerEvent: {}
+[5.196090] (-) TimerEvent: {}
+[5.296910] (-) TimerEvent: {}
+[5.397694] (-) TimerEvent: {}
+[5.498541] (-) TimerEvent: {}
+[5.599404] (-) TimerEvent: {}
+[5.700286] (-) TimerEvent: {}
+[5.801062] (-) TimerEvent: {}
+[5.901856] (-) TimerEvent: {}
+[6.002796] (-) TimerEvent: {}
+[6.104055] (-) TimerEvent: {}
+[6.204992] (-) TimerEvent: {}
+[6.306132] (-) TimerEvent: {}
+[6.406966] (-) TimerEvent: {}
+[6.507960] (-) TimerEvent: {}
+[6.608751] (-) TimerEvent: {}
+[6.709556] (-) TimerEvent: {}
+[6.810377] (-) TimerEvent: {}
+[6.911195] (-) TimerEvent: {}
+[7.012111] (-) TimerEvent: {}
+[7.113216] (-) TimerEvent: {}
+[7.214287] (-) TimerEvent: {}
+[7.315246] (-) TimerEvent: {}
+[7.416200] (-) TimerEvent: {}
+[7.517056] (-) TimerEvent: {}
+[7.618135] (-) TimerEvent: {}
+[7.719089] (-) TimerEvent: {}
+[7.819929] (-) TimerEvent: {}
+[7.920701] (-) TimerEvent: {}
+[8.021497] (-) TimerEvent: {}
+[8.122303] (-) TimerEvent: {}
+[8.223117] (-) TimerEvent: {}
+[8.323915] (-) TimerEvent: {}
+[8.424713] (-) TimerEvent: {}
+[8.525524] (-) TimerEvent: {}
+[8.626392] (-) TimerEvent: {}
+[8.727215] (-) TimerEvent: {}
+[8.828023] (-) TimerEvent: {}
+[8.928797] (-) TimerEvent: {}
+[9.029589] (-) TimerEvent: {}
+[9.130407] (-) TimerEvent: {}
+[9.231211] (-) TimerEvent: {}
+[9.332068] (-) TimerEvent: {}
+[9.432866] (-) TimerEvent: {}
+[9.533686] (-) TimerEvent: {}
+[9.634539] (-) TimerEvent: {}
+[9.735342] (-) TimerEvent: {}
+[9.836209] (-) TimerEvent: {}
+[9.937053] (-) TimerEvent: {}
+[10.038042] (-) TimerEvent: {}
+[10.138953] (-) TimerEvent: {}
+[10.239788] (-) TimerEvent: {}
+[10.340609] (-) TimerEvent: {}
+[10.441498] (-) TimerEvent: {}
+[10.542345] (-) TimerEvent: {}
+[10.643152] (-) TimerEvent: {}
+[10.744040] (-) TimerEvent: {}
+[10.844832] (-) TimerEvent: {}
+[10.945644] (-) TimerEvent: {}
+[11.046514] (-) TimerEvent: {}
+[11.147501] (-) TimerEvent: {}
+[11.248435] (-) TimerEvent: {}
+[11.349327] (-) TimerEvent: {}
+[11.450174] (-) TimerEvent: {}
+[11.551089] (-) TimerEvent: {}
+[11.651905] (-) TimerEvent: {}
+[11.752697] (-) TimerEvent: {}
+[11.853603] (-) TimerEvent: {}
+[11.954926] (-) TimerEvent: {}
+[12.055898] (-) TimerEvent: {}
+[12.156726] (-) TimerEvent: {}
+[12.257597] (-) TimerEvent: {}
+[12.358503] (-) TimerEvent: {}
+[12.459323] (-) TimerEvent: {}
+[12.560144] (-) TimerEvent: {}
+[12.660953] (-) TimerEvent: {}
+[12.761813] (-) TimerEvent: {}
+[12.862660] (-) TimerEvent: {}
+[12.917347] (sensors_pkg) StderrLine: {'line': b'\x1b[01m\x1b[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[KMinimalPublisher::MinimalPublisher()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[12.918533] (sensors_pkg) StderrLine: {'line': b'\x1b[01m\x1b[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:127:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KMinimalPublisher::angle_\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder\x07-Wreorder\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[12.919335] (sensors_pkg) StderrLine: {'line': b'  127 |     float \x1b[01;35m\x1b[Kangle_\x1b[m\x1b[K;\n'}
+[12.920102] (sensors_pkg) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[12.920687] (sensors_pkg) StderrLine: {'line': b'\x1b[01m\x1b[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:125:12:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Ksize_t MinimalPublisher::count_\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder\x07-Wreorder\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[12.921149] (sensors_pkg) StderrLine: {'line': b'  125 |     size_t \x1b[01;35m\x1b[Kcount_\x1b[m\x1b[K;\n'}
+[12.921567] (sensors_pkg) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[12.921986] (sensors_pkg) StderrLine: {'line': b'\x1b[01m\x1b[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:30:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder\x07-Wreorder\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[12.922423] (sensors_pkg) StderrLine: {'line': b'   30 |     \x1b[01;35m\x1b[KMinimalPublisher\x1b[m\x1b[K()\n'}
+[12.922832] (sensors_pkg) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[12.962856] (-) TimerEvent: {}
+[13.063779] (-) TimerEvent: {}
+[13.164547] (-) TimerEvent: {}
+[13.265388] (-) TimerEvent: {}
+[13.366181] (-) TimerEvent: {}
+[13.466994] (-) TimerEvent: {}
+[13.567838] (-) TimerEvent: {}
+[13.668640] (-) TimerEvent: {}
+[13.769509] (-) TimerEvent: {}
+[13.870293] (-) TimerEvent: {}
+[13.971108] (-) TimerEvent: {}
+[14.072030] (-) TimerEvent: {}
+[14.172848] (-) TimerEvent: {}
+[14.273693] (-) TimerEvent: {}
+[14.374490] (-) TimerEvent: {}
+[14.475326] (-) TimerEvent: {}
+[14.576180] (-) TimerEvent: {}
+[14.676990] (-) TimerEvent: {}
+[14.777866] (-) TimerEvent: {}
+[14.878670] (-) TimerEvent: {}
+[14.979483] (-) TimerEvent: {}
+[15.080332] (-) TimerEvent: {}
+[15.181166] (-) TimerEvent: {}
+[15.281972] (-) TimerEvent: {}
+[15.382744] (-) TimerEvent: {}
+[15.484061] (-) TimerEvent: {}
+[15.585148] (-) TimerEvent: {}
+[15.686245] (-) TimerEvent: {}
+[15.787013] (-) TimerEvent: {}
+[15.887806] (-) TimerEvent: {}
+[15.988708] (-) TimerEvent: {}
+[16.089762] (-) TimerEvent: {}
+[16.190697] (-) TimerEvent: {}
+[16.291712] (-) TimerEvent: {}
+[16.392536] (-) TimerEvent: {}
+[16.493419] (-) TimerEvent: {}
+[16.594223] (-) TimerEvent: {}
+[16.695028] (-) TimerEvent: {}
+[16.795811] (-) TimerEvent: {}
+[16.896642] (-) TimerEvent: {}
+[16.997451] (-) TimerEvent: {}
+[17.098251] (-) TimerEvent: {}
+[17.199062] (-) TimerEvent: {}
+[17.299936] (-) TimerEvent: {}
+[17.400719] (-) TimerEvent: {}
+[17.501712] (-) TimerEvent: {}
+[17.602516] (-) TimerEvent: {}
+[17.703384] (-) TimerEvent: {}
+[17.804234] (-) TimerEvent: {}
+[17.905066] (-) TimerEvent: {}
+[18.005859] (-) TimerEvent: {}
+[18.106667] (-) TimerEvent: {}
+[18.207512] (-) TimerEvent: {}
+[18.308295] (-) TimerEvent: {}
+[18.409092] (-) TimerEvent: {}
+[18.509883] (-) TimerEvent: {}
+[18.610710] (-) TimerEvent: {}
+[18.711536] (-) TimerEvent: {}
+[18.812330] (-) TimerEvent: {}
+[18.913116] (-) TimerEvent: {}
+[19.013871] (-) TimerEvent: {}
+[19.114648] (-) TimerEvent: {}
+[19.215420] (-) TimerEvent: {}
+[19.316308] (-) TimerEvent: {}
+[19.417102] (-) TimerEvent: {}
+[19.517878] (-) TimerEvent: {}
+[19.618625] (-) TimerEvent: {}
+[19.719444] (-) TimerEvent: {}
+[19.820354] (-) TimerEvent: {}
+[19.921091] (-) TimerEvent: {}
+[20.022081] (-) TimerEvent: {}
+[20.123245] (-) TimerEvent: {}
+[20.224263] (-) TimerEvent: {}
+[20.325050] (-) TimerEvent: {}
+[20.425838] (-) TimerEvent: {}
+[20.526655] (-) TimerEvent: {}
+[20.627460] (-) TimerEvent: {}
+[20.728248] (-) TimerEvent: {}
+[20.829017] (-) TimerEvent: {}
+[20.929785] (-) TimerEvent: {}
+[20.999856] (sensors_pkg) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable imu_node\x1b[0m\n'}
+[21.029962] (-) TimerEvent: {}
+[21.130715] (-) TimerEvent: {}
+[21.231740] (-) TimerEvent: {}
+[21.332803] (-) TimerEvent: {}
+[21.434276] (-) TimerEvent: {}
+[21.535558] (-) TimerEvent: {}
+[21.636710] (-) TimerEvent: {}
+[21.737690] (-) TimerEvent: {}
+[21.838886] (-) TimerEvent: {}
+[21.943175] (-) TimerEvent: {}
+[22.044040] (-) TimerEvent: {}
+[22.125533] (sensors_pkg) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/imu_node.dir/src/imu_node.cpp.o: in function `MinimalPublisher::setup_imu()':\n"}
+[22.126901] (sensors_pkg) StderrLine: {'line': b"imu_node.cpp:(.text._ZN16MinimalPublisher9setup_imuEv[_ZN16MinimalPublisher9setup_imuEv]+0xc): undefined reference to `wiringPiSetup'\n"}
+[22.128333] (sensors_pkg) StderrLine: {'line': b"/usr/bin/ld: imu_node.cpp:(.text._ZN16MinimalPublisher9setup_imuEv[_ZN16MinimalPublisher9setup_imuEv]+0x58): undefined reference to `wiringPiI2CSetup'\n"}
+[22.129251] (sensors_pkg) StderrLine: {'line': b"/usr/bin/ld: imu_node.cpp:(.text._ZN16MinimalPublisher9setup_imuEv[_ZN16MinimalPublisher9setup_imuEv]+0x78): undefined reference to `wiringPiI2CWriteReg8'\n"}
+[22.129656] (sensors_pkg) StderrLine: {'line': b"/usr/bin/ld: CMakeFiles/imu_node.dir/src/imu_node.cpp.o: in function `MinimalPublisher::readRawData(int)':\n"}
+[22.129970] (sensors_pkg) StderrLine: {'line': b"imu_node.cpp:(.text._ZN16MinimalPublisher11readRawDataEi[_ZN16MinimalPublisher11readRawDataEi]+0x1c): undefined reference to `wiringPiI2CReadReg8'\n"}
+[22.130277] (sensors_pkg) StderrLine: {'line': b"/usr/bin/ld: imu_node.cpp:(.text._ZN16MinimalPublisher11readRawDataEi[_ZN16MinimalPublisher11readRawDataEi]+0x3c): undefined reference to `wiringPiI2CReadReg8'\n"}
+[22.144172] (-) TimerEvent: {}
+[22.199776] (sensors_pkg) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[22.204903] (sensors_pkg) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/imu_node.dir/build.make:159: imu_node] Error 1\n'}
+[22.205892] (sensors_pkg) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/imu_node.dir/all] Error 2\n'}
+[22.206825] (sensors_pkg) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[22.216392] (sensors_pkg) CommandEnded: {'returncode': 2}
+[22.244882] (-) TimerEvent: {}
+[22.266942] (sensors_pkg) JobEnded: {'identifier': 'sensors_pkg', 'rc': 2}
+[22.279458] (-) EventReactorShutdown: {}

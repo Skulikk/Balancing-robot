@@ -1,0 +1,4 @@
+Invoking command in '/home/skulikk/robot/src/build/control_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/control_pkg -- -j4 -l4
+Invoked command in '/home/skulikk/robot/src/build/control_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/control_pkg -- -j4 -l4
+Invoking command in '/home/skulikk/robot/src/build/control_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/src/build/control_pkg
+Invoked command in '/home/skulikk/robot/src/build/control_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/src/build/control_pkg

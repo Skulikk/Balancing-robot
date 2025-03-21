@@ -1,0 +1,347 @@
+[0.000000] (-) TimerEvent: {}
+[0.001696] (imu_package) JobQueued: {'identifier': 'imu_package', 'dependencies': OrderedDict()}
+[0.002347] (imu_package) JobStarted: {'identifier': 'imu_package'}
+[0.044731] (imu_package) JobProgress: {'identifier': 'imu_package', 'progress': 'cmake'}
+[0.047421] (imu_package) Command: {'cmd': ['/usr/bin/cmake', '/home/skulikk/robot/src/imu_package', '-DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/imu_package/install/imu_package'], 'cwd': '/home/skulikk/robot/src/imu_package/build/imu_package', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 34026 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('OLDPWD', '/home/skulikk/robot/src'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-9c472fdb-d295-4031-9f67-bcce556a99c4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '5'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/imu_package/build/imu_package'), ('SSH_CONNECTION', '192.168.10.150 34026 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099101] (-) TimerEvent: {}
+[0.199883] (-) TimerEvent: {}
+[0.300863] (-) TimerEvent: {}
+[0.402015] (-) TimerEvent: {}
+[0.502875] (-) TimerEvent: {}
+[0.603855] (-) TimerEvent: {}
+[0.704737] (-) TimerEvent: {}
+[0.735309] (imu_package) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.805086] (-) TimerEvent: {}
+[0.906725] (-) TimerEvent: {}
+[1.007579] (-) TimerEvent: {}
+[1.108755] (-) TimerEvent: {}
+[1.209697] (-) TimerEvent: {}
+[1.310645] (-) TimerEvent: {}
+[1.356479] (imu_package) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[1.410966] (-) TimerEvent: {}
+[1.412848] (imu_package) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.511233] (-) TimerEvent: {}
+[1.612244] (-) TimerEvent: {}
+[1.713297] (-) TimerEvent: {}
+[1.814264] (-) TimerEvent: {}
+[1.830356] (imu_package) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.861562] (imu_package) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.864757] (imu_package) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.869368] (imu_package) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.885852] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.914409] (-) TimerEvent: {}
+[2.015349] (-) TimerEvent: {}
+[2.116124] (-) TimerEvent: {}
+[2.217016] (-) TimerEvent: {}
+[2.305555] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[2.317238] (-) TimerEvent: {}
+[2.335290] (imu_package) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[2.336431] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[2.338421] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[2.394445] (imu_package) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.417572] (-) TimerEvent: {}
+[2.519224] (-) TimerEvent: {}
+[2.620018] (-) TimerEvent: {}
+[2.720706] (-) TimerEvent: {}
+[2.821341] (-) TimerEvent: {}
+[2.922007] (-) TimerEvent: {}
+[3.022837] (-) TimerEvent: {}
+[3.123801] (-) TimerEvent: {}
+[3.133221] (imu_package) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[3.224077] (-) TimerEvent: {}
+[3.324891] (-) TimerEvent: {}
+[3.425757] (-) TimerEvent: {}
+[3.527085] (-) TimerEvent: {}
+[3.627867] (-) TimerEvent: {}
+[3.728807] (-) TimerEvent: {}
+[3.741553] (imu_package) StdoutLine: {'line': b'-- Found rclcpp: 16.0.11 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[3.828978] (-) TimerEvent: {}
+[3.929718] (-) TimerEvent: {}
+[4.030469] (-) TimerEvent: {}
+[4.128931] (imu_package) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[4.130627] (-) TimerEvent: {}
+[4.177002] (imu_package) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[4.230831] (-) TimerEvent: {}
+[4.252315] (imu_package) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[4.331071] (-) TimerEvent: {}
+[4.369387] (imu_package) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.431248] (-) TimerEvent: {}
+[4.490562] (imu_package) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.531431] (-) TimerEvent: {}
+[4.632097] (-) TimerEvent: {}
+[4.732851] (-) TimerEvent: {}
+[4.825270] (imu_package) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[4.833020] (-) TimerEvent: {}
+[4.851685] (imu_package) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[4.933200] (-) TimerEvent: {}
+[5.033875] (-) TimerEvent: {}
+[5.134574] (-) TimerEvent: {}
+[5.235240] (-) TimerEvent: {}
+[5.336033] (-) TimerEvent: {}
+[5.385984] (imu_package) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[5.436213] (-) TimerEvent: {}
+[5.537014] (-) TimerEvent: {}
+[5.561789] (imu_package) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[5.637187] (-) TimerEvent: {}
+[5.737828] (-) TimerEvent: {}
+[5.838519] (-) TimerEvent: {}
+[5.840383] (imu_package) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[5.916836] (imu_package) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[5.938697] (-) TimerEvent: {}
+[6.039395] (-) TimerEvent: {}
+[6.140206] (-) TimerEvent: {}
+[6.241218] (-) TimerEvent: {}
+[6.281792] (imu_package) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[6.284464] (imu_package) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[6.341418] (-) TimerEvent: {}
+[6.442305] (-) TimerEvent: {}
+[6.543222] (-) TimerEvent: {}
+[6.644166] (-) TimerEvent: {}
+[6.656654] (imu_package) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[6.666691] (imu_package) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[6.744449] (-) TimerEvent: {}
+[6.845391] (-) TimerEvent: {}
+[6.946259] (-) TimerEvent: {}
+[7.048273] (-) TimerEvent: {}
+[7.075509] (imu_package) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[7.148495] (-) TimerEvent: {}
+[7.249217] (-) TimerEvent: {}
+[7.349949] (-) TimerEvent: {}
+[7.450697] (-) TimerEvent: {}
+[7.551446] (-) TimerEvent: {}
+[7.645500] (imu_package) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[7.646154] (imu_package) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/skulikk/robot/src/imu_package/include>\n'}
+[7.646535] (imu_package) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[7.651601] (-) TimerEvent: {}
+[7.670381] (imu_package) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[7.737357] (imu_package) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[7.738051] (imu_package) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[7.747770] (imu_package) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[7.751871] (-) TimerEvent: {}
+[7.759912] (imu_package) StdoutLine: {'line': b'-- Configuring done\n'}
+[7.821381] (imu_package) StdoutLine: {'line': b'-- Generating done\n'}
+[7.836863] (imu_package) StdoutLine: {'line': b'-- Build files have been written to: /home/skulikk/robot/src/imu_package/build/imu_package\n'}
+[7.852260] (-) TimerEvent: {}
+[7.871526] (imu_package) CommandEnded: {'returncode': 0}
+[7.873419] (imu_package) JobProgress: {'identifier': 'imu_package', 'progress': 'build'}
+[7.875741] (imu_package) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/src/imu_package/build/imu_package', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/src/imu_package/build/imu_package', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 34026 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('OLDPWD', '/home/skulikk/robot/src'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-9c472fdb-d295-4031-9f67-bcce556a99c4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '5'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/imu_package/build/imu_package'), ('SSH_CONNECTION', '192.168.10.150 34026 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[7.952473] (-) TimerEvent: {}
+[8.053516] (-) TimerEvent: {}
+[8.099787] (imu_package) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o\x1b[0m\n'}
+[8.153833] (-) TimerEvent: {}
+[8.255095] (-) TimerEvent: {}
+[8.359450] (-) TimerEvent: {}
+[8.460329] (-) TimerEvent: {}
+[8.561086] (-) TimerEvent: {}
+[8.661839] (-) TimerEvent: {}
+[8.762613] (-) TimerEvent: {}
+[8.863375] (-) TimerEvent: {}
+[8.964143] (-) TimerEvent: {}
+[9.065162] (-) TimerEvent: {}
+[9.165832] (-) TimerEvent: {}
+[9.266493] (-) TimerEvent: {}
+[9.367144] (-) TimerEvent: {}
+[9.467913] (-) TimerEvent: {}
+[9.568671] (-) TimerEvent: {}
+[9.669464] (-) TimerEvent: {}
+[9.770218] (-) TimerEvent: {}
+[9.871057] (-) TimerEvent: {}
+[9.971835] (-) TimerEvent: {}
+[10.072562] (-) TimerEvent: {}
+[10.173398] (-) TimerEvent: {}
+[10.274133] (-) TimerEvent: {}
+[10.374884] (-) TimerEvent: {}
+[10.475817] (-) TimerEvent: {}
+[10.576667] (-) TimerEvent: {}
+[10.677371] (-) TimerEvent: {}
+[10.778097] (-) TimerEvent: {}
+[10.883643] (-) TimerEvent: {}
+[10.984431] (-) TimerEvent: {}
+[11.085230] (-) TimerEvent: {}
+[11.186078] (-) TimerEvent: {}
+[11.286870] (-) TimerEvent: {}
+[11.387673] (-) TimerEvent: {}
+[11.488471] (-) TimerEvent: {}
+[11.589229] (-) TimerEvent: {}
+[11.689946] (-) TimerEvent: {}
+[11.790784] (-) TimerEvent: {}
+[11.891503] (-) TimerEvent: {}
+[11.992249] (-) TimerEvent: {}
+[12.093060] (-) TimerEvent: {}
+[12.193880] (-) TimerEvent: {}
+[12.294650] (-) TimerEvent: {}
+[12.395642] (-) TimerEvent: {}
+[12.496501] (-) TimerEvent: {}
+[12.597326] (-) TimerEvent: {}
+[12.698054] (-) TimerEvent: {}
+[12.798811] (-) TimerEvent: {}
+[12.899611] (-) TimerEvent: {}
+[13.000335] (-) TimerEvent: {}
+[13.101182] (-) TimerEvent: {}
+[13.201892] (-) TimerEvent: {}
+[13.302609] (-) TimerEvent: {}
+[13.403333] (-) TimerEvent: {}
+[13.504103] (-) TimerEvent: {}
+[13.604905] (-) TimerEvent: {}
+[13.705633] (-) TimerEvent: {}
+[13.806340] (-) TimerEvent: {}
+[13.907069] (-) TimerEvent: {}
+[14.007821] (-) TimerEvent: {}
+[14.108624] (-) TimerEvent: {}
+[14.209588] (-) TimerEvent: {}
+[14.310328] (-) TimerEvent: {}
+[14.411089] (-) TimerEvent: {}
+[14.511920] (-) TimerEvent: {}
+[14.612755] (-) TimerEvent: {}
+[14.713527] (-) TimerEvent: {}
+[14.814315] (-) TimerEvent: {}
+[14.915051] (-) TimerEvent: {}
+[15.015779] (-) TimerEvent: {}
+[15.116522] (-) TimerEvent: {}
+[15.217327] (-) TimerEvent: {}
+[15.318047] (-) TimerEvent: {}
+[15.418764] (-) TimerEvent: {}
+[15.519480] (-) TimerEvent: {}
+[15.620204] (-) TimerEvent: {}
+[15.721023] (-) TimerEvent: {}
+[15.821800] (-) TimerEvent: {}
+[15.922520] (-) TimerEvent: {}
+[16.023246] (-) TimerEvent: {}
+[16.123965] (-) TimerEvent: {}
+[16.224735] (-) TimerEvent: {}
+[16.325579] (-) TimerEvent: {}
+[16.426381] (-) TimerEvent: {}
+[16.527081] (-) TimerEvent: {}
+[16.627899] (-) TimerEvent: {}
+[16.728822] (-) TimerEvent: {}
+[16.829604] (-) TimerEvent: {}
+[16.930338] (-) TimerEvent: {}
+[17.031103] (-) TimerEvent: {}
+[17.131885] (-) TimerEvent: {}
+[17.232739] (-) TimerEvent: {}
+[17.333488] (-) TimerEvent: {}
+[17.434277] (-) TimerEvent: {}
+[17.534991] (-) TimerEvent: {}
+[17.635715] (-) TimerEvent: {}
+[17.736448] (-) TimerEvent: {}
+[17.837224] (-) TimerEvent: {}
+[17.938017] (-) TimerEvent: {}
+[18.038759] (-) TimerEvent: {}
+[18.139539] (-) TimerEvent: {}
+[18.240283] (-) TimerEvent: {}
+[18.341181] (-) TimerEvent: {}
+[18.441947] (-) TimerEvent: {}
+[18.542659] (-) TimerEvent: {}
+[18.643380] (-) TimerEvent: {}
+[18.744097] (-) TimerEvent: {}
+[18.844845] (-) TimerEvent: {}
+[18.945631] (-) TimerEvent: {}
+[19.046413] (-) TimerEvent: {}
+[19.147137] (-) TimerEvent: {}
+[19.247890] (-) TimerEvent: {}
+[19.348754] (-) TimerEvent: {}
+[19.449468] (-) TimerEvent: {}
+[19.550280] (-) TimerEvent: {}
+[19.651006] (-) TimerEvent: {}
+[19.751753] (-) TimerEvent: {}
+[19.852600] (-) TimerEvent: {}
+[19.953312] (-) TimerEvent: {}
+[20.054012] (-) TimerEvent: {}
+[20.154856] (-) TimerEvent: {}
+[20.255600] (-) TimerEvent: {}
+[20.356345] (-) TimerEvent: {}
+[20.457151] (-) TimerEvent: {}
+[20.557934] (-) TimerEvent: {}
+[20.658885] (-) TimerEvent: {}
+[20.759595] (-) TimerEvent: {}
+[20.860380] (-) TimerEvent: {}
+[20.961315] (-) TimerEvent: {}
+[21.062515] (-) TimerEvent: {}
+[21.163280] (-) TimerEvent: {}
+[21.264063] (-) TimerEvent: {}
+[21.365791] (-) TimerEvent: {}
+[21.466562] (-) TimerEvent: {}
+[21.567295] (-) TimerEvent: {}
+[21.668007] (-) TimerEvent: {}
+[21.768752] (-) TimerEvent: {}
+[21.869480] (-) TimerEvent: {}
+[21.970263] (-) TimerEvent: {}
+[22.070976] (-) TimerEvent: {}
+[22.171733] (-) TimerEvent: {}
+[22.272453] (-) TimerEvent: {}
+[22.373403] (-) TimerEvent: {}
+[22.474119] (-) TimerEvent: {}
+[22.574822] (-) TimerEvent: {}
+[22.675536] (-) TimerEvent: {}
+[22.776224] (-) TimerEvent: {}
+[22.876971] (-) TimerEvent: {}
+[22.977696] (-) TimerEvent: {}
+[23.078462] (-) TimerEvent: {}
+[23.179185] (-) TimerEvent: {}
+[23.279901] (-) TimerEvent: {}
+[23.380673] (-) TimerEvent: {}
+[23.481355] (-) TimerEvent: {}
+[23.582067] (-) TimerEvent: {}
+[23.682860] (-) TimerEvent: {}
+[23.783673] (-) TimerEvent: {}
+[23.884390] (-) TimerEvent: {}
+[23.985133] (-) TimerEvent: {}
+[24.085834] (-) TimerEvent: {}
+[24.186618] (-) TimerEvent: {}
+[24.287335] (-) TimerEvent: {}
+[24.388061] (-) TimerEvent: {}
+[24.488786] (-) TimerEvent: {}
+[24.589499] (-) TimerEvent: {}
+[24.690217] (-) TimerEvent: {}
+[24.791029] (-) TimerEvent: {}
+[24.892068] (-) TimerEvent: {}
+[24.993187] (-) TimerEvent: {}
+[25.094112] (-) TimerEvent: {}
+[25.194966] (-) TimerEvent: {}
+[25.295858] (-) TimerEvent: {}
+[25.396677] (-) TimerEvent: {}
+[25.497608] (-) TimerEvent: {}
+[25.598379] (-) TimerEvent: {}
+[25.699196] (-) TimerEvent: {}
+[25.800252] (-) TimerEvent: {}
+[25.901428] (-) TimerEvent: {}
+[26.003063] (-) TimerEvent: {}
+[26.092728] (imu_package) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable imu_node\x1b[0m\n'}
+[26.103261] (-) TimerEvent: {}
+[26.204024] (-) TimerEvent: {}
+[26.305043] (-) TimerEvent: {}
+[26.406271] (-) TimerEvent: {}
+[26.507050] (-) TimerEvent: {}
+[26.607927] (-) TimerEvent: {}
+[26.708996] (-) TimerEvent: {}
+[26.810185] (-) TimerEvent: {}
+[26.910970] (-) TimerEvent: {}
+[27.011634] (-) TimerEvent: {}
+[27.112429] (-) TimerEvent: {}
+[27.154098] (imu_package) StdoutLine: {'line': b'[100%] Built target imu_node\n'}
+[27.192298] (imu_package) CommandEnded: {'returncode': 0}
+[27.195499] (imu_package) JobProgress: {'identifier': 'imu_package', 'progress': 'install'}
+[27.212757] (-) TimerEvent: {}
+[27.230566] (imu_package) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/skulikk/robot/src/imu_package/build/imu_package'], 'cwd': '/home/skulikk/robot/src/imu_package/build/imu_package', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 34026 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('OLDPWD', '/home/skulikk/robot/src'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-9c472fdb-d295-4031-9f67-bcce556a99c4.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '5'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/imu_package/build/imu_package'), ('SSH_CONNECTION', '192.168.10.150 34026 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[27.266489] (imu_package) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[27.268835] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/lib/imu_package/imu_node\n'}
+[27.279031] (imu_package) StdoutLine: {'line': b'-- Set runtime path of "/home/skulikk/robot/src/imu_package/install/imu_package/lib/imu_package/imu_node" to ""\n'}
+[27.280427] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/ament_index/resource_index/package_run_dependencies/imu_package\n'}
+[27.282028] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/ament_index/resource_index/parent_prefix_path/imu_package\n'}
+[27.283863] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/environment/ament_prefix_path.sh\n'}
+[27.285277] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/environment/ament_prefix_path.dsv\n'}
+[27.286712] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/environment/path.sh\n'}
+[27.287915] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/environment/path.dsv\n'}
+[27.289277] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/local_setup.bash\n'}
+[27.290825] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/local_setup.sh\n'}
+[27.292272] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/local_setup.zsh\n'}
+[27.293750] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/local_setup.dsv\n'}
+[27.295128] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/package.dsv\n'}
+[27.296931] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/ament_index/resource_index/packages/imu_package\n'}
+[27.298636] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/cmake/imu_packageConfig.cmake\n'}
+[27.299806] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/cmake/imu_packageConfig-version.cmake\n'}
+[27.301201] (imu_package) StdoutLine: {'line': b'-- Installing: /home/skulikk/robot/src/imu_package/install/imu_package/share/imu_package/package.xml\n'}
+[27.311770] (imu_package) CommandEnded: {'returncode': 0}
+[27.313950] (-) TimerEvent: {}
+[27.407678] (imu_package) JobEnded: {'identifier': 'imu_package', 'rc': 0}
+[27.410879] (-) EventReactorShutdown: {}

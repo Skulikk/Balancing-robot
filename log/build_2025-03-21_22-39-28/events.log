@@ -1,0 +1,393 @@
+[0.000000] (-) TimerEvent: {}
+[0.002076] (control_pkg) JobQueued: {'identifier': 'control_pkg', 'dependencies': OrderedDict()}
+[0.002569] (sensors_pkg) JobQueued: {'identifier': 'sensors_pkg', 'dependencies': OrderedDict()}
+[0.002760] (control_pkg) JobStarted: {'identifier': 'control_pkg'}
+[0.030688] (sensors_pkg) JobStarted: {'identifier': 'sensors_pkg'}
+[0.054519] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'cmake'}
+[0.057997] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'build'}
+[0.060881] (control_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/build/control_pkg', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/build/control_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/control_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[0.077705] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'cmake'}
+[0.081519] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'build'}
+[0.083039] (sensors_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/build/sensors_pkg', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/build/sensors_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/sensors_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[0.099135] (-) TimerEvent: {}
+[0.199943] (-) TimerEvent: {}
+[0.301253] (-) TimerEvent: {}
+[0.404125] (-) TimerEvent: {}
+[0.432774] (sensors_pkg) StdoutLine: {'line': b'[  2%] Built target sensors_pkg__cpp\n'}
+[0.485839] (control_pkg) StdoutLine: {'line': b'[100%] Built target motor_controller_node\n'}
+[0.504453] (-) TimerEvent: {}
+[0.511501] (sensors_pkg) StdoutLine: {'line': b'[ 11%] Built target sensors_pkg__rosidl_generator_c\n'}
+[0.588729] (sensors_pkg) StdoutLine: {'line': b'[ 17%] Built target imu_node\n'}
+[0.604834] (-) TimerEvent: {}
+[0.627936] (control_pkg) CommandEnded: {'returncode': 0}
+[0.653317] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'install'}
+[0.653889] (sensors_pkg) StdoutLine: {'line': b'[ 17%] Built target ament_cmake_python_symlink_sensors_pkg\n'}
+[0.705161] (-) TimerEvent: {}
+[0.736327] (control_pkg) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/skulikk/robot/build/control_pkg'], 'cwd': '/home/skulikk/robot/build/control_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/control_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[0.805545] (-) TimerEvent: {}
+[0.836007] (control_pkg) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.842789] (control_pkg) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[0.849538] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/lib/control_pkg/motor_controller_node\n'}
+[0.855636] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/ament_index/resource_index/package_run_dependencies/control_pkg\n'}
+[0.861425] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/ament_index/resource_index/parent_prefix_path/control_pkg\n'}
+[0.866919] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/ament_prefix_path.sh\n'}
+[0.871708] (sensors_pkg) StdoutLine: {'line': b'[ 25%] Built target sensors_pkg__rosidl_typesupport_cpp\n'}
+[0.879442] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/ament_prefix_path.dsv\n'}
+[0.885554] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/path.sh\n'}
+[0.890844] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/path.dsv\n'}
+[0.896632] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.bash\n'}
+[0.905973] (-) TimerEvent: {}
+[0.912046] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.sh\n'}
+[0.924686] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.zsh\n'}
+[0.929815] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.dsv\n'}
+[0.934888] (control_pkg) StdoutLine: {'line': b'-- Symlinking: /home/skulikk/robot/install/control_pkg/share/control_pkg/package.dsv\n'}
+[0.940303] (sensors_pkg) StdoutLine: {'line': b'[ 34%] Built target sensors_pkg__rosidl_typesupport_introspection_c\n'}
+[0.951855] (sensors_pkg) StdoutLine: {'line': b'[ 42%] Built target sensors_pkg__rosidl_typesupport_fastrtps_cpp\n'}
+[1.006182] (-) TimerEvent: {}
+[1.010947] (sensors_pkg) StdoutLine: {'line': b'[ 51%] Built target sensors_pkg__rosidl_typesupport_c\n'}
+[1.032898] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/ament_index/resource_index/packages/control_pkg\n'}
+[1.038243] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/cmake/control_pkgConfig.cmake\n'}
+[1.042831] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/cmake/control_pkgConfig-version.cmake\n'}
+[1.052327] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/package.xml\n'}
+[1.071815] (control_pkg) CommandEnded: {'returncode': 0}
+[1.106882] (-) TimerEvent: {}
+[1.208716] (-) TimerEvent: {}
+[1.212556] (sensors_pkg) StdoutLine: {'line': b'[ 60%] Built target sensors_pkg__rosidl_typesupport_introspection_cpp\n'}
+[1.239716] (sensors_pkg) StdoutLine: {'line': b'[ 68%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c\n'}
+[1.310360] (-) TimerEvent: {}
+[1.359809] (control_pkg) JobEnded: {'identifier': 'control_pkg', 'rc': 0}
+[1.410618] (-) TimerEvent: {}
+[1.474698] (sensors_pkg) StdoutLine: {'line': b'[ 68%] Built target sensors_pkg\n'}
+[1.511060] (-) TimerEvent: {}
+[1.613195] (-) TimerEvent: {}
+[1.638699] (sensors_pkg) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target encoder_node\x1b[0m\n'}
+[1.712334] (sensors_pkg) StdoutLine: {'line': b'[ 71%] Built target sensors_pkg__py\n'}
+[1.713705] (-) TimerEvent: {}
+[1.815974] (-) TimerEvent: {}
+[1.917289] (sensors_pkg) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/encoder_node.dir/src/encoder_node.cpp.o\x1b[0m\n'}
+[1.922514] (-) TimerEvent: {}
+[1.967444] (sensors_pkg) StdoutLine: {'line': b'[ 80%] Built target sensors_pkg__rosidl_generator_py\n'}
+[2.022800] (-) TimerEvent: {}
+[2.125874] (-) TimerEvent: {}
+[2.228210] (-) TimerEvent: {}
+[2.248834] (sensors_pkg) StdoutLine: {'line': b'[ 85%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c__pyext\n'}
+[2.266328] (sensors_pkg) StdoutLine: {'line': b'[ 91%] Built target sensors_pkg__rosidl_typesupport_introspection_c__pyext\n'}
+[2.328459] (-) TimerEvent: {}
+[2.430061] (-) TimerEvent: {}
+[2.511174] (sensors_pkg) StdoutLine: {'line': b'[ 97%] Built target sensors_pkg__rosidl_typesupport_c__pyext\n'}
+[2.530398] (-) TimerEvent: {}
+[2.634069] (-) TimerEvent: {}
+[2.735810] (-) TimerEvent: {}
+[2.837776] (-) TimerEvent: {}
+[2.939092] (-) TimerEvent: {}
+[3.040561] (-) TimerEvent: {}
+[3.141994] (-) TimerEvent: {}
+[3.243620] (-) TimerEvent: {}
+[3.344793] (-) TimerEvent: {}
+[3.445475] (-) TimerEvent: {}
+[3.504122] (sensors_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[3.507425] (sensors_pkg) StdoutLine: {'line': b'writing sensors_pkg.egg-info/PKG-INFO\n'}
+[3.508512] (sensors_pkg) StdoutLine: {'line': b'writing dependency_links to sensors_pkg.egg-info/dependency_links.txt\n'}
+[3.509606] (sensors_pkg) StdoutLine: {'line': b'writing top-level names to sensors_pkg.egg-info/top_level.txt\n'}
+[3.518557] (sensors_pkg) StdoutLine: {'line': b"reading manifest file 'sensors_pkg.egg-info/SOURCES.txt'\n"}
+[3.521328] (sensors_pkg) StdoutLine: {'line': b"writing manifest file 'sensors_pkg.egg-info/SOURCES.txt'\n"}
+[3.545798] (-) TimerEvent: {}
+[3.647192] (-) TimerEvent: {}
+[3.648465] (sensors_pkg) StdoutLine: {'line': b'[ 97%] Built target ament_cmake_python_build_sensors_pkg_egg\n'}
+[3.747511] (-) TimerEvent: {}
+[3.848796] (-) TimerEvent: {}
+[3.950085] (-) TimerEvent: {}
+[4.051583] (-) TimerEvent: {}
+[4.152947] (-) TimerEvent: {}
+[4.254298] (-) TimerEvent: {}
+[4.355651] (-) TimerEvent: {}
+[4.456974] (-) TimerEvent: {}
+[4.558286] (-) TimerEvent: {}
+[4.659670] (-) TimerEvent: {}
+[4.760985] (-) TimerEvent: {}
+[4.862333] (-) TimerEvent: {}
+[4.963703] (-) TimerEvent: {}
+[5.065061] (-) TimerEvent: {}
+[5.166534] (-) TimerEvent: {}
+[5.267854] (-) TimerEvent: {}
+[5.369143] (-) TimerEvent: {}
+[5.470562] (-) TimerEvent: {}
+[5.571934] (-) TimerEvent: {}
+[5.673450] (-) TimerEvent: {}
+[5.774953] (-) TimerEvent: {}
+[5.876354] (-) TimerEvent: {}
+[5.977858] (-) TimerEvent: {}
+[6.079357] (-) TimerEvent: {}
+[6.181031] (-) TimerEvent: {}
+[6.282552] (-) TimerEvent: {}
+[6.385250] (-) TimerEvent: {}
+[6.486763] (-) TimerEvent: {}
+[6.588483] (-) TimerEvent: {}
+[6.689876] (-) TimerEvent: {}
+[6.791445] (-) TimerEvent: {}
+[6.892866] (-) TimerEvent: {}
+[6.994416] (-) TimerEvent: {}
+[7.095996] (-) TimerEvent: {}
+[7.196786] (-) TimerEvent: {}
+[7.297664] (-) TimerEvent: {}
+[7.398446] (-) TimerEvent: {}
+[7.499356] (-) TimerEvent: {}
+[7.600191] (-) TimerEvent: {}
+[7.701115] (-) TimerEvent: {}
+[7.802001] (-) TimerEvent: {}
+[7.902802] (-) TimerEvent: {}
+[8.003682] (-) TimerEvent: {}
+[8.104433] (-) TimerEvent: {}
+[8.205218] (-) TimerEvent: {}
+[8.305993] (-) TimerEvent: {}
+[8.406785] (-) TimerEvent: {}
+[8.507606] (-) TimerEvent: {}
+[8.608389] (-) TimerEvent: {}
+[8.709197] (-) TimerEvent: {}
+[8.810003] (-) TimerEvent: {}
+[8.910913] (-) TimerEvent: {}
+[9.011782] (-) TimerEvent: {}
+[9.112583] (-) TimerEvent: {}
+[9.213344] (-) TimerEvent: {}
+[9.314150] (-) TimerEvent: {}
+[9.415011] (-) TimerEvent: {}
+[9.515799] (-) TimerEvent: {}
+[9.616604] (-) TimerEvent: {}
+[9.717430] (-) TimerEvent: {}
+[9.818246] (-) TimerEvent: {}
+[9.919074] (-) TimerEvent: {}
+[10.019851] (-) TimerEvent: {}
+[10.120629] (-) TimerEvent: {}
+[10.221427] (-) TimerEvent: {}
+[10.322224] (-) TimerEvent: {}
+[10.423047] (-) TimerEvent: {}
+[10.523855] (-) TimerEvent: {}
+[10.624654] (-) TimerEvent: {}
+[10.725457] (-) TimerEvent: {}
+[10.826312] (-) TimerEvent: {}
+[10.927143] (-) TimerEvent: {}
+[11.027913] (-) TimerEvent: {}
+[11.128681] (-) TimerEvent: {}
+[11.229475] (-) TimerEvent: {}
+[11.330275] (-) TimerEvent: {}
+[11.431087] (-) TimerEvent: {}
+[11.531862] (-) TimerEvent: {}
+[11.632633] (-) TimerEvent: {}
+[11.733438] (-) TimerEvent: {}
+[11.834243] (-) TimerEvent: {}
+[11.935066] (-) TimerEvent: {}
+[12.035847] (-) TimerEvent: {}
+[12.136639] (-) TimerEvent: {}
+[12.237401] (-) TimerEvent: {}
+[12.338189] (-) TimerEvent: {}
+[12.439056] (-) TimerEvent: {}
+[12.539809] (-) TimerEvent: {}
+[12.640569] (-) TimerEvent: {}
+[12.741403] (-) TimerEvent: {}
+[12.842283] (-) TimerEvent: {}
+[12.943123] (-) TimerEvent: {}
+[13.043917] (-) TimerEvent: {}
+[13.144737] (-) TimerEvent: {}
+[13.245553] (-) TimerEvent: {}
+[13.346393] (-) TimerEvent: {}
+[13.447236] (-) TimerEvent: {}
+[13.548026] (-) TimerEvent: {}
+[13.648829] (-) TimerEvent: {}
+[13.749738] (-) TimerEvent: {}
+[13.850540] (-) TimerEvent: {}
+[13.951347] (-) TimerEvent: {}
+[14.052130] (-) TimerEvent: {}
+[14.152962] (-) TimerEvent: {}
+[14.253752] (-) TimerEvent: {}
+[14.354660] (-) TimerEvent: {}
+[14.455483] (-) TimerEvent: {}
+[14.556254] (-) TimerEvent: {}
+[14.657058] (-) TimerEvent: {}
+[14.757834] (-) TimerEvent: {}
+[14.858666] (-) TimerEvent: {}
+[14.959529] (-) TimerEvent: {}
+[15.060331] (-) TimerEvent: {}
+[15.161101] (-) TimerEvent: {}
+[15.261922] (-) TimerEvent: {}
+[15.362703] (-) TimerEvent: {}
+[15.463509] (-) TimerEvent: {}
+[15.564296] (-) TimerEvent: {}
+[15.665078] (-) TimerEvent: {}
+[15.765935] (-) TimerEvent: {}
+[15.866770] (-) TimerEvent: {}
+[15.967572] (-) TimerEvent: {}
+[16.068366] (-) TimerEvent: {}
+[16.169144] (-) TimerEvent: {}
+[16.269964] (-) TimerEvent: {}
+[16.370746] (-) TimerEvent: {}
+[16.471590] (-) TimerEvent: {}
+[16.572370] (-) TimerEvent: {}
+[16.673149] (-) TimerEvent: {}
+[16.773957] (-) TimerEvent: {}
+[16.874705] (-) TimerEvent: {}
+[16.975515] (-) TimerEvent: {}
+[17.076311] (-) TimerEvent: {}
+[17.177115] (-) TimerEvent: {}
+[17.277907] (-) TimerEvent: {}
+[17.378816] (-) TimerEvent: {}
+[17.480243] (-) TimerEvent: {}
+[17.581164] (-) TimerEvent: {}
+[17.682004] (-) TimerEvent: {}
+[17.782802] (-) TimerEvent: {}
+[17.883592] (-) TimerEvent: {}
+[17.984368] (-) TimerEvent: {}
+[18.085142] (-) TimerEvent: {}
+[18.185930] (-) TimerEvent: {}
+[18.286718] (-) TimerEvent: {}
+[18.387534] (-) TimerEvent: {}
+[18.488479] (-) TimerEvent: {}
+[18.589343] (-) TimerEvent: {}
+[18.690141] (-) TimerEvent: {}
+[18.791047] (-) TimerEvent: {}
+[18.891807] (-) TimerEvent: {}
+[18.992542] (-) TimerEvent: {}
+[19.093322] (-) TimerEvent: {}
+[19.194104] (-) TimerEvent: {}
+[19.294861] (-) TimerEvent: {}
+[19.395675] (-) TimerEvent: {}
+[19.496424] (-) TimerEvent: {}
+[19.597199] (-) TimerEvent: {}
+[19.698012] (-) TimerEvent: {}
+[19.798803] (-) TimerEvent: {}
+[19.899610] (-) TimerEvent: {}
+[20.000369] (-) TimerEvent: {}
+[20.101119] (-) TimerEvent: {}
+[20.201908] (-) TimerEvent: {}
+[20.302690] (-) TimerEvent: {}
+[20.403476] (-) TimerEvent: {}
+[20.504274] (-) TimerEvent: {}
+[20.605119] (-) TimerEvent: {}
+[20.706089] (-) TimerEvent: {}
+[20.806861] (-) TimerEvent: {}
+[20.907801] (-) TimerEvent: {}
+[21.008579] (-) TimerEvent: {}
+[21.109358] (-) TimerEvent: {}
+[21.210157] (-) TimerEvent: {}
+[21.310938] (-) TimerEvent: {}
+[21.411749] (-) TimerEvent: {}
+[21.474215] (sensors_pkg) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable encoder_node\x1b[0m\n'}
+[21.511935] (-) TimerEvent: {}
+[21.612763] (-) TimerEvent: {}
+[21.713833] (-) TimerEvent: {}
+[21.814736] (-) TimerEvent: {}
+[21.915687] (-) TimerEvent: {}
+[22.016653] (-) TimerEvent: {}
+[22.117438] (-) TimerEvent: {}
+[22.218165] (-) TimerEvent: {}
+[22.319153] (-) TimerEvent: {}
+[22.339508] (sensors_pkg) StdoutLine: {'line': b'[100%] Built target encoder_node\n'}
+[22.380835] (sensors_pkg) CommandEnded: {'returncode': 0}
+[22.383395] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'install'}
+[22.384696] (sensors_pkg) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/skulikk/robot/build/sensors_pkg'], 'cwd': '/home/skulikk/robot/build/sensors_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/sensors_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[22.419351] (-) TimerEvent: {}
+[22.421315] (sensors_pkg) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[22.423279] (sensors_pkg) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[22.424797] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/rosidl_interfaces/sensors_pkg\n'}
+[22.427443] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__functions.h\n'}
+[22.428395] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.h\n'}
+[22.429277] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.h\n'}
+[22.430065] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.h\n'}
+[22.430936] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_c__visibility_control.h\n'}
+[22.431999] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.sh\n'}
+[22.432939] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.dsv\n'}
+[22.435695] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_c.h\n'}
+[22.436529] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[22.438759] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__builder.hpp\n'}
+[22.439620] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.hpp\n'}
+[22.440512] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__traits.hpp\n'}
+[22.441390] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.hpp\n'}
+[22.442166] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.hpp\n'}
+[22.443127] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[22.446075] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[22.446846] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[22.449016] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_c.h\n'}
+[22.449817] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[22.451890] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[22.452977] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.sh\n'}
+[22.453937] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.dsv\n'}
+[22.455556] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[22.456388] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[22.457216] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[22.458082] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[22.462328] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/__init__.py\n'}
+[22.463110] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_c.c\n'}
+[22.464018] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[22.464810] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[22.465589] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/libsensors_pkg__rosidl_generator_py.so\n'}
+[22.466470] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/__init__.py\n'}
+[22.467310] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data.py\n'}
+[22.468189] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data_s.c\n'}
+[22.469065] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[22.469923] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[22.470712] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[22.472360] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[22.473774] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[22.475215] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[22.476191] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.idl\n'}
+[22.477012] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.msg\n'}
+[22.478204] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/imu_node\n'}
+[22.479410] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/encoder_node\n'}
+[22.480498] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/package_run_dependencies/sensors_pkg\n'}
+[22.481566] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/parent_prefix_path/sensors_pkg\n'}
+[22.482532] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.sh\n'}
+[22.483533] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.dsv\n'}
+[22.484474] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.sh\n'}
+[22.485360] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.dsv\n'}
+[22.486157] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.bash\n'}
+[22.487140] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.sh\n'}
+[22.487907] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.zsh\n'}
+[22.488822] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.dsv\n'}
+[22.489380] (sensors_pkg) StdoutLine: {'line': b'-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.dsv\n'}
+[22.519558] (-) TimerEvent: {}
+[22.523165] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/packages/sensors_pkg\n'}
+[22.524136] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake-extras.cmake\n'}
+[22.525099] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[22.526228] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[22.527416] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[22.530580] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[22.531436] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[22.532139] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[22.532580] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig.cmake\n'}
+[22.533258] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig-version.cmake\n'}
+[22.533660] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.xml\n'}
+[22.534270] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_c.so\n'}
+[22.536350] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_c.so\n'}
+[22.538369] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so\n'}
+[22.540440] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_c.so\n'}
+[22.542333] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_c.so\n'}
+[22.544245] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_cpp.so\n'}
+[22.546100] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_cpp.so\n'}
+[22.619967] (-) TimerEvent: {}
+[22.721959] (-) TimerEvent: {}
+[22.801253] (sensors_pkg) StdoutLine: {'line': b"Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg'...\n"}
+[22.803475] (sensors_pkg) StdoutLine: {'line': b"Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg'...\n"}
+[22.822279] (-) TimerEvent: {}
+[22.848912] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_py.so\n'}
+[22.853728] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport.cmake\n'}
+[22.855653] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport-noconfig.cmake\n'}
+[22.857199] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[22.858539] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[22.860556] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cppExport.cmake\n'}
+[22.862736] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[22.864137] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[22.866007] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport.cmake\n'}
+[22.867381] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[22.869383] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport.cmake\n'}
+[22.870658] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[22.872759] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[22.875131] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[22.877696] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport.cmake\n'}
+[22.879012] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[22.881100] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport.cmake\n'}
+[22.882276] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport-noconfig.cmake\n'}
+[22.897334] (sensors_pkg) CommandEnded: {'returncode': 0}
+[22.923070] (-) TimerEvent: {}
+[23.024483] (-) TimerEvent: {}
+[23.123734] (sensors_pkg) JobEnded: {'identifier': 'sensors_pkg', 'rc': 0}
+[23.130550] (-) TimerEvent: {}
+[23.131359] (-) EventReactorShutdown: {}

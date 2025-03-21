@@ -1,0 +1,240 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found rclcpp: 16.0.11 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+-- Found PythonExtra: .so  
+[0mCMake Deprecation Warning at /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_target_interfaces.cmake:32 (message):
+  Use rosidl_get_typesupport_target() and target_link_libraries() instead of
+  rosidl_target_interfaces()
+Call Stack (most recent call first):
+  CMakeLists.txt:48 (rosidl_target_interfaces)
+
+[0m
+-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/skulikk/robot/src/sensors_pkg/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/skulikk/robot/build/sensors_pkg
+[  2%] [34m[1mGenerating C code for ROS interfaces[0m
+[  5%] [32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o[0m
+[  8%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[  8%] Built target ament_cmake_python_symlink_sensors_pkg
+running egg_info
+creating sensors_pkg.egg-info
+writing sensors_pkg.egg-info/PKG-INFO
+writing dependency_links to sensors_pkg.egg-info/dependency_links.txt
+writing top-level names to sensors_pkg.egg-info/top_level.txt
+writing manifest file 'sensors_pkg.egg-info/SOURCES.txt'
+reading manifest file 'sensors_pkg.egg-info/SOURCES.txt'
+writing manifest file 'sensors_pkg.egg-info/SOURCES.txt'
+[  8%] Built target ament_cmake_python_build_sensors_pkg_egg
+[ 11%] [32mBuilding C object CMakeFiles/sensors_pkg__rosidl_generator_c.dir/rosidl_generator_c/sensors_pkg/msg/detail/encoder_data__functions.c.o[0m
+[ 11%] Built target sensors_pkg__cpp
+[ 14%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[ 17%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[ 20%] [32m[1mLinking C shared library libsensors_pkg__rosidl_generator_c.so[0m
+[ 20%] Built target sensors_pkg__rosidl_generator_c
+[ 22%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/sensors_pkg__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sensors_pkg/msg/encoder_data__type_support.cpp.o[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/sensors_pkg__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sensors_pkg/msg/detail/dds_fastrtps/encoder_data__type_support.cpp.o[0m
+[ 31%] [32mBuilding CXX object CMakeFiles/sensors_pkg__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sensors_pkg/msg/detail/encoder_data__type_support.cpp.o[0m
+[ 34%] [32m[1mLinking CXX shared library libsensors_pkg__rosidl_typesupport_cpp.so[0m
+[ 34%] Built target sensors_pkg__rosidl_typesupport_cpp
+[ 37%] [32m[1mLinking CXX shared library libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so[0m
+[ 37%] Built target sensors_pkg__rosidl_typesupport_fastrtps_cpp
+[ 40%] [32m[1mLinking CXX shared library libsensors_pkg__rosidl_typesupport_introspection_cpp.so[0m
+[ 40%] Built target sensors_pkg__rosidl_typesupport_introspection_cpp
+[01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:119:11:[m[K [01;35m[Kwarning: [m[K‘[01m[KMinimalPublisher::angle_[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+  119 |     float [01;35m[Kangle_[m[K;
+      |           [01;35m[K^~~~~~[m[K
+[01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:117:12:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Ksize_t MinimalPublisher::count_[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+  117 |     size_t [01;35m[Kcount_[m[K;
+      |            [01;35m[K^~~~~~[m[K
+[01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:40:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+   40 |     [01;35m[KMinimalPublisher[m[K()
+      |     [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[ 42%] [32m[1mLinking CXX executable imu_node[0m
+[ 42%] Built target imu_node
+[ 45%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[ 48%] [32mBuilding CXX object CMakeFiles/sensors_pkg__rosidl_typesupport_c.dir/rosidl_typesupport_c/sensors_pkg/msg/encoder_data__type_support.cpp.o[0m
+[ 51%] [32m[1mLinking CXX shared library libsensors_pkg__rosidl_typesupport_c.so[0m
+[ 51%] Built target sensors_pkg__rosidl_typesupport_c
+[ 54%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[ 57%] [32mBuilding C object CMakeFiles/sensors_pkg__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sensors_pkg/msg/detail/encoder_data__type_support.c.o[0m
+[ 60%] [32m[1mLinking C shared library libsensors_pkg__rosidl_typesupport_introspection_c.so[0m
+[ 60%] Built target sensors_pkg__rosidl_typesupport_introspection_c
+[ 62%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[ 65%] [32mBuilding CXX object CMakeFiles/sensors_pkg__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sensors_pkg/msg/detail/encoder_data__type_support_c.cpp.o[0m
+[ 68%] [32m[1mLinking CXX shared library libsensors_pkg__rosidl_typesupport_fastrtps_c.so[0m
+[ 68%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c
+[ 68%] Built target sensors_pkg
+[ 71%] [34m[1mGenerating Python code for ROS interfaces[0m
+[ 71%] Built target sensors_pkg__py
+[ 74%] [32mBuilding CXX object CMakeFiles/encoder_node.dir/src/encoder_node.cpp.o[0m
+[ 77%] [32m[1mLinking CXX executable encoder_node[0m
+[ 77%] Built target encoder_node
+[ 80%] [32mBuilding C object CMakeFiles/sensors_pkg__rosidl_generator_py.dir/rosidl_generator_py/sensors_pkg/msg/_encoder_data_s.c.o[0m
+[ 82%] [32m[1mLinking C shared library rosidl_generator_py/sensors_pkg/libsensors_pkg__rosidl_generator_py.so[0m
+[ 82%] Built target sensors_pkg__rosidl_generator_py
+[ 85%] [32mBuilding C object CMakeFiles/sensors_pkg__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[ 88%] [32mBuilding C object CMakeFiles/sensors_pkg__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_c.c.o[0m
+[ 91%] [32mBuilding C object CMakeFiles/sensors_pkg__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[ 94%] [32m[1mLinking C shared library rosidl_generator_py/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[ 97%] [32m[1mLinking C shared library rosidl_generator_py/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[100%] [32m[1mLinking C shared library rosidl_generator_py/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[100%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c__pyext
+[100%] Built target sensors_pkg__rosidl_typesupport_c__pyext
+[100%] Built target sensors_pkg__rosidl_typesupport_introspection_c__pyext
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/rosidl_interfaces/sensors_pkg
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__functions.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_c__visibility_control.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.sh
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.dsv
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_c.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__builder.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__traits.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_cpp.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_c.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_cpp.hpp
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.sh
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.dsv
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/PKG-INFO
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/SOURCES.txt
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/dependency_links.txt
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/top_level.txt
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/__init__.py
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_c.c
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_fastrtps_c.c
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_introspection_c.c
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/libsensors_pkg__rosidl_generator_py.so
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/__init__.py
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data.py
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data_s.c
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.idl
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.msg
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/imu_node
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/encoder_node
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/package_run_dependencies/sensors_pkg
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/parent_prefix_path/sensors_pkg
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.sh
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.dsv
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.sh
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.dsv
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.bash
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.sh
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.zsh
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.dsv
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.dsv
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/packages/sensors_pkg
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_libraries-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_targets-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig-version.cmake
+-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.xml
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_c.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_c.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_c.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_c.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_c.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_c.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_c.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_c.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_cpp.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_cpp.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_cpp.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_cpp.so" to ""
+Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg'...
+Compiling '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/__init__.py'...
+Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg'...
+Compiling '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/__init__.py'...
+Compiling '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data.py'...
+-- Installing: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_py.so
+-- Set runtime path of "/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_py.so" to ""
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cppExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport-noconfig.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport.cmake
+-- Installing: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport-noconfig.cmake

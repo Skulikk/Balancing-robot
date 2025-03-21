@@ -1,0 +1,1 @@
+/home/skulikk/robot/build/sensors_pkg/ament_cmake_environment_hooks/local_setup.bash

@@ -1,0 +1,55 @@
+[0.051s] Invoking command in '/home/skulikk/robot/src/build/imu_package': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/imu_package -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/install/imu_package
+[0.322s] -- The C compiler identification is GNU 11.4.0
+[0.599s] -- The CXX compiler identification is GNU 11.4.0
+[0.631s] -- Detecting C compiler ABI info
+[0.974s] -- Detecting C compiler ABI info - done
+[1.002s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.003s] -- Detecting C compile features
+[1.005s] -- Detecting C compile features - done
+[1.018s] -- Detecting CXX compiler ABI info
+[1.381s] -- Detecting CXX compiler ABI info - done
+[1.409s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.410s] -- Detecting CXX compile features
+[1.411s] -- Detecting CXX compile features - done
+[1.434s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.053s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.563s] -- Found rclcpp: 16.0.11 (/opt/ros/humble/share/rclcpp/cmake)
+[2.856s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[2.893s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[2.953s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[3.011s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[3.104s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[3.360s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[3.378s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[3.851s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[4.026s] -- Found FastRTPS: /opt/ros/humble/include  
+[4.310s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[4.370s] -- Looking for pthread.h
+[4.715s] -- Looking for pthread.h - found
+[4.717s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[5.076s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[5.080s] -- Found Threads: TRUE  
+[5.379s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[5.793s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[5.794s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/skulikk/robot/src/imu_package/include>
+[5.794s] -- Configured cppcheck exclude dirs and/or files: 
+[5.798s] -- Added test 'lint_cmake' to check CMake code style
+[5.804s] -- Added test 'uncrustify' to check C / C++ code style
+[5.805s] -- Configured uncrustify additional arguments: 
+[5.806s] -- Added test 'xmllint' to check XML markup files
+[5.811s] -- Configuring done
+[5.870s] -- Generating done
+[5.886s] -- Build files have been written to: /home/skulikk/robot/src/build/imu_package
+[5.916s] Invoked command in '/home/skulikk/robot/src/build/imu_package' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/imu_package -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/install/imu_package
+[5.926s] Invoking command in '/home/skulikk/robot/src/build/imu_package': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/imu_package -- -j4 -l4
+[6.126s] [ 50%] [32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o[0m
+[16.443s] [01m[K/home/skulikk/robot/src/imu_package/src/imu_node.cpp:48:5:[m[K [01;31m[Kerror: [m[Kredefinition of ‘[01m[Kint main(int, char**)[m[K’
+[16.444s]    48 | int [01;31m[Kmain[m[K(int argc, char * argv[])
+[16.445s]       |     [01;31m[K^~~~[m[K
+[16.445s] [01m[K/home/skulikk/robot/src/imu_package/src/imu_node.cpp:3:5:[m[K [01;36m[Knote: [m[K‘[01m[Kint main(int, char**)[m[K’ previously defined here
+[16.446s]     3 | int [01;36m[Kmain[m[K(int argc, char ** argv)
+[16.446s]       |     [01;36m[K^~~~[m[K
+[19.526s] gmake[2]: *** [CMakeFiles/imu_node.dir/build.make:76: CMakeFiles/imu_node.dir/src/imu_node.cpp.o] Error 1
+[19.527s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/imu_node.dir/all] Error 2
+[19.529s] gmake: *** [Makefile:146: all] Error 2
+[19.538s] Invoked command in '/home/skulikk/robot/src/build/imu_package' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/imu_package -- -j4 -l4

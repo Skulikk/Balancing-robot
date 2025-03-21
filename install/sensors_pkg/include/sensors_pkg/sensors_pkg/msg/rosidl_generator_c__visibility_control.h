@@ -1,0 +1,1 @@
+/home/skulikk/robot/build/sensors_pkg/rosidl_generator_c/sensors_pkg/msg/rosidl_generator_c__visibility_control.h

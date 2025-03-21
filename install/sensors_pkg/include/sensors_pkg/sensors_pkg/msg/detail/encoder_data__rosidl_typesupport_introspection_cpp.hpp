@@ -1,0 +1,1 @@
+/home/skulikk/robot/build/sensors_pkg/rosidl_typesupport_introspection_cpp/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_cpp.hpp

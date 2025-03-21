@@ -1,0 +1,17 @@
+/home/skulikk/robot/src/install/sensors_pkg/lib/sensors_pkg/imu_node
+/home/skulikk/robot/src/install/sensors_pkg/lib/sensors_pkg/encoder_node
+/home/skulikk/robot/src/install/sensors_pkg/share/ament_index/resource_index/package_run_dependencies/sensors_pkg
+/home/skulikk/robot/src/install/sensors_pkg/share/ament_index/resource_index/parent_prefix_path/sensors_pkg
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.sh
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.dsv
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/path.sh
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/path.dsv
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.bash
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.sh
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.zsh
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.dsv
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/package.dsv
+/home/skulikk/robot/src/install/sensors_pkg/share/ament_index/resource_index/packages/sensors_pkg
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig.cmake
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig-version.cmake
+/home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/package.xml

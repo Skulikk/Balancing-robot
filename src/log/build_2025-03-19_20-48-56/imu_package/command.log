@@ -1,0 +1,2 @@
+Invoking command in '/home/skulikk/robot/src/build/imu_package': /usr/bin/cmake --build /home/skulikk/robot/src/build/imu_package -- -j4 -l4
+Invoked command in '/home/skulikk/robot/src/build/imu_package' returned '2': /usr/bin/cmake --build /home/skulikk/robot/src/build/imu_package -- -j4 -l4

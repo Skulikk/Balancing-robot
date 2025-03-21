@@ -1,0 +1,16 @@
+/home/skulikk/robot/src/install/imu_package/lib/imu_package/imu_node
+/home/skulikk/robot/src/install/imu_package/share/ament_index/resource_index/package_run_dependencies/imu_package
+/home/skulikk/robot/src/install/imu_package/share/ament_index/resource_index/parent_prefix_path/imu_package
+/home/skulikk/robot/src/install/imu_package/share/imu_package/environment/ament_prefix_path.sh
+/home/skulikk/robot/src/install/imu_package/share/imu_package/environment/ament_prefix_path.dsv
+/home/skulikk/robot/src/install/imu_package/share/imu_package/environment/path.sh
+/home/skulikk/robot/src/install/imu_package/share/imu_package/environment/path.dsv
+/home/skulikk/robot/src/install/imu_package/share/imu_package/local_setup.bash
+/home/skulikk/robot/src/install/imu_package/share/imu_package/local_setup.sh
+/home/skulikk/robot/src/install/imu_package/share/imu_package/local_setup.zsh
+/home/skulikk/robot/src/install/imu_package/share/imu_package/local_setup.dsv
+/home/skulikk/robot/src/install/imu_package/share/imu_package/package.dsv
+/home/skulikk/robot/src/install/imu_package/share/ament_index/resource_index/packages/imu_package
+/home/skulikk/robot/src/install/imu_package/share/imu_package/cmake/imu_packageConfig.cmake
+/home/skulikk/robot/src/install/imu_package/share/imu_package/cmake/imu_packageConfig-version.cmake
+/home/skulikk/robot/src/install/imu_package/share/imu_package/package.xml

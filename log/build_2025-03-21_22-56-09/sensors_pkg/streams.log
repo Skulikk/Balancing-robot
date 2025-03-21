@@ -1,0 +1,125 @@
+[0.048s] Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/sensors_pkg -- -j4 -l4
+[0.349s] [  2%] Built target sensors_pkg__cpp
+[0.378s] [ 11%] Built target sensors_pkg__rosidl_generator_c
+[0.448s] [ 11%] Built target ament_cmake_python_symlink_sensors_pkg
+[0.496s] [ 17%] Built target imu_node
+[0.638s] [ 25%] Built target sensors_pkg__rosidl_typesupport_cpp
+[0.661s] [ 34%] Built target sensors_pkg__rosidl_typesupport_fastrtps_cpp
+[0.722s] [ 42%] Built target sensors_pkg__rosidl_typesupport_introspection_c
+[0.772s] [ 51%] Built target sensors_pkg__rosidl_typesupport_c
+[0.902s] [ 60%] Built target sensors_pkg__rosidl_typesupport_introspection_cpp
+[0.970s] [ 68%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c
+[1.190s] [ 68%] Built target sensors_pkg
+[1.347s] [35m[1mConsolidate compiler generated dependencies of target encoder_node[0m
+[1.425s] [ 71%] Built target sensors_pkg__py
+[1.630s] [ 77%] Built target encoder_node
+[1.684s] [ 82%] Built target sensors_pkg__rosidl_generator_py
+[1.950s] [ 88%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c__pyext
+[1.983s] [ 94%] Built target sensors_pkg__rosidl_typesupport_c__pyext
+[1.992s] [100%] Built target sensors_pkg__rosidl_typesupport_introspection_c__pyext
+[3.338s] running egg_info
+[3.341s] writing sensors_pkg.egg-info/PKG-INFO
+[3.342s] writing dependency_links to sensors_pkg.egg-info/dependency_links.txt
+[3.343s] writing top-level names to sensors_pkg.egg-info/top_level.txt
+[3.352s] reading manifest file 'sensors_pkg.egg-info/SOURCES.txt'
+[3.355s] writing manifest file 'sensors_pkg.egg-info/SOURCES.txt'
+[3.480s] [100%] Built target ament_cmake_python_build_sensors_pkg_egg
+[3.521s] Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/sensors_pkg -- -j4 -l4
+[3.563s] Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/sensors_pkg
+[3.591s] -- Install configuration: ""
+[3.592s] -- Execute custom install script
+[3.594s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/rosidl_interfaces/sensors_pkg
+[3.596s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__functions.h
+[3.597s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.h
+[3.598s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.h
+[3.599s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.h
+[3.599s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_c__visibility_control.h
+[3.600s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.sh
+[3.601s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.dsv
+[3.604s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_c.h
+[3.605s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[3.607s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__builder.hpp
+[3.608s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.hpp
+[3.609s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__traits.hpp
+[3.610s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.hpp
+[3.610s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.hpp
+[3.611s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_cpp__visibility_control.hpp
+[3.614s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_cpp.hpp
+[3.615s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[3.617s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_c.h
+[3.618s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[3.620s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_cpp.hpp
+[3.621s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.sh
+[3.622s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.dsv
+[3.624s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/PKG-INFO
+[3.624s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/SOURCES.txt
+[3.625s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/dependency_links.txt
+[3.626s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/top_level.txt
+[3.630s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/__init__.py
+[3.631s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_c.c
+[3.632s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_fastrtps_c.c
+[3.633s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_introspection_c.c
+[3.634s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/libsensors_pkg__rosidl_generator_py.so
+[3.634s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/__init__.py
+[3.635s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data.py
+[3.636s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data_s.c
+[3.637s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[3.638s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[3.639s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[3.640s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[3.642s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[3.644s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[3.645s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.idl
+[3.646s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.msg
+[3.647s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/imu_node
+[3.648s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/encoder_node
+[3.649s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/package_run_dependencies/sensors_pkg
+[3.650s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/parent_prefix_path/sensors_pkg
+[3.651s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.sh
+[3.652s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.dsv
+[3.653s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.sh
+[3.654s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.dsv
+[3.655s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.bash
+[3.656s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.sh
+[3.656s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.zsh
+[3.657s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.dsv
+[3.658s] -- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.dsv
+[3.691s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/packages/sensors_pkg
+[3.692s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake-extras.cmake
+[3.693s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_dependencies-extras.cmake
+[3.694s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_include_directories-extras.cmake
+[3.695s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_libraries-extras.cmake
+[3.695s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_targets-extras.cmake
+[3.696s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[3.697s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[3.698s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig.cmake
+[3.699s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig-version.cmake
+[3.700s] -- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.xml
+[3.701s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_c.so
+[3.703s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_c.so
+[3.705s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so
+[3.707s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_c.so
+[3.709s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_c.so
+[3.710s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_cpp.so
+[3.712s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_cpp.so
+[3.851s] Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg'...
+[3.853s] Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg'...
+[3.876s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_py.so
+[3.879s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport.cmake
+[3.880s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport-noconfig.cmake
+[3.881s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport.cmake
+[3.882s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[3.883s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cppExport.cmake
+[3.885s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport.cmake
+[3.885s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[3.886s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport.cmake
+[3.888s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[3.889s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport.cmake
+[3.890s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport-noconfig.cmake
+[3.891s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport.cmake
+[3.891s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[3.892s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport.cmake
+[3.892s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport-noconfig.cmake
+[3.892s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport.cmake
+[3.893s] -- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport-noconfig.cmake
+[3.898s] Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/sensors_pkg

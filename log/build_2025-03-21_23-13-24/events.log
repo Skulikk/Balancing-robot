@@ -1,0 +1,824 @@
+[0.000000] (-) TimerEvent: {}
+[0.001582] (sensors_pkg) JobQueued: {'identifier': 'sensors_pkg', 'dependencies': OrderedDict()}
+[0.002186] (control_pkg) JobQueued: {'identifier': 'control_pkg', 'dependencies': OrderedDict([('sensors_pkg', '/home/skulikk/robot/install/sensors_pkg')])}
+[0.002652] (sensors_pkg) JobStarted: {'identifier': 'sensors_pkg'}
+[0.038613] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'cmake'}
+[0.041925] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'build'}
+[0.045321] (sensors_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/build/sensors_pkg', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/build/sensors_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/sensors_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[0.099092] (-) TimerEvent: {}
+[0.199895] (-) TimerEvent: {}
+[0.279415] (sensors_pkg) StdoutLine: {'line': b'[  2%] Built target sensors_pkg__cpp\n'}
+[0.286363] (sensors_pkg) StdoutLine: {'line': b'[ 11%] Built target sensors_pkg__rosidl_generator_c\n'}
+[0.300248] (-) TimerEvent: {}
+[0.360775] (sensors_pkg) StdoutLine: {'line': b'[ 17%] Built target imu_node\n'}
+[0.394692] (sensors_pkg) StdoutLine: {'line': b'[ 17%] Built target ament_cmake_python_symlink_sensors_pkg\n'}
+[0.400617] (-) TimerEvent: {}
+[0.503399] (-) TimerEvent: {}
+[0.566781] (sensors_pkg) StdoutLine: {'line': b'[ 25%] Built target sensors_pkg__rosidl_typesupport_cpp\n'}
+[0.570059] (sensors_pkg) StdoutLine: {'line': b'[ 34%] Built target sensors_pkg__rosidl_typesupport_fastrtps_cpp\n'}
+[0.603749] (-) TimerEvent: {}
+[0.627885] (sensors_pkg) StdoutLine: {'line': b'[ 42%] Built target sensors_pkg__rosidl_typesupport_introspection_c\n'}
+[0.674343] (sensors_pkg) StdoutLine: {'line': b'[ 51%] Built target sensors_pkg__rosidl_typesupport_c\n'}
+[0.704109] (-) TimerEvent: {}
+[0.806846] (-) TimerEvent: {}
+[0.829434] (sensors_pkg) StdoutLine: {'line': b'[ 60%] Built target sensors_pkg__rosidl_typesupport_introspection_cpp\n'}
+[0.896194] (sensors_pkg) StdoutLine: {'line': b'[ 68%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c\n'}
+[0.907109] (-) TimerEvent: {}
+[1.008525] (-) TimerEvent: {}
+[1.111369] (-) TimerEvent: {}
+[1.115218] (sensors_pkg) StdoutLine: {'line': b'[ 68%] Built target sensors_pkg\n'}
+[1.211701] (-) TimerEvent: {}
+[1.314570] (-) TimerEvent: {}
+[1.370376] (sensors_pkg) StdoutLine: {'line': b'[ 71%] Built target sensors_pkg__py\n'}
+[1.414896] (-) TimerEvent: {}
+[1.476573] (sensors_pkg) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/encoder_node.dir/src/encoder_node.cpp.o\x1b[0m\n'}
+[1.515276] (-) TimerEvent: {}
+[1.617907] (-) TimerEvent: {}
+[1.632877] (sensors_pkg) StdoutLine: {'line': b'[ 80%] Built target sensors_pkg__rosidl_generator_py\n'}
+[1.718671] (-) TimerEvent: {}
+[1.823498] (-) TimerEvent: {}
+[1.899251] (sensors_pkg) StdoutLine: {'line': b'[ 85%] Built target sensors_pkg__rosidl_typesupport_fastrtps_c__pyext\n'}
+[1.909889] (sensors_pkg) StdoutLine: {'line': b'[ 91%] Built target sensors_pkg__rosidl_typesupport_introspection_c__pyext\n'}
+[1.923786] (-) TimerEvent: {}
+[2.026260] (-) TimerEvent: {}
+[2.128780] (-) TimerEvent: {}
+[2.162348] (sensors_pkg) StdoutLine: {'line': b'[ 97%] Built target sensors_pkg__rosidl_typesupport_c__pyext\n'}
+[2.229090] (-) TimerEvent: {}
+[2.331312] (-) TimerEvent: {}
+[2.432613] (-) TimerEvent: {}
+[2.534168] (-) TimerEvent: {}
+[2.635586] (-) TimerEvent: {}
+[2.736852] (-) TimerEvent: {}
+[2.838266] (-) TimerEvent: {}
+[2.939525] (-) TimerEvent: {}
+[3.040894] (-) TimerEvent: {}
+[3.142218] (-) TimerEvent: {}
+[3.243616] (-) TimerEvent: {}
+[3.345060] (-) TimerEvent: {}
+[3.366241] (sensors_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[3.375377] (sensors_pkg) StdoutLine: {'line': b'writing sensors_pkg.egg-info/PKG-INFO\n'}
+[3.376866] (sensors_pkg) StdoutLine: {'line': b'writing dependency_links to sensors_pkg.egg-info/dependency_links.txt\n'}
+[3.379193] (sensors_pkg) StdoutLine: {'line': b'writing top-level names to sensors_pkg.egg-info/top_level.txt\n'}
+[3.400788] (sensors_pkg) StdoutLine: {'line': b"reading manifest file 'sensors_pkg.egg-info/SOURCES.txt'\n"}
+[3.420154] (sensors_pkg) StdoutLine: {'line': b"writing manifest file 'sensors_pkg.egg-info/SOURCES.txt'\n"}
+[3.445397] (-) TimerEvent: {}
+[3.548598] (-) TimerEvent: {}
+[3.603028] (sensors_pkg) StdoutLine: {'line': b'[ 97%] Built target ament_cmake_python_build_sensors_pkg_egg\n'}
+[3.648806] (-) TimerEvent: {}
+[3.749817] (-) TimerEvent: {}
+[3.850574] (-) TimerEvent: {}
+[3.951302] (-) TimerEvent: {}
+[4.051987] (-) TimerEvent: {}
+[4.152675] (-) TimerEvent: {}
+[4.253355] (-) TimerEvent: {}
+[4.354127] (-) TimerEvent: {}
+[4.454858] (-) TimerEvent: {}
+[4.555699] (-) TimerEvent: {}
+[4.656475] (-) TimerEvent: {}
+[4.757251] (-) TimerEvent: {}
+[4.858142] (-) TimerEvent: {}
+[4.958964] (-) TimerEvent: {}
+[5.059707] (-) TimerEvent: {}
+[5.160506] (-) TimerEvent: {}
+[5.261366] (-) TimerEvent: {}
+[5.362249] (-) TimerEvent: {}
+[5.463158] (-) TimerEvent: {}
+[5.564113] (-) TimerEvent: {}
+[5.665055] (-) TimerEvent: {}
+[5.765847] (-) TimerEvent: {}
+[5.866766] (-) TimerEvent: {}
+[5.967522] (-) TimerEvent: {}
+[6.068306] (-) TimerEvent: {}
+[6.169214] (-) TimerEvent: {}
+[6.270048] (-) TimerEvent: {}
+[6.370828] (-) TimerEvent: {}
+[6.471632] (-) TimerEvent: {}
+[6.572617] (-) TimerEvent: {}
+[6.673455] (-) TimerEvent: {}
+[6.774316] (-) TimerEvent: {}
+[6.875129] (-) TimerEvent: {}
+[6.975952] (-) TimerEvent: {}
+[7.076874] (-) TimerEvent: {}
+[7.177671] (-) TimerEvent: {}
+[7.278474] (-) TimerEvent: {}
+[7.379238] (-) TimerEvent: {}
+[7.480015] (-) TimerEvent: {}
+[7.580877] (-) TimerEvent: {}
+[7.681669] (-) TimerEvent: {}
+[7.782473] (-) TimerEvent: {}
+[7.883249] (-) TimerEvent: {}
+[7.984030] (-) TimerEvent: {}
+[8.084854] (-) TimerEvent: {}
+[8.185663] (-) TimerEvent: {}
+[8.286576] (-) TimerEvent: {}
+[8.387365] (-) TimerEvent: {}
+[8.488170] (-) TimerEvent: {}
+[8.588972] (-) TimerEvent: {}
+[8.689766] (-) TimerEvent: {}
+[8.790584] (-) TimerEvent: {}
+[8.891358] (-) TimerEvent: {}
+[8.992157] (-) TimerEvent: {}
+[9.092943] (-) TimerEvent: {}
+[9.193761] (-) TimerEvent: {}
+[9.294566] (-) TimerEvent: {}
+[9.395350] (-) TimerEvent: {}
+[9.496153] (-) TimerEvent: {}
+[9.596950] (-) TimerEvent: {}
+[9.697775] (-) TimerEvent: {}
+[9.798596] (-) TimerEvent: {}
+[9.899415] (-) TimerEvent: {}
+[10.000201] (-) TimerEvent: {}
+[10.101004] (-) TimerEvent: {}
+[10.201854] (-) TimerEvent: {}
+[10.302702] (-) TimerEvent: {}
+[10.403489] (-) TimerEvent: {}
+[10.504299] (-) TimerEvent: {}
+[10.605155] (-) TimerEvent: {}
+[10.706032] (-) TimerEvent: {}
+[10.806802] (-) TimerEvent: {}
+[10.907602] (-) TimerEvent: {}
+[11.008385] (-) TimerEvent: {}
+[11.109179] (-) TimerEvent: {}
+[11.210040] (-) TimerEvent: {}
+[11.310829] (-) TimerEvent: {}
+[11.411656] (-) TimerEvent: {}
+[11.512530] (-) TimerEvent: {}
+[11.613341] (-) TimerEvent: {}
+[11.714135] (-) TimerEvent: {}
+[11.814901] (-) TimerEvent: {}
+[11.915675] (-) TimerEvent: {}
+[12.016536] (-) TimerEvent: {}
+[12.117338] (-) TimerEvent: {}
+[12.218146] (-) TimerEvent: {}
+[12.318909] (-) TimerEvent: {}
+[12.419769] (-) TimerEvent: {}
+[12.520578] (-) TimerEvent: {}
+[12.621373] (-) TimerEvent: {}
+[12.722178] (-) TimerEvent: {}
+[12.822937] (-) TimerEvent: {}
+[12.923730] (-) TimerEvent: {}
+[13.024547] (-) TimerEvent: {}
+[13.125337] (-) TimerEvent: {}
+[13.226145] (-) TimerEvent: {}
+[13.326912] (-) TimerEvent: {}
+[13.427713] (-) TimerEvent: {}
+[13.528508] (-) TimerEvent: {}
+[13.629310] (-) TimerEvent: {}
+[13.730140] (-) TimerEvent: {}
+[13.830914] (-) TimerEvent: {}
+[13.931740] (-) TimerEvent: {}
+[14.032718] (-) TimerEvent: {}
+[14.133531] (-) TimerEvent: {}
+[14.234348] (-) TimerEvent: {}
+[14.335121] (-) TimerEvent: {}
+[14.435911] (-) TimerEvent: {}
+[14.536757] (-) TimerEvent: {}
+[14.637553] (-) TimerEvent: {}
+[14.738452] (-) TimerEvent: {}
+[14.839191] (-) TimerEvent: {}
+[14.939984] (-) TimerEvent: {}
+[15.040791] (-) TimerEvent: {}
+[15.141629] (-) TimerEvent: {}
+[15.242488] (-) TimerEvent: {}
+[15.343435] (-) TimerEvent: {}
+[15.444234] (-) TimerEvent: {}
+[15.545107] (-) TimerEvent: {}
+[15.645879] (-) TimerEvent: {}
+[15.746696] (-) TimerEvent: {}
+[15.847445] (-) TimerEvent: {}
+[15.948173] (-) TimerEvent: {}
+[16.048965] (-) TimerEvent: {}
+[16.149751] (-) TimerEvent: {}
+[16.250567] (-) TimerEvent: {}
+[16.351342] (-) TimerEvent: {}
+[16.452104] (-) TimerEvent: {}
+[16.552916] (-) TimerEvent: {}
+[16.653745] (-) TimerEvent: {}
+[16.754692] (-) TimerEvent: {}
+[16.855503] (-) TimerEvent: {}
+[16.956332] (-) TimerEvent: {}
+[17.057142] (-) TimerEvent: {}
+[17.157928] (-) TimerEvent: {}
+[17.258731] (-) TimerEvent: {}
+[17.359485] (-) TimerEvent: {}
+[17.460301] (-) TimerEvent: {}
+[17.561076] (-) TimerEvent: {}
+[17.661882] (-) TimerEvent: {}
+[17.762697] (-) TimerEvent: {}
+[17.863462] (-) TimerEvent: {}
+[17.964265] (-) TimerEvent: {}
+[18.065050] (-) TimerEvent: {}
+[18.165848] (-) TimerEvent: {}
+[18.266719] (-) TimerEvent: {}
+[18.367517] (-) TimerEvent: {}
+[18.468318] (-) TimerEvent: {}
+[18.569159] (-) TimerEvent: {}
+[18.670527] (-) TimerEvent: {}
+[18.771367] (-) TimerEvent: {}
+[18.872135] (-) TimerEvent: {}
+[18.972931] (-) TimerEvent: {}
+[19.073701] (-) TimerEvent: {}
+[19.174477] (-) TimerEvent: {}
+[19.275390] (-) TimerEvent: {}
+[19.376717] (-) TimerEvent: {}
+[19.477606] (-) TimerEvent: {}
+[19.507970] (sensors_pkg) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable encoder_node\x1b[0m\n'}
+[19.577838] (-) TimerEvent: {}
+[19.678834] (-) TimerEvent: {}
+[19.779760] (-) TimerEvent: {}
+[19.880681] (-) TimerEvent: {}
+[19.981606] (-) TimerEvent: {}
+[20.082533] (-) TimerEvent: {}
+[20.183276] (-) TimerEvent: {}
+[20.284174] (-) TimerEvent: {}
+[20.370629] (sensors_pkg) StdoutLine: {'line': b'[100%] Built target encoder_node\n'}
+[20.384403] (-) TimerEvent: {}
+[20.413339] (sensors_pkg) CommandEnded: {'returncode': 0}
+[20.415617] (sensors_pkg) JobProgress: {'identifier': 'sensors_pkg', 'progress': 'install'}
+[20.450358] (sensors_pkg) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/skulikk/robot/build/sensors_pkg'], 'cwd': '/home/skulikk/robot/build/sensors_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/sensors_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[20.484631] (-) TimerEvent: {}
+[20.485695] (sensors_pkg) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[20.488307] (sensors_pkg) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[20.489233] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/rosidl_interfaces/sensors_pkg\n'}
+[20.492116] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__functions.h\n'}
+[20.493108] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.h\n'}
+[20.494021] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.h\n'}
+[20.494904] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.h\n'}
+[20.495685] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_c__visibility_control.h\n'}
+[20.496710] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.sh\n'}
+[20.497586] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/library_path.dsv\n'}
+[20.500383] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_c.h\n'}
+[20.501195] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[20.503454] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__builder.hpp\n'}
+[20.504296] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__struct.hpp\n'}
+[20.505127] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__traits.hpp\n'}
+[20.506108] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__type_support.hpp\n'}
+[20.506845] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/encoder_data.hpp\n'}
+[20.507687] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[20.510779] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[20.511624] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[20.513650] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_c.h\n'}
+[20.514537] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[20.516513] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/include/sensors_pkg/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[20.517358] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.sh\n'}
+[20.518270] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/pythonpath.dsv\n'}
+[20.520053] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[20.520848] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[20.521692] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[20.522640] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[20.526919] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/__init__.py\n'}
+[20.527621] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_c.c\n'}
+[20.528444] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[20.529427] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[20.530453] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/libsensors_pkg__rosidl_generator_py.so\n'}
+[20.531479] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/__init__.py\n'}
+[20.532524] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data.py\n'}
+[20.533569] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg/_encoder_data_s.c\n'}
+[20.534622] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[20.535538] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[20.536367] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[20.537845] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so\n'}
+[20.539377] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so\n'}
+[20.540733] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/sensors_pkg_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so\n'}
+[20.541645] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.idl\n'}
+[20.542515] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/msg/EncoderData.msg\n'}
+[20.543697] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/imu_node\n'}
+[20.544848] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/lib/sensors_pkg/encoder_node\n'}
+[20.545917] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/package_run_dependencies/sensors_pkg\n'}
+[20.547071] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/parent_prefix_path/sensors_pkg\n'}
+[20.548028] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.sh\n'}
+[20.548878] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.dsv\n'}
+[20.549796] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.sh\n'}
+[20.550733] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/environment/path.dsv\n'}
+[20.551551] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.bash\n'}
+[20.552385] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.sh\n'}
+[20.553202] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.zsh\n'}
+[20.554060] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/local_setup.dsv\n'}
+[20.554626] (sensors_pkg) StdoutLine: {'line': b'-- Symlinking: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.dsv\n'}
+[20.584878] (-) TimerEvent: {}
+[20.587810] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/ament_index/resource_index/packages/sensors_pkg\n'}
+[20.588588] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake-extras.cmake\n'}
+[20.589499] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[20.590504] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[20.591609] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[20.592552] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[20.593678] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[20.594696] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[20.595656] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig.cmake\n'}
+[20.596390] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig-version.cmake\n'}
+[20.597247] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.xml\n'}
+[20.598660] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_c.so\n'}
+[20.600730] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_c.so\n'}
+[20.602805] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so\n'}
+[20.604752] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_c.so\n'}
+[20.606682] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_c.so\n'}
+[20.608476] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_cpp.so\n'}
+[20.610270] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_cpp.so\n'}
+[20.685071] (-) TimerEvent: {}
+[20.748669] (sensors_pkg) StdoutLine: {'line': b"Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg'...\n"}
+[20.750043] (sensors_pkg) StdoutLine: {'line': b"Listing '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages/sensors_pkg/msg'...\n"}
+[20.771854] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_py.so\n'}
+[20.773429] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport.cmake\n'}
+[20.774144] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cExport-noconfig.cmake\n'}
+[20.774911] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[20.775521] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[20.776177] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_cppExport.cmake\n'}
+[20.777013] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[20.777570] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[20.778403] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport.cmake\n'}
+[20.779024] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[20.779725] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport.cmake\n'}
+[20.780272] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[20.781023] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[20.781599] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[20.782360] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport.cmake\n'}
+[20.783067] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkg__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[20.783688] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport.cmake\n'}
+[20.784229] (sensors_pkg) StdoutLine: {'line': b'-- Up-to-date: /home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/cmake/export_sensors_pkg__rosidl_generator_pyExport-noconfig.cmake\n'}
+[20.785197] (-) TimerEvent: {}
+[20.790612] (sensors_pkg) CommandEnded: {'returncode': 0}
+[20.885713] (-) TimerEvent: {}
+[20.900293] (sensors_pkg) JobEnded: {'identifier': 'sensors_pkg', 'rc': 0}
+[20.904208] (control_pkg) JobStarted: {'identifier': 'control_pkg'}
+[20.943611] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'cmake'}
+[20.946583] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'build'}
+[20.947715] (control_pkg) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/skulikk/robot/build/control_pkg', '--', '-j4', '-l4'], 'cwd': '/home/skulikk/robot/build/control_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/control_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[20.985939] (-) TimerEvent: {}
+[21.086681] (-) TimerEvent: {}
+[21.120804] (control_pkg) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target motor_controller_node\x1b[0m\n'}
+[21.186858] (-) TimerEvent: {}
+[21.216251] (control_pkg) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/motor_controller_node.dir/src/motor_controller_node.cpp.o\x1b[0m\n'}
+[21.287026] (-) TimerEvent: {}
+[21.387702] (-) TimerEvent: {}
+[21.488403] (-) TimerEvent: {}
+[21.589086] (-) TimerEvent: {}
+[21.689787] (-) TimerEvent: {}
+[21.790587] (-) TimerEvent: {}
+[21.891552] (-) TimerEvent: {}
+[21.992250] (-) TimerEvent: {}
+[22.092942] (-) TimerEvent: {}
+[22.193850] (-) TimerEvent: {}
+[22.294560] (-) TimerEvent: {}
+[22.395306] (-) TimerEvent: {}
+[22.496042] (-) TimerEvent: {}
+[22.596781] (-) TimerEvent: {}
+[22.697462] (-) TimerEvent: {}
+[22.798173] (-) TimerEvent: {}
+[22.898933] (-) TimerEvent: {}
+[22.999766] (-) TimerEvent: {}
+[23.100605] (-) TimerEvent: {}
+[23.201392] (-) TimerEvent: {}
+[23.302169] (-) TimerEvent: {}
+[23.403045] (-) TimerEvent: {}
+[23.503804] (-) TimerEvent: {}
+[23.604563] (-) TimerEvent: {}
+[23.705429] (-) TimerEvent: {}
+[23.806270] (-) TimerEvent: {}
+[23.907020] (-) TimerEvent: {}
+[24.007766] (-) TimerEvent: {}
+[24.108557] (-) TimerEvent: {}
+[24.209352] (-) TimerEvent: {}
+[24.310143] (-) TimerEvent: {}
+[24.410893] (-) TimerEvent: {}
+[24.511736] (-) TimerEvent: {}
+[24.612500] (-) TimerEvent: {}
+[24.713270] (-) TimerEvent: {}
+[24.814067] (-) TimerEvent: {}
+[24.914858] (-) TimerEvent: {}
+[25.015659] (-) TimerEvent: {}
+[25.116423] (-) TimerEvent: {}
+[25.217307] (-) TimerEvent: {}
+[25.318142] (-) TimerEvent: {}
+[25.418873] (-) TimerEvent: {}
+[25.519765] (-) TimerEvent: {}
+[25.620531] (-) TimerEvent: {}
+[25.721325] (-) TimerEvent: {}
+[25.822165] (-) TimerEvent: {}
+[25.923005] (-) TimerEvent: {}
+[26.023777] (-) TimerEvent: {}
+[26.124552] (-) TimerEvent: {}
+[26.225373] (-) TimerEvent: {}
+[26.326183] (-) TimerEvent: {}
+[26.426961] (-) TimerEvent: {}
+[26.527775] (-) TimerEvent: {}
+[26.628651] (-) TimerEvent: {}
+[26.729530] (-) TimerEvent: {}
+[26.830355] (-) TimerEvent: {}
+[26.931121] (-) TimerEvent: {}
+[27.031937] (-) TimerEvent: {}
+[27.132766] (-) TimerEvent: {}
+[27.233656] (-) TimerEvent: {}
+[27.334521] (-) TimerEvent: {}
+[27.435294] (-) TimerEvent: {}
+[27.536066] (-) TimerEvent: {}
+[27.636846] (-) TimerEvent: {}
+[27.737620] (-) TimerEvent: {}
+[27.838443] (-) TimerEvent: {}
+[27.939224] (-) TimerEvent: {}
+[28.039999] (-) TimerEvent: {}
+[28.140797] (-) TimerEvent: {}
+[28.241599] (-) TimerEvent: {}
+[28.342427] (-) TimerEvent: {}
+[28.443195] (-) TimerEvent: {}
+[28.543991] (-) TimerEvent: {}
+[28.644789] (-) TimerEvent: {}
+[28.745577] (-) TimerEvent: {}
+[28.846409] (-) TimerEvent: {}
+[28.947201] (-) TimerEvent: {}
+[29.047996] (-) TimerEvent: {}
+[29.148864] (-) TimerEvent: {}
+[29.249666] (-) TimerEvent: {}
+[29.350474] (-) TimerEvent: {}
+[29.451243] (-) TimerEvent: {}
+[29.552043] (-) TimerEvent: {}
+[29.652820] (-) TimerEvent: {}
+[29.753645] (-) TimerEvent: {}
+[29.854487] (-) TimerEvent: {}
+[29.955329] (-) TimerEvent: {}
+[30.056200] (-) TimerEvent: {}
+[30.157021] (-) TimerEvent: {}
+[30.257803] (-) TimerEvent: {}
+[30.358616] (-) TimerEvent: {}
+[30.459390] (-) TimerEvent: {}
+[30.560270] (-) TimerEvent: {}
+[30.661067] (-) TimerEvent: {}
+[30.761855] (-) TimerEvent: {}
+[30.862690] (-) TimerEvent: {}
+[30.963482] (-) TimerEvent: {}
+[31.064294] (-) TimerEvent: {}
+[31.165087] (-) TimerEvent: {}
+[31.265891] (-) TimerEvent: {}
+[31.366723] (-) TimerEvent: {}
+[31.467479] (-) TimerEvent: {}
+[31.568248] (-) TimerEvent: {}
+[31.669035] (-) TimerEvent: {}
+[31.769799] (-) TimerEvent: {}
+[31.870634] (-) TimerEvent: {}
+[31.971406] (-) TimerEvent: {}
+[32.072187] (-) TimerEvent: {}
+[32.172950] (-) TimerEvent: {}
+[32.273816] (-) TimerEvent: {}
+[32.374624] (-) TimerEvent: {}
+[32.475423] (-) TimerEvent: {}
+[32.576218] (-) TimerEvent: {}
+[32.677135] (-) TimerEvent: {}
+[32.777949] (-) TimerEvent: {}
+[32.878743] (-) TimerEvent: {}
+[32.979527] (-) TimerEvent: {}
+[33.080322] (-) TimerEvent: {}
+[33.181099] (-) TimerEvent: {}
+[33.281884] (-) TimerEvent: {}
+[33.382698] (-) TimerEvent: {}
+[33.483471] (-) TimerEvent: {}
+[33.584281] (-) TimerEvent: {}
+[33.685062] (-) TimerEvent: {}
+[33.785847] (-) TimerEvent: {}
+[33.886648] (-) TimerEvent: {}
+[33.987434] (-) TimerEvent: {}
+[34.088278] (-) TimerEvent: {}
+[34.189121] (-) TimerEvent: {}
+[34.289969] (-) TimerEvent: {}
+[34.390870] (-) TimerEvent: {}
+[34.491800] (-) TimerEvent: {}
+[34.592578] (-) TimerEvent: {}
+[34.693359] (-) TimerEvent: {}
+[34.794238] (-) TimerEvent: {}
+[34.895159] (-) TimerEvent: {}
+[34.996035] (-) TimerEvent: {}
+[35.096835] (-) TimerEvent: {}
+[35.197608] (-) TimerEvent: {}
+[35.298453] (-) TimerEvent: {}
+[35.399216] (-) TimerEvent: {}
+[35.499983] (-) TimerEvent: {}
+[35.600760] (-) TimerEvent: {}
+[35.701576] (-) TimerEvent: {}
+[35.802405] (-) TimerEvent: {}
+[35.903182] (-) TimerEvent: {}
+[36.004000] (-) TimerEvent: {}
+[36.104790] (-) TimerEvent: {}
+[36.205594] (-) TimerEvent: {}
+[36.306402] (-) TimerEvent: {}
+[36.407200] (-) TimerEvent: {}
+[36.508030] (-) TimerEvent: {}
+[36.608899] (-) TimerEvent: {}
+[36.709746] (-) TimerEvent: {}
+[36.810559] (-) TimerEvent: {}
+[36.911353] (-) TimerEvent: {}
+[37.012161] (-) TimerEvent: {}
+[37.112949] (-) TimerEvent: {}
+[37.213776] (-) TimerEvent: {}
+[37.314580] (-) TimerEvent: {}
+[37.415417] (-) TimerEvent: {}
+[37.516241] (-) TimerEvent: {}
+[37.617029] (-) TimerEvent: {}
+[37.717815] (-) TimerEvent: {}
+[37.818640] (-) TimerEvent: {}
+[37.919408] (-) TimerEvent: {}
+[38.020181] (-) TimerEvent: {}
+[38.120989] (-) TimerEvent: {}
+[38.221779] (-) TimerEvent: {}
+[38.322633] (-) TimerEvent: {}
+[38.423405] (-) TimerEvent: {}
+[38.524194] (-) TimerEvent: {}
+[38.624984] (-) TimerEvent: {}
+[38.725809] (-) TimerEvent: {}
+[38.826675] (-) TimerEvent: {}
+[38.927444] (-) TimerEvent: {}
+[39.028232] (-) TimerEvent: {}
+[39.129009] (-) TimerEvent: {}
+[39.229788] (-) TimerEvent: {}
+[39.330629] (-) TimerEvent: {}
+[39.431536] (-) TimerEvent: {}
+[39.532383] (-) TimerEvent: {}
+[39.633153] (-) TimerEvent: {}
+[39.733955] (-) TimerEvent: {}
+[39.834759] (-) TimerEvent: {}
+[39.935528] (-) TimerEvent: {}
+[40.036292] (-) TimerEvent: {}
+[40.137054] (-) TimerEvent: {}
+[40.237852] (-) TimerEvent: {}
+[40.338671] (-) TimerEvent: {}
+[40.439455] (-) TimerEvent: {}
+[40.540350] (-) TimerEvent: {}
+[40.641258] (-) TimerEvent: {}
+[40.742054] (-) TimerEvent: {}
+[40.842770] (-) TimerEvent: {}
+[40.943471] (-) TimerEvent: {}
+[41.044160] (-) TimerEvent: {}
+[41.144867] (-) TimerEvent: {}
+[41.245576] (-) TimerEvent: {}
+[41.346357] (-) TimerEvent: {}
+[41.447182] (-) TimerEvent: {}
+[41.548006] (-) TimerEvent: {}
+[41.648804] (-) TimerEvent: {}
+[41.749698] (-) TimerEvent: {}
+[41.850528] (-) TimerEvent: {}
+[41.951320] (-) TimerEvent: {}
+[42.052135] (-) TimerEvent: {}
+[42.152935] (-) TimerEvent: {}
+[42.253740] (-) TimerEvent: {}
+[42.354636] (-) TimerEvent: {}
+[42.455571] (-) TimerEvent: {}
+[42.556585] (-) TimerEvent: {}
+[42.657382] (-) TimerEvent: {}
+[42.758141] (-) TimerEvent: {}
+[42.858898] (-) TimerEvent: {}
+[42.959631] (-) TimerEvent: {}
+[43.060694] (-) TimerEvent: {}
+[43.162317] (-) TimerEvent: {}
+[43.263491] (-) TimerEvent: {}
+[43.364385] (-) TimerEvent: {}
+[43.465494] (-) TimerEvent: {}
+[43.566290] (-) TimerEvent: {}
+[43.667059] (-) TimerEvent: {}
+[43.767871] (-) TimerEvent: {}
+[43.868653] (-) TimerEvent: {}
+[43.969452] (-) TimerEvent: {}
+[44.070215] (-) TimerEvent: {}
+[44.170970] (-) TimerEvent: {}
+[44.271739] (-) TimerEvent: {}
+[44.372505] (-) TimerEvent: {}
+[44.473287] (-) TimerEvent: {}
+[44.574162] (-) TimerEvent: {}
+[44.674935] (-) TimerEvent: {}
+[44.775718] (-) TimerEvent: {}
+[44.876488] (-) TimerEvent: {}
+[44.977310] (-) TimerEvent: {}
+[45.078129] (-) TimerEvent: {}
+[45.178891] (-) TimerEvent: {}
+[45.279669] (-) TimerEvent: {}
+[45.380437] (-) TimerEvent: {}
+[45.481209] (-) TimerEvent: {}
+[45.582025] (-) TimerEvent: {}
+[45.682786] (-) TimerEvent: {}
+[45.783555] (-) TimerEvent: {}
+[45.884377] (-) TimerEvent: {}
+[45.985137] (-) TimerEvent: {}
+[46.085921] (-) TimerEvent: {}
+[46.186718] (-) TimerEvent: {}
+[46.287466] (-) TimerEvent: {}
+[46.388234] (-) TimerEvent: {}
+[46.488981] (-) TimerEvent: {}
+[46.589720] (-) TimerEvent: {}
+[46.690516] (-) TimerEvent: {}
+[46.791269] (-) TimerEvent: {}
+[46.892075] (-) TimerEvent: {}
+[46.992896] (-) TimerEvent: {}
+[47.093636] (-) TimerEvent: {}
+[47.194439] (-) TimerEvent: {}
+[47.295179] (-) TimerEvent: {}
+[47.395940] (-) TimerEvent: {}
+[47.496738] (-) TimerEvent: {}
+[47.597484] (-) TimerEvent: {}
+[47.698222] (-) TimerEvent: {}
+[47.798949] (-) TimerEvent: {}
+[47.899715] (-) TimerEvent: {}
+[48.000514] (-) TimerEvent: {}
+[48.101304] (-) TimerEvent: {}
+[48.202105] (-) TimerEvent: {}
+[48.302874] (-) TimerEvent: {}
+[48.403626] (-) TimerEvent: {}
+[48.504363] (-) TimerEvent: {}
+[48.605129] (-) TimerEvent: {}
+[48.705888] (-) TimerEvent: {}
+[48.806692] (-) TimerEvent: {}
+[48.907432] (-) TimerEvent: {}
+[49.008177] (-) TimerEvent: {}
+[49.108959] (-) TimerEvent: {}
+[49.209723] (-) TimerEvent: {}
+[49.310522] (-) TimerEvent: {}
+[49.411287] (-) TimerEvent: {}
+[49.512146] (-) TimerEvent: {}
+[49.612918] (-) TimerEvent: {}
+[49.713707] (-) TimerEvent: {}
+[49.814511] (-) TimerEvent: {}
+[49.915305] (-) TimerEvent: {}
+[50.016044] (-) TimerEvent: {}
+[50.116815] (-) TimerEvent: {}
+[50.217575] (-) TimerEvent: {}
+[50.318397] (-) TimerEvent: {}
+[50.419173] (-) TimerEvent: {}
+[50.520079] (-) TimerEvent: {}
+[50.621441] (-) TimerEvent: {}
+[50.722766] (-) TimerEvent: {}
+[50.824121] (-) TimerEvent: {}
+[50.925518] (-) TimerEvent: {}
+[51.027033] (-) TimerEvent: {}
+[51.128406] (-) TimerEvent: {}
+[51.229956] (-) TimerEvent: {}
+[51.331564] (-) TimerEvent: {}
+[51.433213] (-) TimerEvent: {}
+[51.534731] (-) TimerEvent: {}
+[51.636199] (-) TimerEvent: {}
+[51.737556] (-) TimerEvent: {}
+[51.839012] (-) TimerEvent: {}
+[51.940450] (-) TimerEvent: {}
+[52.041707] (-) TimerEvent: {}
+[52.142488] (-) TimerEvent: {}
+[52.243264] (-) TimerEvent: {}
+[52.344054] (-) TimerEvent: {}
+[52.444836] (-) TimerEvent: {}
+[52.545606] (-) TimerEvent: {}
+[53.432402] (-) TimerEvent: {}
+[53.533172] (-) TimerEvent: {}
+[53.634082] (-) TimerEvent: {}
+[53.734841] (-) TimerEvent: {}
+[53.835597] (-) TimerEvent: {}
+[53.936338] (-) TimerEvent: {}
+[54.037138] (-) TimerEvent: {}
+[54.137903] (-) TimerEvent: {}
+[54.238738] (-) TimerEvent: {}
+[54.339509] (-) TimerEvent: {}
+[54.440316] (-) TimerEvent: {}
+[54.541099] (-) TimerEvent: {}
+[54.641855] (-) TimerEvent: {}
+[54.742685] (-) TimerEvent: {}
+[54.843422] (-) TimerEvent: {}
+[54.944248] (-) TimerEvent: {}
+[55.044992] (-) TimerEvent: {}
+[55.145786] (-) TimerEvent: {}
+[55.246585] (-) TimerEvent: {}
+[55.347345] (-) TimerEvent: {}
+[55.448142] (-) TimerEvent: {}
+[55.548992] (-) TimerEvent: {}
+[55.649769] (-) TimerEvent: {}
+[55.750574] (-) TimerEvent: {}
+[55.851371] (-) TimerEvent: {}
+[55.952151] (-) TimerEvent: {}
+[56.052952] (-) TimerEvent: {}
+[56.153726] (-) TimerEvent: {}
+[56.254550] (-) TimerEvent: {}
+[56.355343] (-) TimerEvent: {}
+[56.456116] (-) TimerEvent: {}
+[56.556903] (-) TimerEvent: {}
+[56.657687] (-) TimerEvent: {}
+[56.758477] (-) TimerEvent: {}
+[56.859226] (-) TimerEvent: {}
+[56.959953] (-) TimerEvent: {}
+[57.060731] (-) TimerEvent: {}
+[57.161488] (-) TimerEvent: {}
+[57.262289] (-) TimerEvent: {}
+[57.363027] (-) TimerEvent: {}
+[57.463786] (-) TimerEvent: {}
+[57.564593] (-) TimerEvent: {}
+[57.665380] (-) TimerEvent: {}
+[57.766157] (-) TimerEvent: {}
+[57.866894] (-) TimerEvent: {}
+[57.967663] (-) TimerEvent: {}
+[58.068504] (-) TimerEvent: {}
+[58.169612] (-) TimerEvent: {}
+[58.270437] (-) TimerEvent: {}
+[58.371197] (-) TimerEvent: {}
+[58.471980] (-) TimerEvent: {}
+[58.572771] (-) TimerEvent: {}
+[58.673632] (-) TimerEvent: {}
+[58.774902] (-) TimerEvent: {}
+[58.875966] (-) TimerEvent: {}
+[58.976960] (-) TimerEvent: {}
+[59.077765] (-) TimerEvent: {}
+[59.178578] (-) TimerEvent: {}
+[59.279376] (-) TimerEvent: {}
+[59.380156] (-) TimerEvent: {}
+[59.481075] (-) TimerEvent: {}
+[59.582528] (-) TimerEvent: {}
+[59.683894] (-) TimerEvent: {}
+[59.785345] (-) TimerEvent: {}
+[59.886795] (-) TimerEvent: {}
+[59.988139] (-) TimerEvent: {}
+[60.089540] (-) TimerEvent: {}
+[60.190965] (-) TimerEvent: {}
+[60.292329] (-) TimerEvent: {}
+[60.393867] (-) TimerEvent: {}
+[60.495281] (-) TimerEvent: {}
+[60.596714] (-) TimerEvent: {}
+[60.698169] (-) TimerEvent: {}
+[60.799611] (-) TimerEvent: {}
+[60.901050] (-) TimerEvent: {}
+[61.002603] (-) TimerEvent: {}
+[61.103946] (-) TimerEvent: {}
+[61.205347] (-) TimerEvent: {}
+[61.306833] (-) TimerEvent: {}
+[61.408238] (-) TimerEvent: {}
+[61.509633] (-) TimerEvent: {}
+[61.611052] (-) TimerEvent: {}
+[61.713202] (-) TimerEvent: {}
+[61.815309] (-) TimerEvent: {}
+[61.916670] (-) TimerEvent: {}
+[62.018164] (-) TimerEvent: {}
+[62.119493] (-) TimerEvent: {}
+[62.220952] (-) TimerEvent: {}
+[62.322397] (-) TimerEvent: {}
+[62.423735] (-) TimerEvent: {}
+[62.525072] (-) TimerEvent: {}
+[62.626621] (-) TimerEvent: {}
+[62.727985] (-) TimerEvent: {}
+[62.829103] (-) TimerEvent: {}
+[62.929907] (-) TimerEvent: {}
+[63.030685] (-) TimerEvent: {}
+[63.131420] (-) TimerEvent: {}
+[63.232164] (-) TimerEvent: {}
+[63.332900] (-) TimerEvent: {}
+[63.433675] (-) TimerEvent: {}
+[63.534465] (-) TimerEvent: {}
+[63.635241] (-) TimerEvent: {}
+[63.736395] (-) TimerEvent: {}
+[63.838074] (-) TimerEvent: {}
+[63.939003] (-) TimerEvent: {}
+[64.039867] (-) TimerEvent: {}
+[64.141205] (-) TimerEvent: {}
+[64.242100] (-) TimerEvent: {}
+[64.343051] (-) TimerEvent: {}
+[64.444077] (-) TimerEvent: {}
+[64.544905] (-) TimerEvent: {}
+[64.645716] (-) TimerEvent: {}
+[64.683938] (control_pkg) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable motor_controller_node\x1b[0m\n'}
+[64.746019] (-) TimerEvent: {}
+[64.846930] (-) TimerEvent: {}
+[64.947768] (-) TimerEvent: {}
+[65.048698] (-) TimerEvent: {}
+[65.149695] (-) TimerEvent: {}
+[65.250887] (-) TimerEvent: {}
+[65.351824] (-) TimerEvent: {}
+[65.452918] (-) TimerEvent: {}
+[65.554088] (-) TimerEvent: {}
+[65.655037] (-) TimerEvent: {}
+[65.755914] (-) TimerEvent: {}
+[65.856788] (-) TimerEvent: {}
+[65.957503] (-) TimerEvent: {}
+[66.058189] (-) TimerEvent: {}
+[66.159029] (-) TimerEvent: {}
+[66.260246] (-) TimerEvent: {}
+[66.361559] (-) TimerEvent: {}
+[66.462323] (-) TimerEvent: {}
+[66.563051] (-) TimerEvent: {}
+[66.663847] (-) TimerEvent: {}
+[66.764509] (-) TimerEvent: {}
+[66.865208] (-) TimerEvent: {}
+[66.949831] (control_pkg) StdoutLine: {'line': b'[100%] Built target motor_controller_node\n'}
+[66.965405] (-) TimerEvent: {}
+[66.988607] (control_pkg) CommandEnded: {'returncode': 0}
+[66.990765] (control_pkg) JobProgress: {'identifier': 'control_pkg', 'progress': 'install'}
+[66.994081] (control_pkg) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/skulikk/robot/build/control_pkg'], 'cwd': '/home/skulikk/robot/build/control_pkg', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 36134 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/home/skulikk/robot/install/sensors_pkg/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-57705e44-f799-498d-a980-225ca28f8ddb.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '7'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/skulikk/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/build/control_pkg'), ('SSH_CONNECTION', '192.168.10.150 36134 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/skulikk/robot/install/sensors_pkg/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/skulikk/robot/install/sensors_pkg:/home/skulikk/robot/install/control_pkg:/opt/ros/humble')]), 'shell': False}
+[67.025239] (control_pkg) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[67.026852] (control_pkg) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[67.028470] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/lib/control_pkg/motor_controller_node\n'}
+[67.029592] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/ament_index/resource_index/package_run_dependencies/control_pkg\n'}
+[67.030730] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/ament_index/resource_index/parent_prefix_path/control_pkg\n'}
+[67.031703] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/ament_prefix_path.sh\n'}
+[67.032622] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/ament_prefix_path.dsv\n'}
+[67.033510] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/path.sh\n'}
+[67.034466] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/environment/path.dsv\n'}
+[67.035278] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.bash\n'}
+[67.036152] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.sh\n'}
+[67.037027] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.zsh\n'}
+[67.037805] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/local_setup.dsv\n'}
+[67.038813] (control_pkg) StdoutLine: {'line': b'-- Symlinking: /home/skulikk/robot/install/control_pkg/share/control_pkg/package.dsv\n'}
+[67.065589] (-) TimerEvent: {}
+[67.071585] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/ament_index/resource_index/packages/control_pkg\n'}
+[67.072580] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/cmake/control_pkgConfig.cmake\n'}
+[67.073328] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/cmake/control_pkgConfig-version.cmake\n'}
+[67.074448] (control_pkg) StdoutLine: {'line': b'-- Up-to-date symlink: /home/skulikk/robot/install/control_pkg/share/control_pkg/package.xml\n'}
+[67.080827] (control_pkg) CommandEnded: {'returncode': 0}
+[67.165848] (-) TimerEvent: {}
+[67.229800] (control_pkg) JobEnded: {'identifier': 'control_pkg', 'rc': 0}
+[67.236210] (-) EventReactorShutdown: {}

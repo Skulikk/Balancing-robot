@@ -1,0 +1,1 @@
+/home/skulikk/robot/build/sensors_pkg/rosidl_generator_py/sensors_pkg/msg/_encoder_data_s.c

@@ -1,0 +1,222 @@
+[0.428s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.429s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff8b22df90>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff8b33b400>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff8b33b400>>)
+[1.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.086s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.087s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.087s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.087s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/skulikk/robot'
+[1.087s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.088s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.088s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.088s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.088s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.089s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.089s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.089s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.089s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.133s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.134s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.134s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.134s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.134s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.135s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.135s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.135s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.136s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.136s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.137s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.137s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.137s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.138s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.138s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[1.139s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[1.139s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[1.139s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[1.139s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[1.139s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[1.139s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[1.140s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[1.140s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[1.140s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[1.140s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[1.140s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[1.141s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[1.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extensions ['ignore', 'ignore_ament_install']
+[1.141s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) by extension 'ignore'
+[1.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/build) ignored
+[1.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extensions ['ignore', 'ignore_ament_install']
+[1.142s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extension 'ignore'
+[1.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extension 'ignore_ament_install'
+[1.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extensions ['colcon_pkg']
+[1.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extension 'colcon_pkg'
+[1.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extensions ['colcon_meta']
+[1.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extension 'colcon_meta'
+[1.143s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extensions ['ros']
+[1.144s] Level 1:colcon.colcon_core.package_identification:_identify(src/control_pkg) by extension 'ros'
+[1.158s] DEBUG:colcon.colcon_core.package_identification:Package 'src/control_pkg' with type 'ros.ament_cmake' and name 'control_pkg'
+[1.158s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extensions ['ignore', 'ignore_ament_install']
+[1.159s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) by extension 'ignore'
+[1.159s] Level 1:colcon.colcon_core.package_identification:_identify(src/install) ignored
+[1.160s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extensions ['ignore', 'ignore_ament_install']
+[1.160s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) by extension 'ignore'
+[1.160s] Level 1:colcon.colcon_core.package_identification:_identify(src/log) ignored
+[1.161s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extensions ['ignore', 'ignore_ament_install']
+[1.161s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extension 'ignore'
+[1.161s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extension 'ignore_ament_install'
+[1.162s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extensions ['colcon_pkg']
+[1.162s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extension 'colcon_pkg'
+[1.162s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extensions ['colcon_meta']
+[1.163s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extension 'colcon_meta'
+[1.163s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extensions ['ros']
+[1.163s] Level 1:colcon.colcon_core.package_identification:_identify(src/sensors_pkg) by extension 'ros'
+[1.166s] DEBUG:colcon.colcon_core.package_identification:Package 'src/sensors_pkg' with type 'ros.ament_cmake' and name 'sensors_pkg'
+[1.166s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.167s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.167s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.167s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.167s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.242s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[1.242s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[1.251s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/skulikk/robot/install
+[1.258s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 224 installed packages in /opt/ros/humble
+[1.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[1.428s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'cmake_args' from command line to 'None'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'cmake_target' from command line to 'None'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[1.429s] Level 5:colcon.colcon_core.verb:set package 'sensors_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.430s] DEBUG:colcon.colcon_core.verb:Building package 'sensors_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/skulikk/robot/build/sensors_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/skulikk/robot/install/sensors_pkg', 'merge_install': False, 'path': '/home/skulikk/robot/src/sensors_pkg', 'symlink_install': True, 'test_result_base': None}
+[1.431s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'cmake_args' from command line to 'None'
+[1.431s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'cmake_target' from command line to 'None'
+[1.431s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.431s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[1.432s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[1.432s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[1.432s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[1.432s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[1.432s] Level 5:colcon.colcon_core.verb:set package 'control_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.432s] DEBUG:colcon.colcon_core.verb:Building package 'control_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/skulikk/robot/build/control_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/skulikk/robot/install/control_pkg', 'merge_install': False, 'path': '/home/skulikk/robot/src/control_pkg', 'symlink_install': True, 'test_result_base': None}
+[1.433s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.436s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.437s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/skulikk/robot/src/sensors_pkg' with build type 'ament_cmake'
+[1.438s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/skulikk/robot/src/sensors_pkg'
+[1.447s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.448s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.448s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.487s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/sensors_pkg -- -j4 -l4
+[5.085s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/sensors_pkg -- -j4 -l4
+[5.128s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/sensors_pkg
+[5.455s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sensors_pkg)
+[5.457s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/sensors_pkg
+[5.468s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg' for CMake module files
+[5.473s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg' for CMake config files
+[5.480s] Level 1:colcon.colcon_core.shell:create_environment_hook('sensors_pkg', 'cmake_prefix_path')
+[5.481s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/cmake_prefix_path.ps1'
+[5.483s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/cmake_prefix_path.dsv'
+[5.485s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/cmake_prefix_path.sh'
+[5.489s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/lib'
+[5.490s] Level 1:colcon.colcon_core.shell:create_environment_hook('sensors_pkg', 'ld_library_path_lib')
+[5.491s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/ld_library_path_lib.ps1'
+[5.493s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/ld_library_path_lib.dsv'
+[5.494s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/ld_library_path_lib.sh'
+[5.496s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/bin'
+[5.497s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/lib/pkgconfig/sensors_pkg.pc'
+[5.497s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/lib/python3.10/site-packages'
+[5.498s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/bin'
+[5.500s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.ps1'
+[5.503s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.dsv'
+[5.506s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.sh'
+[5.509s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.bash'
+[5.512s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.zsh'
+[5.516s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/skulikk/robot/install/sensors_pkg/share/colcon-core/packages/sensors_pkg)
+[5.519s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(sensors_pkg)
+[5.520s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg' for CMake module files
+[5.524s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg' for CMake config files
+[5.532s] Level 1:colcon.colcon_core.shell:create_environment_hook('sensors_pkg', 'cmake_prefix_path')
+[5.533s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/cmake_prefix_path.ps1'
+[5.535s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/cmake_prefix_path.dsv'
+[5.536s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/cmake_prefix_path.sh'
+[5.539s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/lib'
+[5.539s] Level 1:colcon.colcon_core.shell:create_environment_hook('sensors_pkg', 'ld_library_path_lib')
+[5.540s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/ld_library_path_lib.ps1'
+[5.542s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/ld_library_path_lib.dsv'
+[5.544s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/hook/ld_library_path_lib.sh'
+[5.546s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/bin'
+[5.547s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/lib/pkgconfig/sensors_pkg.pc'
+[5.547s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/lib/python3.10/site-packages'
+[5.548s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/sensors_pkg/bin'
+[5.550s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.ps1'
+[5.552s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.dsv'
+[5.555s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.sh'
+[5.558s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.bash'
+[5.560s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/sensors_pkg/share/sensors_pkg/package.zsh'
+[5.563s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/skulikk/robot/install/sensors_pkg/share/colcon-core/packages/sensors_pkg)
+[5.564s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/skulikk/robot/src/control_pkg' with build type 'ament_cmake'
+[5.565s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/skulikk/robot/src/control_pkg'
+[5.566s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.566s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[5.618s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/skulikk/robot/build/control_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/control_pkg -- -j4 -l4
+[42.333s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/skulikk/robot/build/control_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/control_pkg -- -j4 -l4
+[42.345s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/skulikk/robot/build/control_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/control_pkg
+[42.425s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(control_pkg)
+[42.426s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg' for CMake module files
+[42.428s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/skulikk/robot/build/control_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/control_pkg
+[42.431s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg' for CMake config files
+[42.434s] Level 1:colcon.colcon_core.shell:create_environment_hook('control_pkg', 'cmake_prefix_path')
+[42.435s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/control_pkg/share/control_pkg/hook/cmake_prefix_path.ps1'
+[42.437s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/skulikk/robot/install/control_pkg/share/control_pkg/hook/cmake_prefix_path.dsv'
+[42.439s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/control_pkg/share/control_pkg/hook/cmake_prefix_path.sh'
+[42.442s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/lib'
+[42.443s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/bin'
+[42.443s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/lib/pkgconfig/control_pkg.pc'
+[42.444s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/lib/python3.10/site-packages'
+[42.445s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/bin'
+[42.446s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.ps1'
+[42.448s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.dsv'
+[42.450s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.sh'
+[42.452s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.bash'
+[42.454s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.zsh'
+[42.456s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/skulikk/robot/install/control_pkg/share/colcon-core/packages/control_pkg)
+[42.458s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(control_pkg)
+[42.459s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg' for CMake module files
+[42.462s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg' for CMake config files
+[42.464s] Level 1:colcon.colcon_core.shell:create_environment_hook('control_pkg', 'cmake_prefix_path')
+[42.465s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/control_pkg/share/control_pkg/hook/cmake_prefix_path.ps1'
+[42.467s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/skulikk/robot/install/control_pkg/share/control_pkg/hook/cmake_prefix_path.dsv'
+[42.470s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/skulikk/robot/install/control_pkg/share/control_pkg/hook/cmake_prefix_path.sh'
+[42.472s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/lib'
+[42.473s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/bin'
+[42.473s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/lib/pkgconfig/control_pkg.pc'
+[42.474s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/lib/python3.10/site-packages'
+[42.475s] Level 1:colcon.colcon_core.environment:checking '/home/skulikk/robot/install/control_pkg/bin'
+[42.477s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.ps1'
+[42.479s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.dsv'
+[42.482s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.sh'
+[42.484s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.bash'
+[42.486s] INFO:colcon.colcon_core.shell:Creating package script '/home/skulikk/robot/install/control_pkg/share/control_pkg/package.zsh'
+[42.488s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/skulikk/robot/install/control_pkg/share/colcon-core/packages/control_pkg)
+[42.489s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[42.490s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[42.491s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[42.491s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[42.512s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[42.513s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[42.513s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[42.555s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[42.556s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/skulikk/robot/install/local_setup.ps1'
+[42.560s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/skulikk/robot/install/_local_setup_util_ps1.py'
+[42.566s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/skulikk/robot/install/setup.ps1'
+[42.572s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/skulikk/robot/install/local_setup.sh'
+[42.575s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/skulikk/robot/install/_local_setup_util_sh.py'
+[42.578s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/skulikk/robot/install/setup.sh'
+[42.583s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/skulikk/robot/install/local_setup.bash'
+[42.585s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/skulikk/robot/install/setup.bash'
+[42.590s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/skulikk/robot/install/local_setup.zsh'
+[42.592s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/skulikk/robot/install/setup.zsh'

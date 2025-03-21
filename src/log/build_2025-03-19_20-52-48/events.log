@@ -1,0 +1,131 @@
+[0.000000] (-) TimerEvent: {}
+[0.001554] (imu_package) JobQueued: {'identifier': 'imu_package', 'dependencies': OrderedDict()}
+[0.002138] (imu_package) JobStarted: {'identifier': 'imu_package'}
+[0.038991] (imu_package) JobProgress: {'identifier': 'imu_package', 'progress': 'cmake'}
+[0.041270] (imu_package) Command: {'cmd': ['/usr/bin/cmake', '/home/skulikk/robot/src/imu_package', '-DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/install/imu_package'], 'cwd': '/home/skulikk/robot/src/build/imu_package', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'skulikk'), ('SSH_CLIENT', '192.168.10.150 40588 22'), ('LC_TIME', 'cs_CZ.UTF-8'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/skulikk'), ('OLDPWD', '/home/skulikk/robot'), ('TERM_PROGRAM_VERSION', '1.98.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-7eaae123-8331-40e3-9830-5bd4f9aead87.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/skulikk/robot/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'skulikk'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '4'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/skulikk/.vscode-server/cli/servers/Stable-ddc367ed5c8936efe395cffeec279b04ffd7db78/server/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('LC_ADDRESS', 'cs_CZ.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('LANG', 'en_US.UTF-8'), ('LC_TELEPHONE', 'cs_CZ.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-61f76734d5.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'cs_CZ.UTF-8'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'cs_CZ.UTF-8'), ('LC_IDENTIFICATION', 'cs_CZ.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/skulikk/robot/src/build/imu_package'), ('SSH_CONNECTION', '192.168.10.150 40588 192.168.10.153 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'cs_CZ.UTF-8'), ('LC_PAPER', 'cs_CZ.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099087] (-) TimerEvent: {}
+[0.205082] (-) TimerEvent: {}
+[0.305773] (-) TimerEvent: {}
+[0.313296] (imu_package) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.406051] (-) TimerEvent: {}
+[0.507127] (-) TimerEvent: {}
+[0.608694] (-) TimerEvent: {}
+[0.710221] (-) TimerEvent: {}
+[0.811868] (-) TimerEvent: {}
+[0.826526] (imu_package) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.905479] (imu_package) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.912104] (-) TimerEvent: {}
+[1.013350] (-) TimerEvent: {}
+[1.114754] (-) TimerEvent: {}
+[1.216614] (-) TimerEvent: {}
+[1.318168] (-) TimerEvent: {}
+[1.419922] (-) TimerEvent: {}
+[1.524007] (-) TimerEvent: {}
+[1.625601] (-) TimerEvent: {}
+[1.727063] (-) TimerEvent: {}
+[1.745988] (imu_package) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.826674] (imu_package) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.828027] (-) TimerEvent: {}
+[1.829161] (imu_package) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.832900] (imu_package) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.866225] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.928356] (-) TimerEvent: {}
+[2.029618] (-) TimerEvent: {}
+[2.131842] (-) TimerEvent: {}
+[2.233561] (-) TimerEvent: {}
+[2.335031] (-) TimerEvent: {}
+[2.436526] (-) TimerEvent: {}
+[2.538166] (-) TimerEvent: {}
+[2.639264] (-) TimerEvent: {}
+[2.651525] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[2.677285] (imu_package) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[2.678481] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[2.680218] (imu_package) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[2.703328] (imu_package) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.739459] (-) TimerEvent: {}
+[2.840293] (-) TimerEvent: {}
+[2.941103] (-) TimerEvent: {}
+[3.042334] (-) TimerEvent: {}
+[3.143093] (-) TimerEvent: {}
+[3.243832] (-) TimerEvent: {}
+[3.332762] (imu_package) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[3.344028] (-) TimerEvent: {}
+[3.444821] (-) TimerEvent: {}
+[3.545596] (-) TimerEvent: {}
+[3.646392] (-) TimerEvent: {}
+[3.747157] (-) TimerEvent: {}
+[3.847901] (-) TimerEvent: {}
+[3.858281] (imu_package) StdoutLine: {'line': b'-- Found rclcpp: 16.0.11 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[3.948069] (-) TimerEvent: {}
+[4.048779] (-) TimerEvent: {}
+[4.149530] (-) TimerEvent: {}
+[4.234337] (imu_package) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[4.249722] (-) TimerEvent: {}
+[4.282695] (imu_package) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[4.349892] (-) TimerEvent: {}
+[4.354085] (imu_package) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[4.445925] (imu_package) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.450038] (-) TimerEvent: {}
+[4.550776] (-) TimerEvent: {}
+[4.567163] (imu_package) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.650945] (-) TimerEvent: {}
+[4.751794] (-) TimerEvent: {}
+[4.852539] (-) TimerEvent: {}
+[4.912283] (imu_package) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[4.938058] (imu_package) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[4.952689] (-) TimerEvent: {}
+[5.053387] (-) TimerEvent: {}
+[5.154103] (-) TimerEvent: {}
+[5.254806] (-) TimerEvent: {}
+[5.355669] (-) TimerEvent: {}
+[5.456487] (-) TimerEvent: {}
+[5.495295] (imu_package) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[5.556659] (-) TimerEvent: {}
+[5.657357] (-) TimerEvent: {}
+[5.675596] (imu_package) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[5.757532] (-) TimerEvent: {}
+[5.858404] (-) TimerEvent: {}
+[5.959153] (-) TimerEvent: {}
+[6.002423] (imu_package) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[6.059323] (-) TimerEvent: {}
+[6.077221] (imu_package) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[6.159500] (-) TimerEvent: {}
+[6.260376] (-) TimerEvent: {}
+[6.364211] (-) TimerEvent: {}
+[6.419672] (imu_package) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[6.422360] (imu_package) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[6.464376] (-) TimerEvent: {}
+[6.565154] (-) TimerEvent: {}
+[6.665970] (-) TimerEvent: {}
+[6.766790] (-) TimerEvent: {}
+[6.775052] (imu_package) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[6.780445] (imu_package) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[6.867025] (-) TimerEvent: {}
+[6.967893] (-) TimerEvent: {}
+[7.068733] (-) TimerEvent: {}
+[7.156027] (imu_package) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:15 (add_executable):\n'}
+[7.156998] (imu_package) StderrLine: {'line': b'  add_executable cannot create target "imu_node" because another target with\n'}
+[7.157702] (imu_package) StderrLine: {'line': b'  the same name already exists.  The existing target is an executable created\n'}
+[7.158202] (imu_package) StderrLine: {'line': b'  in source directory "/home/skulikk/robot/src/imu_package".  See\n'}
+[7.158626] (imu_package) StderrLine: {'line': b'  documentation for policy CMP0002 for more details.\n'}
+[7.159046] (imu_package) StderrLine: {'line': b'\n'}
+[7.159451] (imu_package) StderrLine: {'line': b'\x1b[0m\n'}
+[7.168974] (-) TimerEvent: {}
+[7.172611] (imu_package) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[7.269135] (-) TimerEvent: {}
+[7.369835] (-) TimerEvent: {}
+[7.470643] (-) TimerEvent: {}
+[7.571320] (-) TimerEvent: {}
+[7.574056] (imu_package) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[7.574835] (imu_package) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/skulikk/robot/src/imu_package/include>\n'}
+[7.575257] (imu_package) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[7.580421] (imu_package) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[7.586353] (imu_package) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[7.586946] (imu_package) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[7.588495] (imu_package) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[7.593231] (imu_package) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[7.593773] (imu_package) StdoutLine: {'line': b'See also "/home/skulikk/robot/src/build/imu_package/CMakeFiles/CMakeOutput.log".\n'}
+[7.623195] (imu_package) CommandEnded: {'returncode': 1}
+[7.663739] (imu_package) JobEnded: {'identifier': 'imu_package', 'rc': 1}
+[7.671547] (-) TimerEvent: {}
+[7.675886] (-) EventReactorShutdown: {}

@@ -1,0 +1,26 @@
+[0.090s] Invoking command in '/home/skulikk/robot/src/build/sensors_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/sensors_pkg -- -j4 -l4
+[0.724s] [ 25%] [32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o[0m
+[0.845s] [ 75%] Built target encoder_node
+[12.877s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[12.877s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:127:11:[m[K [01;35m[Kwarning: [m[K‘[01m[KMinimalPublisher::angle_[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[12.878s]   127 |     float [01;35m[Kangle_[m[K;
+[12.879s]       |           [01;35m[K^~~~~~[m[K
+[12.879s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:125:12:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Ksize_t MinimalPublisher::count_[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[12.880s]   125 |     size_t [01;35m[Kcount_[m[K;
+[12.880s]       |            [01;35m[K^~~~~~[m[K
+[12.881s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:30:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[12.881s]    30 |     [01;35m[KMinimalPublisher[m[K()
+[12.881s]       |     [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[20.959s] [100%] [32m[1mLinking CXX executable imu_node[0m
+[22.085s] /usr/bin/ld: CMakeFiles/imu_node.dir/src/imu_node.cpp.o: in function `MinimalPublisher::setup_imu()':
+[22.086s] imu_node.cpp:(.text._ZN16MinimalPublisher9setup_imuEv[_ZN16MinimalPublisher9setup_imuEv]+0xc): undefined reference to `wiringPiSetup'
+[22.087s] /usr/bin/ld: imu_node.cpp:(.text._ZN16MinimalPublisher9setup_imuEv[_ZN16MinimalPublisher9setup_imuEv]+0x58): undefined reference to `wiringPiI2CSetup'
+[22.088s] /usr/bin/ld: imu_node.cpp:(.text._ZN16MinimalPublisher9setup_imuEv[_ZN16MinimalPublisher9setup_imuEv]+0x78): undefined reference to `wiringPiI2CWriteReg8'
+[22.088s] /usr/bin/ld: CMakeFiles/imu_node.dir/src/imu_node.cpp.o: in function `MinimalPublisher::readRawData(int)':
+[22.089s] imu_node.cpp:(.text._ZN16MinimalPublisher11readRawDataEi[_ZN16MinimalPublisher11readRawDataEi]+0x1c): undefined reference to `wiringPiI2CReadReg8'
+[22.089s] /usr/bin/ld: imu_node.cpp:(.text._ZN16MinimalPublisher11readRawDataEi[_ZN16MinimalPublisher11readRawDataEi]+0x3c): undefined reference to `wiringPiI2CReadReg8'
+[22.159s] collect2: error: ld returned 1 exit status
+[22.164s] gmake[2]: *** [CMakeFiles/imu_node.dir/build.make:159: imu_node] Error 1
+[22.165s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/imu_node.dir/all] Error 2
+[22.166s] gmake: *** [Makefile:146: all] Error 2
+[22.176s] Invoked command in '/home/skulikk/robot/src/build/sensors_pkg' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/sensors_pkg -- -j4 -l4

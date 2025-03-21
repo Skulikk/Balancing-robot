@@ -1,0 +1,1 @@
+/home/skulikk/robot/build/sensors_pkg/rosidl_generator_py/sensors_pkg/_sensors_pkg_s.ep.rosidl_typesupport_introspection_c.c

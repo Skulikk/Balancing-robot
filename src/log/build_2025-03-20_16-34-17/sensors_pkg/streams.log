@@ -1,0 +1,38 @@
+[0.072s] Invoking command in '/home/skulikk/robot/src/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/sensors_pkg -- -j4 -l4
+[0.265s] [35m[1mConsolidate compiler generated dependencies of target imu_node[0m
+[0.354s] [ 50%] Built target encoder_node
+[0.401s] [ 75%] [32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o[0m
+[10.409s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[10.410s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:124:11:[m[K [01;35m[Kwarning: [m[K‘[01m[KMinimalPublisher::angle_[m[K’ will be initialized after [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[10.410s]   124 |     float [01;35m[Kangle_[m[K;
+[10.411s]       |           [01;35m[K^~~~~~[m[K
+[10.411s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:122:12:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Ksize_t MinimalPublisher::count_[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[10.412s]   122 |     size_t [01;35m[Kcount_[m[K;
+[10.412s]       |            [01;35m[K^~~~~~[m[K
+[10.413s] [01m[K/home/skulikk/robot/src/sensors_pkg/src/imu_node.cpp:30:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wreorder-Wreorder]8;;[m[K]
+[10.413s]    30 |     [01;35m[KMinimalPublisher[m[K()
+[10.413s]       |     [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[19.301s] [100%] [32m[1mLinking CXX executable imu_node[0m
+[20.668s] [100%] Built target imu_node
+[20.708s] Invoked command in '/home/skulikk/robot/src/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/sensors_pkg -- -j4 -l4
+[20.717s] Invoking command in '/home/skulikk/robot/src/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/src/build/sensors_pkg
+[20.746s] -- Install configuration: ""
+[20.747s] -- Installing: /home/skulikk/robot/src/install/sensors_pkg/lib/sensors_pkg/imu_node
+[20.757s] -- Set runtime path of "/home/skulikk/robot/src/install/sensors_pkg/lib/sensors_pkg/imu_node" to ""
+[20.759s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/lib/sensors_pkg/encoder_node
+[20.760s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/ament_index/resource_index/package_run_dependencies/sensors_pkg
+[20.761s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/ament_index/resource_index/parent_prefix_path/sensors_pkg
+[20.761s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.sh
+[20.761s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/ament_prefix_path.dsv
+[20.762s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/path.sh
+[20.762s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/environment/path.dsv
+[20.763s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.bash
+[20.763s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.sh
+[20.764s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.zsh
+[20.764s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/local_setup.dsv
+[20.764s] -- Installing: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/package.dsv
+[20.765s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/ament_index/resource_index/packages/sensors_pkg
+[20.765s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig.cmake
+[20.766s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/cmake/sensors_pkgConfig-version.cmake
+[20.766s] -- Up-to-date: /home/skulikk/robot/src/install/sensors_pkg/share/sensors_pkg/package.xml
+[20.774s] Invoked command in '/home/skulikk/robot/src/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/src/build/sensors_pkg

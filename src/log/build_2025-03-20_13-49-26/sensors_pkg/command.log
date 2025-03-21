@@ -1,0 +1,1 @@
+Invoking command in '/home/skulikk/robot/src/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/sensors_pkg -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/install/sensors_pkg

@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "sensors_pkg__py",
+		"source" : "/home/skulikk/robot/build/sensors_pkg/sensors_pkg__py"
+	}
+}
