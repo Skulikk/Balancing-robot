@@ -714,8 +714,11 @@ CMakeFiles/motor_controller_node.dir/src/motor_controller_node.cpp.o: /home/skul
   /home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/detail/encoder_data__builder.hpp \
   /home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/detail/encoder_data__traits.hpp \
   /home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/detail/encoder_data__type_support.hpp \
-  /home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/rosidl_generator_cpp__visibility_control.hpp
+  /home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/rosidl_generator_cpp__visibility_control.hpp \
+  /usr/local/include/wiringPi.h
 
+
+/usr/local/include/wiringPi.h:
 
 /home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/detail/encoder_data__traits.hpp:
 

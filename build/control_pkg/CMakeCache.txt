@@ -272,6 +272,9 @@ SITE:STRING=skulikk-desktop
 TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
 
 //Path to a library.
+WIRINGPI_LIB:FILEPATH=/usr/local/lib/libwiringPi.so
+
+//Path to a library.
 _lib:FILEPATH=/home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_fastrtps_cpp.so
 
 //The directory containing a CMake configuration file for ament_cmake.

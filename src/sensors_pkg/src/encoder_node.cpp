@@ -85,6 +85,7 @@ class EncoderNode : public rclcpp::Node {
 public:
     EncoderNode() : Node("encoder_node") {
         publisher_ = this->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
+        RCLCPP_INFO(this->get_logger(), "ENCODER Initialized.");
     }
 
     void publish_rpm() {

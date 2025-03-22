@@ -99,6 +99,7 @@ motor_controller_node: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pk
 motor_controller_node: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_introspection_cpp.so
 motor_controller_node: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_typesupport_cpp.so
 motor_controller_node: /home/skulikk/robot/install/sensors_pkg/lib/libsensors_pkg__rosidl_generator_py.so
+motor_controller_node: /usr/local/lib/libwiringPi.so
 motor_controller_node: /opt/ros/humble/lib/liblibstatistics_collector.so
 motor_controller_node: /opt/ros/humble/lib/librcl.so
 motor_controller_node: /opt/ros/humble/lib/librmw_implementation.so
