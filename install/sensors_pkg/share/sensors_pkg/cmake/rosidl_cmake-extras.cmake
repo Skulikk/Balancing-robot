@@ -1,1 +1,0 @@
-/home/skulikk/robot/build/sensors_pkg/rosidl_cmake/rosidl_cmake-extras.cmake

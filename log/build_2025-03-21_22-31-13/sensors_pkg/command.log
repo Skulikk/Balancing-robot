@@ -1,6 +1,0 @@
-Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/sensors_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/install/sensors_pkg
-Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/sensors_pkg -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/install/sensors_pkg
-Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/sensors_pkg -- -j4 -l4
-Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/build/sensors_pkg -- -j4 -l4
-Invoking command in '/home/skulikk/robot/build/sensors_pkg': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/sensors_pkg
-Invoked command in '/home/skulikk/robot/build/sensors_pkg' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/skulikk/robot/build/sensors_pkg

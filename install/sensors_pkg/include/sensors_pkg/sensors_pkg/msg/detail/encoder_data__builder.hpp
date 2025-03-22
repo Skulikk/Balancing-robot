@@ -1,1 +1,0 @@
-/home/skulikk/robot/build/sensors_pkg/rosidl_generator_cpp/sensors_pkg/msg/detail/encoder_data__builder.hpp

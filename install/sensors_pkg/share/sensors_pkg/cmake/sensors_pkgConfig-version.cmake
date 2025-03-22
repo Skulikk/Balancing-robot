@@ -1,1 +1,0 @@
-/home/skulikk/robot/build/sensors_pkg/ament_cmake_core/sensors_pkgConfig-version.cmake

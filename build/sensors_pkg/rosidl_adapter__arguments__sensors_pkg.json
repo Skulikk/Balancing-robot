@@ -1,6 +1,0 @@
-{
-  "package_name": "sensors_pkg",
-  "non_idl_tuples": [
-    "/home/skulikk/robot/src/sensors_pkg:msg/EncoderData.msg"
-  ]
-}

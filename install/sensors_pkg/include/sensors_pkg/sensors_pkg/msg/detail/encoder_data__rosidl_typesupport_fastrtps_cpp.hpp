@@ -1,1 +1,0 @@
-/home/skulikk/robot/build/sensors_pkg/rosidl_typesupport_fastrtps_cpp/sensors_pkg/msg/detail/encoder_data__rosidl_typesupport_fastrtps_cpp.hpp

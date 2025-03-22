@@ -1,1 +1,0 @@
-/home/skulikk/robot/src/sensors_pkg/msg/EncoderData.msg

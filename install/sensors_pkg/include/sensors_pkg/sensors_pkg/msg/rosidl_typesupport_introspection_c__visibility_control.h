@@ -1,1 +1,0 @@
-/home/skulikk/robot/build/sensors_pkg/rosidl_typesupport_introspection_c/sensors_pkg/msg/rosidl_typesupport_introspection_c__visibility_control.h
