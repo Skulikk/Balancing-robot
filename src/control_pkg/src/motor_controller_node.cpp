@@ -1,3 +1,5 @@
+#pragma once
+
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/float32.hpp"
 #include "sensors_pkg/msg/encoder_data.hpp"
@@ -62,52 +64,92 @@ class OuterPIDController {
         double rpm_target = 0.0;
 };
 
-// ===== Motor Controller Class =====
-class MotorController {
-    public:
-        MotorController(int pwm_pin, int in_pin1, int in_pin2)
-            : pwm_pin_(pwm_pin), in_pin1_(in_pin1), in_pin2_(in_pin2),
-              desired_rpm_(0), current_rpm_(0), pwm_output_(0),
-              kp_(4), ki_(0.5), kd_(0.25), integral_(0.0), prev_error_(0.0),
-              prev_pwm_output_(0), prev_time_(std::chrono::high_resolution_clock::now())
+class InnerLoop
+{
+public:
+    InnerLoop(float kp, float ki, float ff_gain, float dt_ms)
+        : kp_(kp), ki_(ki), ff_gain_(ff_gain), dt_(dt_ms / 1000.0f) {
+        integral_ = 0.0f;
+        pwm_output_ = 0.0f;
+        max_pwm_ = 1023.0f;
+        integral_limit_ = 1000.0f;
+        deadzone_ = 20.0f; // <<== You will adjust this experimentally
+
+        // --------- FeedForward Table (fill manually later) --------
+        rpm_table_ = {0, 100, 200, 300, 400, 500, 600};
+        ff_table_ =  {0,   0,   0,   0,   0,   0,   0};
+    }
+
+    void update(float target_rpm, float measured_rpm) {
+        // --- Error ---
+        float error = target_rpm - measured_rpm;
+
+        // --- PI ---
+        integral_ += error * dt_;
+        integral_ = std::clamp(integral_, -integral_limit_, integral_limit_);
+
+        float pi_term = kp_ * error + ki_ * integral_;
+
+        // --- FF ---
+        float ff_term = interpolate_ff(std::abs(target_rpm)) * ((target_rpm >= 0) ? 1.0f : -1.0f);
+
+        // --- Total PWM ---
+        pwm_output_ = ff_term + pi_term;
+
+        // --- Deadzone Compensation ---
+        if (std::abs(pwm_output_) > 0.01f)
         {
-            pinMode(pwm_pin_, PWM_OUTPUT);
-            pinMode(in_pin1_, OUTPUT);
-            pinMode(in_pin2_, OUTPUT);
-            digitalWrite(in_pin1_, HIGH);
-            digitalWrite(in_pin2_, LOW);  // Forward direction
-            pwmWrite(pwm_pin_, 0);
-        }
-    
-        void setDesiredRPM(float rpm) {
-            desired_rpm_ = rpm;
-        }
-    
-        void updateCurrentRPM(float rpm) {
-            current_rpm_ = rpm;
+            if (pwm_output_ > 0)
+                pwm_output_ += deadzone_;
+            else
+                pwm_output_ -= deadzone_;
         }
 
-    
-        void stop() {
-            digitalWrite(in_pin1_, HIGH);
-            digitalWrite(in_pin2_, HIGH);
-            pwmWrite(pwm_pin_, 0);
-        }
+        // --- Saturation ---
+        pwm_output_ = std::clamp(pwm_output_, -max_pwm_, max_pwm_);
+    }
 
-    
-    private:
-        int pwm_pin_;
-        int in_pin1_;
-        int in_pin2_;
-        float desired_rpm_;
-        float current_rpm_;
-        float pwm_output_;
-        float kp_, ki_, kd_;
-        float integral_;
-        float prev_error_;
-        float prev_pwm_output_;
-        std::chrono::high_resolution_clock::time_point prev_time_;
-    };
+    float getPWM() const {
+        return pwm_output_;
+    }
+
+private:
+    float kp_, ki_, ff_gain_;
+    float dt_;
+    float integral_;
+    float pwm_output_;
+    float max_pwm_;
+    float integral_limit_;
+    float deadzone_;
+
+    std::vector<float> rpm_table_;
+    std::vector<float> ff_table_;
+
+    // Debug vars
+    float last_target_ = 0;
+    float last_measured_ = 0;
+    float last_ff_ = 0;
+    float last_pi_ = 0;
+
+    float interpolate_ff(float rpm)
+    {
+        last_target_ = rpm;
+
+        if (rpm <= rpm_table_.front()) return ff_table_.front();
+        if (rpm >= rpm_table_.back()) return ff_table_.back();
+
+        for (size_t i = 0; i < rpm_table_.size() - 1; ++i)
+        {
+            if (rpm >= rpm_table_[i] && rpm <= rpm_table_[i + 1])
+            {
+                float ratio = (rpm - rpm_table_[i]) / (rpm_table_[i + 1] - rpm_table_[i]);
+                last_ff_ = ff_table_[i] + ratio * (ff_table_[i + 1] - ff_table_[i]);
+                return last_ff_;
+            }
+        }
+        return 0.0f;
+    }
+};
     
 
 // ===== ROS2 Node =====
@@ -137,10 +179,6 @@ public:
             std::chrono::milliseconds(1),
             std::bind(&MotorControlNode::timer_callback, this)
         );
-
-        // Example: Desired RPMs
-        //motor1_.setDesiredRPM(0); 
-        //motor2_.setDesiredRPM(120.0f); 
 
         RCLCPP_INFO(this->get_logger(), "Motor Control Node started.");
     }
