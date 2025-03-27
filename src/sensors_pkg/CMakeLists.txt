@@ -20,8 +20,12 @@ endif()
 # === Custom Messages ===
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/EncoderData.msg"
+  "msg/IMUData.msg"
   DEPENDENCIES std_msgs
 )
+
+# Get the include directories for generated messages
+rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
 
 # === IMU Node ===
 add_executable(imu_node src/imu_node.cpp)
@@ -30,7 +34,9 @@ target_include_directories(imu_node PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_compile_features(imu_node PUBLIC c_std_99 cxx_std_17)
 ament_target_dependencies(imu_node rclcpp std_msgs)
-target_link_libraries(imu_node ${WIRINGPI_LIB})
+target_link_libraries(imu_node 
+  ${WIRINGPI_LIB}
+  "${cpp_typesupport_target}")
 install(TARGETS imu_node DESTINATION lib/${PROJECT_NAME})
 
 # === Encoder Node ===
@@ -40,14 +46,9 @@ target_include_directories(encoder_node PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_compile_features(encoder_node PUBLIC c_std_99 cxx_std_17)
 ament_target_dependencies(encoder_node rclcpp std_msgs)
-
-# Link WiringPi
-target_link_libraries(encoder_node ${WIRINGPI_LIB})
-
-# Add generated message dependencies
-rosidl_target_interfaces(encoder_node
-  ${PROJECT_NAME} "rosidl_typesupport_cpp")
-
+target_link_libraries(encoder_node
+  ${WIRINGPI_LIB}
+  "${cpp_typesupport_target}")
 install(TARGETS encoder_node DESTINATION lib/${PROJECT_NAME})
 
 # === Testing ===

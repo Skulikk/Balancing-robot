@@ -164,10 +164,9 @@ int main(int argc, char **argv) {
     while (rclcpp::ok()) {
         node->publish_rpm();
         rclcpp::spin_some(node);
-        delay(10);  // 10 ms loop
+        delay(10);  // 2 ms loop
     }
 
     rclcpp::shutdown();
     return 0;
 }
-

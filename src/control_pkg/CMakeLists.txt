@@ -16,6 +16,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensors_pkg REQUIRED) 
+find_package(control_toolbox REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -25,7 +26,7 @@ target_include_directories(motor_controller_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 target_compile_features(motor_controller_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-ament_target_dependencies(motor_controller_node rclcpp std_msgs sensors_pkg)
+ament_target_dependencies(motor_controller_node rclcpp std_msgs sensors_pkg control_toolbox)
 target_link_libraries(motor_controller_node ${WIRINGPI_LIB})
 
 install(TARGETS motor_controller_node
