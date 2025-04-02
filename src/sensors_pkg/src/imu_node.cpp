@@ -9,7 +9,6 @@
 #include <unistd.h>
 #include <sched.h>
 #include <pthread.h>
-
 #include "rclcpp/rclcpp.hpp"
 #include "sensors_pkg/msg/imu_data.hpp"
 
@@ -21,11 +20,13 @@ using namespace std::chrono_literals;
 #define ACCEL_XOUT_H 0x3B
 #define ACCEL_ZOUT_H 0x3F
 #define GYRO_XOUT_H 0x43
-
 #define GYRO_SENSITIVITY 131.0
 #define RAD_TO_DEG (180.0 / M_PI)
-#define ALPHA_ANGLE 0.6
-#define ALPHA_ACCEL 0.6
+
+// Improved filter constants
+#define GYRO_WEIGHT 0.98      // Increased reliance on gyro during fast movements
+#define ACCEL_WEIGHT 0.02     // Reduced weight for accelerometer
+#define ACCEL_TRUST_THRESHOLD 0.3  // Threshold for trusting accelerometer data
 
 void set_realtime_priority() {
     struct sched_param sched;
@@ -39,7 +40,8 @@ class MinimalPublisher : public rclcpp::Node
 {
 public:
     MinimalPublisher()
-    : Node("imu_angle_publisher"), angle_(0.0f), prev_gyro_rate_(0.0f)
+    : Node("imu_angle_publisher"), angle_(0.0f), prev_gyro_rate_(0.0f), 
+      accel_magnitude_(1.0f), prev_accel_angle_(0.0f)
     {
         publisher_ = this->create_publisher<sensors_pkg::msg::IMUData>("imu_angle_topic", 10);
         fd_ = setup_imu();
@@ -48,15 +50,13 @@ public:
         } else {
             RCLCPP_INFO(this->get_logger(), "IMU Initialized.");
         }
-
         prev_time_ = std::chrono::high_resolution_clock::now();
         timer_ = this->create_wall_timer(10ms, std::bind(&MinimalPublisher::timer_callback, this));
     }
 
 private:
-
     // ------------ IMU Setup ------------
-    int setup_imu(){
+    int setup_imu() {
         if (wiringPiSetup() == -1) {
             std::cerr << "WiringPi setup failed!" << std::endl;
             return -1;
@@ -85,18 +85,42 @@ private:
     {
         uint8_t buffer[14];
         read_sensor_data(buffer);
-    
+
+        // Extract raw sensor data
+        int16_t accelX = (buffer[0] << 8) | buffer[1];
         int16_t accelY = (buffer[2] << 8) | buffer[3];
         int16_t accelZ = (buffer[4] << 8) | buffer[5];
-        int16_t gyroX  = (buffer[8] << 8) | buffer[9];
-    
+        int16_t gyroX = (buffer[8] << 8) | buffer[9];
+
+        // Calculate acceleration magnitude to detect movement
+        float accelMagnitude = sqrtf(accelX*accelX + accelY*accelY + accelZ*accelZ) / 16384.0f;
+        
+        // Calculate accelerometer-based angle
         float accelAngle = atan2(accelY, accelZ) * RAD_TO_DEG;
+        
+        // Calculate rate of change of the accelerometer angle
+        float accelAngleRate = (accelAngle - prev_accel_angle_) / delta_time;
+        prev_accel_angle_ = accelAngle;
+        
+        // Calculate gyroscope rate
         float gyroRate = gyroX / GYRO_SENSITIVITY;
-    
-        // Complementary filter (angle estimation)
-        angle_ = ALPHA_ANGLE * (angle_ + gyroRate * delta_time) + (1 - ALPHA_ANGLE) * accelAngle;
-    
-        // Store for publishing
+
+        // Adaptive complementary filter
+        float alpha = GYRO_WEIGHT;
+        
+        // Reduce accelerometer weight during rapid movements or high acceleration
+        if (fabsf(accelMagnitude - 1.0f) > ACCEL_TRUST_THRESHOLD || 
+            fabsf(accelAngleRate) > 50.0f) {  // High rate of change in accel angle
+            alpha = 0.99f;  // Almost completely ignore accelerometer during fast movement
+        }
+
+        // Apply the complementary filter with adaptive weights
+        angle_ = alpha * (angle_ + gyroRate * delta_time) + (1.0f - alpha) * accelAngle;
+        
+        // Store the acceleration magnitude for next iteration
+        accel_magnitude_ = accelMagnitude;
+        
+        // Store gyro rate for publishing
         prev_gyro_rate_ = gyroRate;
     }
 
@@ -110,27 +134,25 @@ private:
 
         if (fd_ != -1) {
             calculate_tilt(dt);
-
             auto msg = sensors_pkg::msg::IMUData();
             msg.tilt = angle_;
             msg.velo = prev_gyro_rate_;
             publisher_->publish(msg);
-
         } else {
             RCLCPP_WARN(this->get_logger(), "IMU not initialized. Cannot read data.");
         }
     }
 
     // ------------ Private Variables ------------
-
     float angle_;
     float prev_gyro_rate_;
+    float accel_magnitude_;
+    float prev_accel_angle_;
     int fd_;
     rclcpp::Publisher<sensors_pkg::msg::IMUData>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
     std::chrono::high_resolution_clock::time_point prev_time_;
 };
-
 
 int main(int argc, char * argv[])
 {

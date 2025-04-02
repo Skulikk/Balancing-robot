@@ -24,8 +24,15 @@ def generate_launch_description():
         output='screen'
     )
 
+    bluetooth_node = ExecuteProcess(
+        cmd=['sudo', 'bash', '-c',
+             f'source {ros_setup} && source {ws_setup} && ros2 run bluetooth_pkg bluetooth_node'],
+        output='screen'
+    )
+
     return LaunchDescription([
         encoder_node,
         imu_node,
-        motor_controller_node
+        motor_controller_node,
+        bluetooth_node
     ])

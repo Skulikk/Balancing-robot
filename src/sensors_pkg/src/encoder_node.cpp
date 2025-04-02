@@ -8,8 +8,10 @@
 
 #define PPR 734
 #define TIMEOUT_MS 100
-static const double DEBOUNCE_TIME = 0.01;
+static const double DEBOUNCE_TIME = 0.0005;
 const size_t BUFFER_SIZE = 10;
+const int DIRECTION_CHANGE_THRESHOLD = 5;
+
 
 struct Encoder {
     int pin_a;
@@ -46,6 +48,9 @@ void handle_edge_generic(Encoder &encoder) {
 
     if (!encoder.first_pulse) {
         double interval = std::chrono::duration<double>(now - encoder.last_pulse_time).count();
+        if (interval < DEBOUNCE_TIME) {
+            return; // Ignore too short intervals
+        }
         std::lock_guard<std::mutex> lock(encoder.buffer_mutex);
         if (encoder.pulse_intervals.size() >= BUFFER_SIZE) {
             encoder.pulse_intervals.erase(encoder.pulse_intervals.begin());
@@ -60,14 +65,24 @@ void handle_edge_generic(Encoder &encoder) {
     if (state_b != encoder.last_state_b) {
         encoder.last_b_state_change_time = now;
     }
-    if (std::chrono::duration<double>(now - encoder.last_b_state_change_time).count() > DEBOUNCE_TIME) {
-        if (state_b == 1) {
-            encoder.forward_count++;
-        } else {
-            encoder.reverse_count++;
-        }
-        encoder.direction = state_b;
+
+    if (state_b == 1) {
+        encoder.forward_count++;
+        encoder.reverse_count = 0;  // Reset reverse count when moving forward
+    } else {
+        encoder.reverse_count++;
+        encoder.forward_count = 0;  // Reset forward count when moving reverse
     }
+    
+    if (encoder.forward_count > DIRECTION_CHANGE_THRESHOLD) {
+        encoder.direction = 1;
+        encoder.reverse_count = 0;
+    } else if (encoder.reverse_count > 3) {
+        encoder.direction = -1;
+        encoder.forward_count = 0;
+    }
+    encoder.direction = state_b;
+
 
     encoder.last_state_b = state_b;
     encoder.last_pulse_time = now;
@@ -164,7 +179,7 @@ int main(int argc, char **argv) {
     while (rclcpp::ok()) {
         node->publish_rpm();
         rclcpp::spin_some(node);
-        delay(10);  // 2 ms loop
+        delay(1);  // 2 ms loop
     }
 
     rclcpp::shutdown();
