@@ -8,10 +8,9 @@
 
 #define PPR 734
 #define TIMEOUT_MS 100
-static const double DEBOUNCE_TIME = 0.0005;
+const double DEBOUNCE_TIME = 0.0005;
 const size_t BUFFER_SIZE = 10;
 const int DIRECTION_CHANGE_THRESHOLD = 5;
-
 
 struct Encoder {
     int pin_a;
@@ -30,8 +29,6 @@ struct Encoder {
     Encoder(int a, int b) : pin_a(a), pin_b(b) {}
 };
 
-
-// Encoder instances: First motor (pins 0, 2), Second motor (pins 4, 5)
 Encoder encoder1(0, 2);
 Encoder encoder2(4, 5);
 
@@ -49,7 +46,7 @@ void handle_edge_generic(Encoder &encoder) {
     if (!encoder.first_pulse) {
         double interval = std::chrono::duration<double>(now - encoder.last_pulse_time).count();
         if (interval < DEBOUNCE_TIME) {
-            return; // Ignore too short intervals
+            return;
         }
         std::lock_guard<std::mutex> lock(encoder.buffer_mutex);
         if (encoder.pulse_intervals.size() >= BUFFER_SIZE) {
@@ -68,12 +65,12 @@ void handle_edge_generic(Encoder &encoder) {
 
     if (state_b == 1) {
         encoder.forward_count++;
-        encoder.reverse_count = 0;  // Reset reverse count when moving forward
+        encoder.reverse_count = 0;
     } else {
         encoder.reverse_count++;
-        encoder.forward_count = 0;  // Reset forward count when moving reverse
+        encoder.forward_count = 0;
     }
-    
+
     if (encoder.forward_count > DIRECTION_CHANGE_THRESHOLD) {
         encoder.direction = 1;
         encoder.reverse_count = 0;
@@ -81,25 +78,22 @@ void handle_edge_generic(Encoder &encoder) {
         encoder.direction = -1;
         encoder.forward_count = 0;
     }
-    encoder.direction = state_b;
-
 
     encoder.last_state_b = state_b;
     encoder.last_pulse_time = now;
 }
 
-void handle_edge_encoder1() {
-    handle_edge_generic(encoder1);
-}
-
-void handle_edge_encoder2() {
-    handle_edge_generic(encoder2);
-}
+void handle_edge_encoder1() { handle_edge_generic(encoder1); }
+void handle_edge_encoder2() { handle_edge_generic(encoder2); }
 
 class EncoderNode : public rclcpp::Node {
 public:
     EncoderNode() : Node("encoder_node") {
         publisher_ = this->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
+        timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(20),
+            std::bind(&EncoderNode::publish_rpm, this)
+        );
         RCLCPP_INFO(this->get_logger(), "ENCODER Initialized.");
     }
 
@@ -111,29 +105,42 @@ public:
         msg.rpm1 = rpm1;
         msg.rpm2 = -rpm2;
 
-        //RCLCPP_INFO(this->get_logger(), "RPM1: %.2f | RPM2: %.2f", msg.rpm1, msg.rpm2);
+        // Optional: enable to debug
+        // RCLCPP_INFO(this->get_logger(), "RPM1: %.2f | RPM2: %.2f", rpm1, rpm2);
+
         publisher_->publish(msg);
     }
 
 private:
     rclcpp::Publisher<sensors_pkg::msg::EncoderData>::SharedPtr publisher_;
+    rclcpp::TimerBase::SharedPtr timer_;
 
     float calculate_rpm(Encoder &encoder) {
-        double avg_interval = 0.0;
         auto now = std::chrono::steady_clock::now();
+        double ema_interval = 0.0;
+        bool has_data = false;
 
         {
             std::lock_guard<std::mutex> lock(encoder.buffer_mutex);
+
             if (!encoder.pulse_intervals.empty()) {
-                double sum = 0.0;
-                for (auto &i : encoder.pulse_intervals) sum += i;
-                avg_interval = sum / encoder.pulse_intervals.size();
+                ema_interval = encoder.pulse_intervals[0];
+                double alpha = 0.3;
+                for (size_t i = 1; i < encoder.pulse_intervals.size(); ++i) {
+                    ema_interval = alpha * encoder.pulse_intervals[i] + (1.0 - alpha) * ema_interval;
+                }
+                has_data = true;
+            }
+
+            // Clear stale buffer if motor is slowing/stopped
+            if (std::chrono::duration<double>(now - encoder.last_pulse_time).count() > 0.5) {
+                encoder.pulse_intervals.clear();
             }
         }
 
         double rpm = 0.0;
-        if (avg_interval > 0.0) {
-            double frequency = 1.0 / avg_interval;
+        if (has_data && ema_interval > 0.0) {
+            double frequency = 1.0 / ema_interval;
             rpm = (frequency * 60.0) / PPR;
             rpm = encoder.direction == 1 ? rpm : -rpm;
         }
@@ -156,7 +163,6 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // Initialize encoder pins AFTER wiringPiSetup
     pinMode(encoder1.pin_a, INPUT);
     pullUpDnControl(encoder1.pin_a, PUD_UP);
     pinMode(encoder1.pin_b, INPUT);
@@ -167,7 +173,6 @@ int main(int argc, char **argv) {
     pinMode(encoder2.pin_b, INPUT);
     pullUpDnControl(encoder2.pin_b, PUD_UP);
 
-    // Setup ISR for both encoders
     if (wiringPiISR(encoder1.pin_a, INT_EDGE_FALLING, &handle_edge_encoder1) < 0 ||
         wiringPiISR(encoder2.pin_a, INT_EDGE_FALLING, &handle_edge_encoder2) < 0) {
         std::cerr << "Unable to set up interrupt!" << std::endl;
@@ -175,13 +180,7 @@ int main(int argc, char **argv) {
     }
 
     auto node = std::make_shared<EncoderNode>();
-
-    while (rclcpp::ok()) {
-        node->publish_rpm();
-        rclcpp::spin_some(node);
-        delay(1);  // 2 ms loop
-    }
-
+    rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;
 }

@@ -24,9 +24,10 @@ using namespace std::chrono_literals;
 #define RAD_TO_DEG (180.0 / M_PI)
 
 // Improved filter constants
-#define GYRO_WEIGHT 0.98      // Increased reliance on gyro during fast movements
-#define ACCEL_WEIGHT 0.02     // Reduced weight for accelerometer
-#define ACCEL_TRUST_THRESHOLD 0.3  // Threshold for trusting accelerometer data
+#define GYRO_WEIGHT 0.98     
+#define ACCEL_WEIGHT 0.02    
+#define ACCEL_TRUST_THRESHOLD 0.3  
+#define LINEAR_MOTION_THRESHOLD 0.15  // Adjust based on testing
 
 void set_realtime_priority() {
     struct sched_param sched;
@@ -36,12 +37,12 @@ void set_realtime_priority() {
     }
 }
 
-class MinimalPublisher : public rclcpp::Node
+class IMUPublisher : public rclcpp::Node
 {
 public:
-    MinimalPublisher()
+    IMUPublisher()
     : Node("imu_angle_publisher"), angle_(0.0f), prev_gyro_rate_(0.0f), 
-      accel_magnitude_(1.0f), prev_accel_angle_(0.0f)
+      filtered_gyro_rate_(0.0f), accel_magnitude_(1.0f), prev_accel_angle_(0.0f)
     {
         publisher_ = this->create_publisher<sensors_pkg::msg::IMUData>("imu_angle_topic", 10);
         fd_ = setup_imu();
@@ -51,11 +52,10 @@ public:
             RCLCPP_INFO(this->get_logger(), "IMU Initialized.");
         }
         prev_time_ = std::chrono::high_resolution_clock::now();
-        timer_ = this->create_wall_timer(10ms, std::bind(&MinimalPublisher::timer_callback, this));
+        timer_ = this->create_wall_timer(10ms, std::bind(&IMUPublisher::timer_callback, this));
     }
 
 private:
-    // ------------ IMU Setup ------------
     int setup_imu() {
         if (wiringPiSetup() == -1) {
             std::cerr << "WiringPi setup failed!" << std::endl;
@@ -64,15 +64,16 @@ private:
         int fd = wiringPiI2CSetup(MPU6050_ADDR);
         if (fd != -1) {
             wiringPiI2CWriteReg8(fd, PWR_MGMT_1, 0);
-            usleep(100000);
+            usleep(50000);  // Corrected the typo
         }
         return fd;
     }
 
     void burstRead(uint8_t startAddress, uint8_t *buffer, uint8_t length)
     {
-        write(fd_, &startAddress, 1);
-        read(fd_, buffer, length);
+        uint8_t reg = startAddress;
+        write(fd_, &reg, 1);  // Send register address
+        read(fd_, buffer, length);  // Read `length` bytes
     }
 
     void read_sensor_data(uint8_t *buffer)
@@ -80,51 +81,53 @@ private:
         burstRead(ACCEL_XOUT_H, buffer, 14);
     }
 
-    // ------------ Main Calculation ------------
     void calculate_tilt(float delta_time)
     {
         uint8_t buffer[14];
         read_sensor_data(buffer);
 
-        // Extract raw sensor data
         int16_t accelX = (buffer[0] << 8) | buffer[1];
         int16_t accelY = (buffer[2] << 8) | buffer[3];
         int16_t accelZ = (buffer[4] << 8) | buffer[5];
         int16_t gyroX = (buffer[8] << 8) | buffer[9];
 
-        // Calculate acceleration magnitude to detect movement
+        // Calculate acceleration magnitude
         float accelMagnitude = sqrtf(accelX*accelX + accelY*accelY + accelZ*accelZ) / 16384.0f;
         
         // Calculate accelerometer-based angle
         float accelAngle = atan2(accelY, accelZ) * RAD_TO_DEG;
         
-        // Calculate rate of change of the accelerometer angle
+        // Calculate rate of change of accelerometer angle
         float accelAngleRate = (accelAngle - prev_accel_angle_) / delta_time;
         prev_accel_angle_ = accelAngle;
         
         // Calculate gyroscope rate
         float gyroRate = gyroX / GYRO_SENSITIVITY;
 
+        // Detect linear motion (if accelMagnitude deviates significantly from 1)
+        bool is_moving = std::abs(accelMagnitude - 1.0f) > LINEAR_MOTION_THRESHOLD;
+
         // Adaptive complementary filter
         float alpha = GYRO_WEIGHT;
         
-        // Reduce accelerometer weight during rapid movements or high acceleration
-        if (fabsf(accelMagnitude - 1.0f) > ACCEL_TRUST_THRESHOLD || 
-            fabsf(accelAngleRate) > 50.0f) {  // High rate of change in accel angle
-            alpha = 0.99f;  // Almost completely ignore accelerometer during fast movement
+        if (is_moving || std::abs(accelAngleRate) > 50.0f) {  
+            alpha = 0.982f;  
         }
 
-        // Apply the complementary filter with adaptive weights
+        // Apply complementary filter for angle
         angle_ = alpha * (angle_ + gyroRate * delta_time) + (1.0f - alpha) * accelAngle;
         
-        // Store the acceleration magnitude for next iteration
+        // Smooth gyro velocity with a complementary filter
+        float beta = is_moving ? 0.65f : 0.85f;  
+        filtered_gyro_rate_ = beta * filtered_gyro_rate_ + (1 - beta) * gyroRate * 1.1f;
+
+        // Store acceleration magnitude
         accel_magnitude_ = accelMagnitude;
-        
-        // Store gyro rate for publishing
-        prev_gyro_rate_ = gyroRate;
+
+        // Store smoothed gyro rate for publishing
+        prev_gyro_rate_ = filtered_gyro_rate_;
     }
 
-    // ------------ Timer Callback ------------
     void timer_callback()
     {
         auto current_time = std::chrono::high_resolution_clock::now();
@@ -136,16 +139,17 @@ private:
             calculate_tilt(dt);
             auto msg = sensors_pkg::msg::IMUData();
             msg.tilt = angle_;
-            msg.velo = prev_gyro_rate_;
+            msg.velo = prev_gyro_rate_;  // Send filtered gyro rate
             publisher_->publish(msg);
         } else {
             RCLCPP_WARN(this->get_logger(), "IMU not initialized. Cannot read data.");
         }
     }
 
-    // ------------ Private Variables ------------
+    // Variables
     float angle_;
     float prev_gyro_rate_;
+    float filtered_gyro_rate_;  // New variable for smoothed velocity
     float accel_magnitude_;
     float prev_accel_angle_;
     int fd_;
@@ -158,7 +162,7 @@ int main(int argc, char * argv[])
 {
     rclcpp::init(argc, argv);
     set_realtime_priority();
-    rclcpp::spin(std::make_shared<MinimalPublisher>());
+    rclcpp::spin(std::make_shared<IMUPublisher>());
     rclcpp::shutdown();
     return 0;
 }

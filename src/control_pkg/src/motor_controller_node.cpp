@@ -28,6 +28,8 @@ void cleanup() {
 }
 
 void setup(){
+    std::cout << std::fixed;
+    std::cout << std::setprecision(2);
     if (wiringPiSetup() == -1) {
         std::cerr << "WiringPi Setup failed!" << std::endl;
     }
@@ -45,75 +47,157 @@ void setup(){
 
 class OuterPIDController {
     public:
-        OuterPIDController(double kp, double kd, double ke, double rpm_limit, double max_rpm_change)
-        : Kp(kp), Kd(kd), Ke(ke), rpm_limit(rpm_limit),
-          max_rpm_change_per_cycle(max_rpm_change), rpm_target(0.0) {}
+        OuterPIDController(double kp, double ki, double kd, double ke, double rpm_limit, double max_rpm_change)
+            : Kp(kp), Ki(ki), Kd(kd), Ke(ke), rpm_limit(rpm_limit),
+              max_rpm_change_per_cycle(max_rpm_change), rpm_target(0.0),
+              integral_error(0.0) {
+            last_update_time = std::chrono::steady_clock::now();  // Initialize timestamp
+        }
     
-          double update(float angle, float angular_velocity) {
-            float error = -(angle + 3.2f);
-            // Print initial values
-            //std::cout << "Angle: " << angle << ", Error: " << error << ", Angular Vel: " << angular_velocity << std::endl;
-            
-            // Deadzone
-            if (std::abs(error) < 0.7) {
-                error = 0.0;
+        double update(float angle, float angular_velocity) {
+            // Measure elapsed time since last update
+            auto now = std::chrono::steady_clock::now();
+            std::chrono::duration<double> elapsed = now - last_update_time;
+            double dt = elapsed.count();  // Convert to seconds
+            last_update_time = now;  // Update timestamp for next iteration
+
+            // Limit dt to prevent large jumps at the start
+            if(dt > 0.02) {
+                dt = 0.01;
             }
-        
-            float exponential;
-            if(error > 0){
-                exponential = error * error;
+    
+            double drift_estimate = angle + 0.2 * angular_velocity;  // tune 0.2 for better direction response
+
+            // Accumulate bias correction (very slowly)
+            bias_integral += drift_estimate * dt;
+            bias_integral *= bias_integral_decay;  // Prevent runaway
+
+            // Calculate offset (limited)
+            angle_bias_offset = std::clamp(bias_gain * bias_integral, -max_bias_angle, max_bias_angle);
+            angle_bias_offset = -2.0;
+
+            // Adjust the effective error slightly in opposite direction of drift
+            float error = -(angle + angle_bias_offset);  // original was just -angle
+
+            //std::cout << "Drift estimate: " << drift_estimate << " | Bias integral: " << bias_integral << " | Offset: " << angle_bias_offset << " Angle: " << angle << std::endl;
+
+            // Asymetric gains - one side is heavier
+            double adjusted_KP, adjusted_KI, adjusted_KD;
+            if (error > 0) {
+                adjusted_KP = Kp * 1.3;
+                adjusted_KI = Ki * 1.9;
+                adjusted_KD = Kd * 1.2;
             } else {
-                exponential = -(error * error);
+                adjusted_KP = Kp;
+                adjusted_KI = Ki;
+                adjusted_KD = Kd;
             }
-        
-            // Derivative term
-            float derivative = -(angular_velocity + 4.9);
-            if (std::abs(derivative) < 0.5) {
-                derivative = 0.0;
+    
+            // Deadzone for small errors
+            if (std::abs(error) < 0.8) {
+                float deadzone_factor = std::abs(error) / 0.8;
+                error *= deadzone_factor * deadzone_factor;  // Quadratic transition for smoother response
             }
+
+            if(std::abs(last_target) < 180){
+                // More aggressive integral accumulation for persistent errors
+                if (std::abs(error) > persistentErrorThreshold) {
+                    timeInPersistentError += dt;
+                    if (timeInPersistentError > persistentErrorTime  + 0.4) {
+                        integral_error += error * dt * 20.0; 
+                    } else if(timeInPersistentError > persistentErrorTime + 0.15){
+                        integral_error += error * dt * 12.0; 
+                    } else if(timeInPersistentError > persistentErrorTime) {
+                        integral_error += error * dt * 7.0; 
+                    } else {
+                        integral_error += error * dt * 4.0;
+                    }
+                } else {
+                    timeInPersistentError = 0.0;
+                    integral_error += error * dt;
+                    integral_error *= 0.995;
+                }
+            }
+
+            int error_sign;
+            if(error > 0){
+                error_sign = 1;
+            } else {
+                error_sign = -1;
+            }
+
+            if ((error_sign * -(angular_velocity) < -4 && std::abs(integral_error) > 1)) {  // If system is reversing
+                integral_error *= 0.96;  // Reduce integral influence
+                //std::cout << "Integral error reduced: " << integral_error << " Error sign: " << error_sign << " Velo rev" << -(angular_velocity) << std::endl;
+            }
+
+            if (error * last_error < 0) {  // Detects sign change (possible overshoot)
+                integral_error *= 0.5;  // Reduce it instead of completely resetting
+            } else if (std::abs(error) < 0.5) {  // Small error → gradually reduce integral
+                integral_error *= 0.98;
+            }
+
+            integral_error = std::clamp(integral_error, -130.0, 130.0);  // Anti-windup clamping
+    
+            // Exponential error scaling
+            float exponential = error * error * error;//
             
-            // PID calculation
-            float output = Kp * error + Kd * derivative + exponential * Ke;
-            //std::cout << "PID components - P: " << (Kp * error) << ", D: " << (Kd * derivative) << ", E: " << (exponential * Ke) << std::endl;
-            //std::cout << "Output before remapping: " << output << ", current rpm_target: " << rpm_target << std::endl;
-            
-            // Smooth target change
-            float delta = std::clamp(output - rpm_target, -max_rpm_change_per_cycle, max_rpm_change_per_cycle);
-            rpm_target += delta;
-            
+            // Prevents high tilt oscillations
+            float KD_scale = 1.0 / (1.0 + 0.1 * std::abs(error));  // Tweak 0.1 based on response
+            float error_adjusted_KD = adjusted_KD * KD_scale;
+            float derivative = -(angular_velocity);
+    
+            // PID calculation (now includes the Integral term)
+            float output = adjusted_KP * error + adjusted_KI * integral_error + error_adjusted_KD * derivative + Ke * exponential;
+
+            // Damping oposite to derivative term
+            float damping = 0.05 * angular_velocity;
+            output += damping;
+
+            rpm_target = output;
+    
             // Clamp final RPM target
             rpm_target = std::clamp(rpm_target, -rpm_limit, rpm_limit);
-            //std::cout << "rpm_target after clamping: " << rpm_target << std::endl;
-            //std::cout << "=========================================================\n" <<  std::endl;
-            
-            // Remap with deadzone
-            double before_remap = rpm_target;
-            //rpm_target = remapWithDeadzone(rpm_target);
-            //std::cout << "Before remap: " << before_remap << ", After remap: " << rpm_target << std::endl;
-            
-            return rpm_target;
-        }
 
-        void update_ped(double kp, double kd, double ke) {
+            //std::cout << "Error: " << error << " | Velo: " << angular_velocity << " | OUTPUT: " << rpm_target << " | KP: " << adjusted_KP * error << " | KI: " << adjusted_KI * integral_error << " | KD: " << adjusted_KD * derivative << " | KE: " << Ke * exponential << std::endl;
+
+            last_error = error;  // Store last error for derivative calculation
+            last_target = rpm_target;  // Store last target for next iteration  
+
+            // Motor RPM deadzone
+            if (std::abs(rpm_target) > 0.5) {
+                return rpm_target + (rpm_target > 0 ? 6.5 : -6.5);  
+            } else {
+                return 0;
+            }
+        }
+    
+        void update_pid(double kp, double ki, double kd, double ke) {
             Kp = kp;
+            Ki = ki;
             Kd = kd;
             Ke = ke;
         }
     
     private:
-        double Kp, Kd, Ke;
+        double Kp, Ki, Kd, Ke;
         double rpm_limit;
         double max_rpm_change_per_cycle;
-        double rpm_target = 0.0;
+        double rpm_target;
+        double last_target = 0;
+        double integral_error = 0;
+        double persistentErrorThreshold = 1.5; // degrees
+        double persistentErrorTime = 0.1; // seconds
+        double timeInPersistentError = 0.0;
+        double last_error = 0.0;
 
-        double remapWithDeadzone(double x) {
-            if (x >= -1 && x <= 1) {
-                return 0;
-            }
-            
-            double sign = (x > 0) ? 1.0 : -1.0;
-            return sign * (10 + ((std::abs(x) - 1) / 149.0) * (150 - 10));
-        }
+        double bias_integral = 0.0;
+        double angle_bias_offset = 0.0;
+        const double bias_gain = 0.5;         // Sensitivity to drift (tune this!)
+        const double bias_integral_decay = 0.995;
+        const double max_bias_angle = 1.5;       // Max degrees to shift setpoint
+    
+        std::chrono::steady_clock::time_point last_update_time;  // Timestamp for time tracking
 };
 
 class InnerLoop {
@@ -212,8 +296,8 @@ public:
         : Node("motor_control_node"),
           imu_received_(false),
           encoder_received_(false),
-          motor1(0.3, 0.03),
-          motor2(0.3, 0.03)
+          motor1(0.5, 0.05),
+          motor2(0.5, 0.05)
     {
         imu_subscription_ = this->create_subscription<sensors_pkg::msg::IMUData>(
             "imu_angle_topic", 10, 
@@ -240,19 +324,19 @@ public:
 
 private:
     void imu_callback(const sensors_pkg::msg::IMUData::SharedPtr msg){
-        imu_angle_ = msg->tilt;
-        angular_velocity_ = msg->velo;
+        imu_angle_ = msg->tilt + 2.6;
+        angular_velocity_ = msg->velo + 5.4;
         imu_received_ = true;
     }
 
     void encoder_callback(const sensors_pkg::msg::EncoderData::SharedPtr msg){
-        rpm1_ = msg->rpm1 + 0.6f;
-        rpm2_ = msg->rpm2 + 0.6f;
+        rpm1_ = msg->rpm1;
+        rpm2_ = msg->rpm2;
         encoder_received_ = true;
     }
 
     void bluetooth_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
-        if (msg->data.size() == 7) {
+        if (msg->data.size() == 8) {
             float p = msg->data[0];
             float i = msg->data[1];
             float alpha = msg->data[2];
@@ -261,11 +345,12 @@ private:
             float po = msg->data[4];
             float e = msg->data[5];
             float d = msg->data[6];
+            float io = msg->data[7];
             
             motor1.update_prms(p, i, alpha, rate);
             motor2.update_prms(p, i, alpha, rate);
             
-            outer_pid_.update_ped(po, e, d);
+            outer_pid_.update_pid(po, io, e, d);
         } else {
             RCLCPP_WARN(this->get_logger(), "Received invalid PID data");
         }
@@ -282,8 +367,8 @@ private:
             if (counter_ == 10) {
                 rpm_target_ = outer_pid_.update(imu_angle_, angular_velocity_);
                 counter_ = 0;
-                //RCLCPP_INFO(this->get_logger(), "ANGLE: %.2f | TARGET: %.2f | PWM Left: %.2f | RPM1: %.2f | PWM Right: %.2f | RPM2: %.2f", imu_angle_, rpm_target_, pwm_left, rpm1_, pwm_right, rpm2_);
-                //RCLCPP_INFO(this->get_logger(), "ANGLE: %.2f | Angle velo: %.2f", imu_angle_, angular_velocity_);
+                RCLCPP_INFO(this->get_logger(), "ANGLE: %.2f | TARGET: %.2f | PWM Left: %.2f | RPM1: %.2f | PWM Right: %.2f | RPM2: %.2f", imu_angle_, rpm_target_, pwm_left, rpm1_, pwm_right, rpm2_);
+                //RCLCPP_INFO(this->get_logger(), "ANGLE: %.2f | Angle velo: %.2f | RPM: %.2f | TARGET: %.2f | PWM: %.2f", imu_angle_, angular_velocity_, rpm1_, rpm_target_, pwm_left);
             }
             counter_++;
             //RCLCPP_INFO(this->get_logger(), "RPM1: %.2f | RPM2: %.2f", rpm1_, rpm2_);
@@ -291,6 +376,8 @@ private:
             if(pwm_left < 0){
                 digitalWrite(IN1, HIGH);
                 digitalWrite(IN2, HIGH);
+                pwm_left *= 1.12;
+                pwm_right *= 1.12;
             } else {
                 digitalWrite(IN1, LOW);
                 digitalWrite(IN2, LOW);
@@ -316,10 +403,10 @@ private:
     float rpm2_;
     bool imu_received_;
     bool encoder_received_;
-    int counter_ = 10;
+    int counter_ = 5;
     double rpm_target_ = 0;
 
-    OuterPIDController outer_pid_{2.3, 0.46, 0.06, 150.0, 8.0};
+    OuterPIDController outer_pid_{1.8, 2.3, 0.95, 0.0028, 150.0, 45.0};
     InnerLoop motor1;
     InnerLoop motor2;
 };
