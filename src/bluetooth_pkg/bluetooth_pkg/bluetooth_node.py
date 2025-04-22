@@ -1,168 +1,183 @@
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray
 from bluedot import BlueDot
+from signal import pause
 import time
+import threading
 
-class BlueDotPIDPublisher(Node):
+class BlueDotJoystickPublisher(Node):
     def __init__(self):
-        super().__init__('bluedot_pid_publisher')
-        self.get_logger().info('Starting BlueDot PID Publisher...')
-        self.publisher_ = self.create_publisher(Float32MultiArray, 'pid_params', 10)
+        super().__init__('bluedot_joystick_publisher')
+        self.get_logger().info('Starting BlueDot Joystick Publisher...')
+        self.publisher_ = self.create_publisher(Float32MultiArray, 'bluetooth_data', 10)
+        
+        # Initialize state variables
+        self.mode = "dpad"
+        self.bd = None
 
-        # Initialize BlueDot with specific layout
-        self.get_logger().info('Initializing BlueDot. Waiting for connection...')
+        self.p = 65.0
+        self.d = 0.5
+        self.i = 36.5
+        self.rate = 0.0
+        
+        # Set up the initial D-pad interface
+        self.setup_dpad()
+        
+        self.get_logger().info("Joystick ready. Waiting for Bluetooth client...")
+    
+    def setup_dpad(self):
+        self.get_logger().info("Setting up D-pad mode...")
+        self.mode = "dpad"
+        
+        # Clean up existing BlueDot instance if any
+        self.cleanup_bluedot()
+        
+        # Create a fresh BlueDot instance with grid layout
+        self.bd = BlueDot(cols=3, rows=5)
+        self.bd.visible = False
+        
+        # Configure D-pad buttons
+        self.bd[0,0].visible = True
+        self.bd[0,0].when_pressed = lambda: self.update_prms("p-")
+
+        self.bd[0,1].visible = True
+        self.bd[0,1].when_pressed = lambda: self.update_prms("i-")
+        
+        self.bd[0,2].visible = True
+        self.bd[0,2].when_pressed = lambda: self.update_prms("d-")
+
+        self.bd[2,0].visible = True
+        self.bd[2,0].when_pressed = lambda: self.update_prms("p+")
+
+        self.bd[2,1].visible = True
+        self.bd[2,1].when_pressed = lambda: self.update_prms("i+")
+        
+        self.bd[2,2].visible = True
+        self.bd[2,2].when_pressed = lambda: self.update_prms("d+")
+
+        self.bd[1,3].visible = True
+        self.bd[1,3].when_pressed = lambda: self.update_prms("r+")
+
+        
+        
+        # Add a switch mode button
+        self.bd[1,4].visible = True
+        self.bd[1,4].color = "red"
+        self.bd[1,4].when_pressed = lambda: self.switch_to_joystick()
+        
+        # Configure Bluetooth events
+        self.bd.when_client_connects = lambda: self.get_logger().info("Client connected to D-pad")
+        self.bd.when_client_disconnects = lambda: self.get_logger().info("Client disconnected from D-pad")
+    
+    def setup_joystick(self):
+        self.get_logger().info("Setting up joystick mode...")
+        self.mode = "joystick"
+        
+        # Clean up existing BlueDot instance if any
+        self.cleanup_bluedot()
+        
+        # Create a new BlueDot instance
         self.bd = BlueDot()
-        self.bd.resize(2, 8)
+        
+        # Attach joystick handlers
+        self.bd.when_moved = self.handle_joystick
+        self.bd.when_released = self.joystick_released
+        self.bd.when_pressed = lambda pos: self.get_logger().info("Joystick pressed")
+        
+        # Add a double-press handler to switch back to D-pad
+        self.bd.when_double_pressed = lambda: self.switch_to_dpad()
+        
+        # Configure Bluetooth events
+        self.bd.when_client_connects = lambda: self.get_logger().info("Client connected to joystick")
+        self.bd.when_client_disconnects = lambda: self.get_logger().info("Client disconnected from joystick")
+    
+    def switch_to_joystick(self):
+        self.get_logger().info("Switching to joystick mode")
+        # Delay to allow button release to complete
+        threading.Timer(0.5, self.setup_joystick).start()
+    
+    def switch_to_dpad(self):
+        self.get_logger().info("Switching to D-pad mode")
+        # Delay to allow double-press detection to complete
+        threading.Timer(0.5, self.setup_dpad).start()
+    
+    def cleanup_bluedot(self):
+        if self.bd is not None:
+            try:
+                self.get_logger().info("Cleaning up existing BlueDot instance")
+                self.bd.stop()
+                time.sleep(0.5)  # Give more time for cleanup
+            except Exception as e:
+                self.get_logger().warn(f"Error stopping BlueDot: {e}")
+            finally:
+                self.bd = None
+    
+    def update_prms(self, p_type):
+        #self.get_logger().info(f"D-pad: {type}")
+        
+        if p_type == "p+":
+            self.p += 1.0
+            self.p = round(self.p, 2)
+        elif p_type == "p-":
+            self.p -= 1.0
+            self.p = round(self.p, 2)
+        elif p_type == "i+":
+            self.i += 0.5
+            self.i = round(self.i, 2)
+        elif p_type == "i-":
+            self.i -= 0.5
+            self.i = round(self.i, 2)
+        elif p_type == "d+":
+            self.d += 0.1
+            self.d = round(self.d, 2)
+        elif p_type == "d-":
+            self.d -= 0.1
+            self.d = round(self.d, 2)
+        elif p_type == "r+":
+            self.rate += 1.0
+            self.rate = round(self.rate, 2)
 
-        # Set up connection callbacks
-        self.bd.when_client_connects = self.handle_connect
-        self.bd.when_client_disconnects = self.handle_disconnect
-
-        # Initialize values
-        self.p = 0.5
-        self.i = 0.05
-        self.alpha = 0.2
-        self.rate = 1.6
-
-        self.po = 2.0
-        self.io = 1.8
-        self.d = 0.9
-        self.e = 0.002
-
-        # Wait for the grid to be ready
-        self.get_logger().info('Setting up button grid...')
-        time.sleep(1)  # Give BlueDot time to set up the grid
-
-        try:
-            # Assign button press handlers
-            self.bd[1, 0].when_pressed = self.increase_p
-            self.bd[1, 1].when_pressed = self.increase_i
-            self.bd[1, 2].when_pressed = self.increase_alpha
-            self.bd[1, 3].when_pressed = self.increase_rate
-            self.bd[0, 0].when_pressed = self.decrease_p
-            self.bd[0, 1].when_pressed = self.decrease_i
-            self.bd[0, 2].when_pressed = self.decrease_alpha
-            self.bd[0, 3].when_pressed = self.decrease_rate
-
-            self.bd[1, 4].when_pressed = self.increase_po
-            self.bd[0, 4].when_pressed = self.decrease_po
-            self.bd[1, 5].when_pressed = self.increase_d
-            self.bd[0, 5].when_pressed = self.decrease_d
-            self.bd[1, 6].when_pressed = self.increase_e
-            self.bd[0, 6].when_pressed = self.decrease_e
-            self.bd[1, 7].when_pressed = self.increase_io
-            self.bd[0, 7].when_pressed = self.decrease_io
-
-            # Set button colors
-            self.bd[0, 0].color = "red" 
-            self.bd[0, 1].color = "green"  
-            self.bd[0, 2].color = "blue" 
-            self.bd[0, 3].color = "black"   
-            self.bd[0, 4].color = "red"   
-            self.bd[0, 5].color = "green"  
-            self.bd[0, 6].color = "blue"
-            self.bd[0, 7].color = "black"
-
-            self.bd[1, 0].color = "red" 
-            self.bd[1, 1].color = "green" 
-            self.bd[1, 2].color = "blue" 
-            self.bd[1, 3].color = "black" 
-            self.bd[1, 4].color = "red" 
-            self.bd[1, 5].color = "green" 
-            self.bd[1, 6].color = "blue" 
-            self.bd[1, 7].color = "black" 
-
-            self.get_logger().info('Grid setup complete')
-            self.get_logger().info(f'Initial values: P={self.p}, I={self.i}, ALPHA={self.alpha}, RATE={self.rate}, PO={self.po}, D={self.d}, E={self.e}, IO={self.io}')
-
-        except Exception as e:
-            self.get_logger().error(f'Failed to set up button grid: {str(e)}')
-            raise
-
-    def handle_connect(self):
-        """Callback when a client connects"""
-        self.get_logger().info('Bluetooth client connected!')
-
-    def handle_disconnect(self):
-        """Callback when a client disconnects"""
-        self.get_logger().warn('Bluetooth client disconnected!')
-
-    def increase_p(self):
-        self.p += 0.1
-        self.publish_pid()
-
-    def decrease_p(self):
-        self.p = round(max(0, self.p - 0.1), 2)
-        self.publish_pid()
-
-    def increase_i(self):
-        self.i += 0.01
-        self.publish_pid()
-
-    def decrease_i(self):
-        self.i = round(max(0, self.i - 0.01), 2)
-        self.publish_pid()
-
-    def increase_alpha(self):
-        self.alpha += 0.01
-        self.publish_pid()
-
-    def decrease_alpha(self):
-        self.alpha = round(max(0, self.alpha - 0.011), 2)
-        self.publish_pid()
-
-    def increase_rate(self):
-        self.rate += 0.1
-        self.publish_pid()
-
-    def decrease_rate(self):
-        self.rate = round(max(0, self.rate - 0.1), 2)
-        self.publish_pid()
-
-    def increase_po(self):
-        self.po += 0.1
-        self.publish_pid()
-
-    def decrease_po(self):
-        self.po = round(max(0, self.po - 0.1), 2)
-        self.publish_pid()
-
-    def increase_d(self):
-        self.d += 0.01
-        self.publish_pid()
-
-    def decrease_d(self):
-        self.d = round(max(0, self.d - 0.01), 2)
-        self.publish_pid()
-
-    def increase_e(self):
-        self.e += 0.001
-        self.publish_pid()
-
-    def decrease_e(self):   
-        self.e = round(max(0, self.e - 0.001), 3)
-        self.publish_pid()
-
-    def increase_io(self):
-        self.io += 0.1
-        self.publish_pid()
-
-    def decrease_io(self):
-        self.io = round(max(0, self.io - 0.1), 2)
-        self.publish_pid()
-
-    def publish_pid(self):
-        """Publish the updated PID values and update the label."""
         msg = Float32MultiArray()
-        msg.data = [self.p, self.i, self.alpha, self.rate, self.po, self.d, self.e, self.io]
+        msg.data = [self.p, self.i, self.d, self.rate]
+        self.get_logger().info(f"Updated parameters: p={self.p}, i={self.i}, d={self.d}, rate={self.rate}")
         self.publisher_.publish(msg)
-        self.get_logger().info(f'Updated PARAMS: P={round(self.p, 2)}, I={round(self.i, 2)}, ALPHA={round(self.alpha, 2)}, RATE={round(self.rate, 2)}, PO={round(self.po, 2)}, D={round(self.d, 2)}, E={round(self.e, 3)}, IO={round(self.io, 2)}')
+    
+    def handle_joystick(self, pos):
+        angle = float(round(pos.angle, 2)) if pos.angle is not None else 0.0
+        distance = float(round(pos.distance, 2)) if pos.distance is not None else 0.0
+        
+        #self.get_logger().info(f"Joystick moved: angle={angle}, dist={distance}")
+        
+        msg = Float32MultiArray()
+        msg.data = [angle, distance]
+        self.publisher_.publish(msg)
+    
+    def joystick_released(self):
+        msg = Float32MultiArray()
+        msg.data = [0.0, 0.0]
+        self.publisher_.publish(msg)
+        #self.get_logger().info("Joystick released")
 
 def main(args=None):
     rclpy.init(args=args)
-    node = BlueDotPIDPublisher()
-    rclpy.spin(node)
+    node = BlueDotJoystickPublisher()
+    
+    # Run ROS2 in a separate thread so BlueDot can run alongside
+    executor_thread = threading.Thread(target=rclpy.spin, args=(node,), daemon=True)
+    executor_thread.start()
+    
+    try:
+        # Keep the main thread alive
+        while rclpy.ok():
+            time.sleep(0.1)
+    except KeyboardInterrupt:
+        pass
+    
+    # Clean up
+    node.cleanup_bluedot()
     node.destroy_node()
     rclpy.shutdown()
 

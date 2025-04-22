@@ -11,11 +11,34 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
-# === WiringPi ===
-find_library(WIRINGPI_LIB wiringPi)
-if(NOT WIRINGPI_LIB)
-  message(FATAL_ERROR "Failed to find WiringPi library")
+# === Find RTIMULib ===
+find_path(RTIMULIB_INCLUDE_DIR RTIMULib.h
+  HINTS /usr/local/include
+  PATH_SUFFIXES RTIMULib)
+find_library(RTIMULIB_LIBRARY RTIMULib
+  HINTS /usr/local/lib)
+
+if(NOT RTIMULIB_INCLUDE_DIR OR NOT RTIMULIB_LIBRARY)
+  message(FATAL_ERROR "Failed to find RTIMULib!")
 endif()
+
+message(STATUS "Found RTIMULib: ${RTIMULIB_LIBRARY}")
+set(RTIMULIB_LIBRARIES ${RTIMULIB_LIBRARY})
+set(RTIMULIB_INCLUDE_DIRS ${RTIMULIB_INCLUDE_DIR})
+
+# === Find pigpio ===
+find_library(PIGPIOD_IF2_LIBRARY pigpiod_if2 REQUIRED)
+find_path(PIGPIOD_IF2_INCLUDE_DIR pigpiod_if2.h REQUIRED)
+
+if(NOT PIGPIOD_IF2_LIBRARY OR NOT PIGPIOD_IF2_INCLUDE_DIR)
+  message(FATAL_ERROR "Could not find pigpiod_if2 (daemon interface for pigpio)")
+endif()
+
+if(NOT PIGPIO_INCLUDE_DIR OR NOT PIGPIO_LIBRARY)
+  message(FATAL_ERROR "Failed to find pigpio!")
+endif()
+
+message(STATUS "Found pigpio: ${PIGPIO_LIBRARY}")
 
 # === Custom Messages ===
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -24,18 +47,20 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   DEPENDENCIES std_msgs
 )
 
-# Get the include directories for generated messages
 rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
 
 # === IMU Node ===
 add_executable(imu_node src/imu_node.cpp)
 target_include_directories(imu_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PRIVATE ${RTIMULIB_INCLUDE_DIRS} ${PIGPIO_INCLUDE_DIR}
   $<INSTALL_INTERFACE:include>)
 target_compile_features(imu_node PUBLIC c_std_99 cxx_std_17)
 ament_target_dependencies(imu_node rclcpp std_msgs)
 target_link_libraries(imu_node 
-  ${WIRINGPI_LIB}
+  ${RTIMULIB_LIBRARIES}
+  ${PIGPIO_LIBRARY}
+  pthread rt
   "${cpp_typesupport_target}")
 install(TARGETS imu_node DESTINATION lib/${PROJECT_NAME})
 
@@ -43,11 +68,13 @@ install(TARGETS imu_node DESTINATION lib/${PROJECT_NAME})
 add_executable(encoder_node src/encoder_node.cpp)
 target_include_directories(encoder_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PRIVATE ${PIGPIOD_IF2_INCLUDE_DIR}
   $<INSTALL_INTERFACE:include>)
 target_compile_features(encoder_node PUBLIC c_std_99 cxx_std_17)
 ament_target_dependencies(encoder_node rclcpp std_msgs)
 target_link_libraries(encoder_node
-  ${WIRINGPI_LIB}
+  ${PIGPIOD_IF2_LIBRARY}
+  pthread rt
   "${cpp_typesupport_target}")
 install(TARGETS encoder_node DESTINATION lib/${PROJECT_NAME})
 

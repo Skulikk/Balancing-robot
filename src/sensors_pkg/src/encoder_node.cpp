@@ -1,186 +1,107 @@
+#include <pigpiod_if2.h>
 #include <rclcpp/rclcpp.hpp>
-#include <wiringPi.h>
-#include <atomic>
-#include <vector>
-#include <chrono>
-#include <mutex>
 #include "sensors_pkg/msg/encoder_data.hpp"
+#include <chrono>
+#include <atomic>
+#include <cmath>
+using namespace std::chrono_literals;
 
-#define PPR 734
-#define TIMEOUT_MS 100
-const double DEBOUNCE_TIME = 0.0005;
-const size_t BUFFER_SIZE = 10;
-const int DIRECTION_CHANGE_THRESHOLD = 5;
+const unsigned A_PIN = 17;  // Channel A (BCM)
+const unsigned B_PIN = 27;  // Channel B (BCM)
+const int PPR = 734;        // Pulses per revolution
+const double EMA_ALPHA = 0.2;  // EMA smoothing factor
 
-struct Encoder {
-    int pin_a;
-    int pin_b;
-    std::vector<double> pulse_intervals;
-    std::mutex buffer_mutex;
-    std::chrono::steady_clock::time_point last_pulse_time;
-    std::atomic<bool> pulse_received{false};
-    int last_state_b = -1;
-    std::chrono::steady_clock::time_point last_b_state_change_time;
-    bool first_pulse = true;
-    int forward_count = 0;
-    int reverse_count = 0;
-    int direction = 0;
-
-    Encoder(int a, int b) : pin_a(a), pin_b(b) {}
+struct EncoderData {
+    std::atomic<int> position{0};
+    std::atomic<double> rpm{0.0};
+    std::atomic<uint32_t> last_tick{0};
+    std::atomic<uint8_t> last_state{0};
 };
 
-Encoder encoder1(0, 2);
-Encoder encoder2(4, 5);
+// Global encoder instance
+EncoderData enc;
+int pi;
 
-void set_realtime_priority() {
-    struct sched_param sched;
-    sched.sched_priority = 80;
-    if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sched)) {
-        perror("Failed to set real-time priority");
+// Lookup table for quadrature decoding
+const int8_t QUAD_LOOKUP[16] = {
+     0, -1,  1,  0,
+     1,  0,  0, -1,
+    -1,  0,  0,  1,
+     0,  1, -1,  0
+};
+
+uint8_t read_ab(int pi) {
+    int a = gpio_read(pi, A_PIN);
+    int b = gpio_read(pi, B_PIN);
+    return (a << 1) | b;
+}
+
+void encoder_callback(int pi, unsigned gpio, unsigned level, uint32_t tick, void* user) {
+    if (level == PI_TIMEOUT) {
+        enc.rpm.store(0.0);
+        return;
+    }
+
+    uint8_t curr_ab = read_ab(pi);
+    uint8_t last_ab = enc.last_state.load();
+    uint8_t transition = (last_ab << 2) | curr_ab;
+    enc.last_state.store(curr_ab);
+
+    int8_t movement = QUAD_LOOKUP[transition];
+    if (movement != 0) {
+        enc.position.fetch_add(movement);
+
+        if (enc.last_tick.load() != 0) {
+            uint32_t dt = tick - enc.last_tick.load();
+            if (dt > 0 && dt < 100000) {
+                double freq = 1e6 / dt;  // Hz
+                double inst_rpm = (freq / (PPR * 4.0)) * 60.0 * movement;
+                double prev = enc.rpm.load();
+                double filtered = EMA_ALPHA * inst_rpm + (1 - EMA_ALPHA) * prev;
+                enc.rpm.store(filtered);
+            }
+        }
+        enc.last_tick.store(tick);
     }
 }
 
-void handle_edge_generic(Encoder &encoder) {
-    auto now = std::chrono::steady_clock::now();
-
-    if (!encoder.first_pulse) {
-        double interval = std::chrono::duration<double>(now - encoder.last_pulse_time).count();
-        if (interval < DEBOUNCE_TIME) {
-            return;
-        }
-        std::lock_guard<std::mutex> lock(encoder.buffer_mutex);
-        if (encoder.pulse_intervals.size() >= BUFFER_SIZE) {
-            encoder.pulse_intervals.erase(encoder.pulse_intervals.begin());
-        }
-        encoder.pulse_intervals.push_back(interval);
-        encoder.pulse_received.store(true);
-    } else {
-        encoder.first_pulse = false;
-    }
-
-    int state_b = digitalRead(encoder.pin_b);
-    if (state_b != encoder.last_state_b) {
-        encoder.last_b_state_change_time = now;
-    }
-
-    if (state_b == 1) {
-        encoder.forward_count++;
-        encoder.reverse_count = 0;
-    } else {
-        encoder.reverse_count++;
-        encoder.forward_count = 0;
-    }
-
-    if (encoder.forward_count > DIRECTION_CHANGE_THRESHOLD) {
-        encoder.direction = 1;
-        encoder.reverse_count = 0;
-    } else if (encoder.reverse_count > 3) {
-        encoder.direction = -1;
-        encoder.forward_count = 0;
-    }
-
-    encoder.last_state_b = state_b;
-    encoder.last_pulse_time = now;
-}
-
-void handle_edge_encoder1() { handle_edge_generic(encoder1); }
-void handle_edge_encoder2() { handle_edge_generic(encoder2); }
-
-class EncoderNode : public rclcpp::Node {
-public:
-    EncoderNode() : Node("encoder_node") {
-        publisher_ = this->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
-        timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(20),
-            std::bind(&EncoderNode::publish_rpm, this)
-        );
-        RCLCPP_INFO(this->get_logger(), "ENCODER Initialized.");
-    }
-
-    void publish_rpm() {
-        float rpm1 = calculate_rpm(encoder1);
-        float rpm2 = calculate_rpm(encoder2);
-
-        auto msg = sensors_pkg::msg::EncoderData();
-        msg.rpm1 = rpm1;
-        msg.rpm2 = -rpm2;
-
-        // Optional: enable to debug
-        // RCLCPP_INFO(this->get_logger(), "RPM1: %.2f | RPM2: %.2f", rpm1, rpm2);
-
-        publisher_->publish(msg);
-    }
-
-private:
-    rclcpp::Publisher<sensors_pkg::msg::EncoderData>::SharedPtr publisher_;
-    rclcpp::TimerBase::SharedPtr timer_;
-
-    float calculate_rpm(Encoder &encoder) {
-        auto now = std::chrono::steady_clock::now();
-        double ema_interval = 0.0;
-        bool has_data = false;
-
-        {
-            std::lock_guard<std::mutex> lock(encoder.buffer_mutex);
-
-            if (!encoder.pulse_intervals.empty()) {
-                ema_interval = encoder.pulse_intervals[0];
-                double alpha = 0.3;
-                for (size_t i = 1; i < encoder.pulse_intervals.size(); ++i) {
-                    ema_interval = alpha * encoder.pulse_intervals[i] + (1.0 - alpha) * ema_interval;
-                }
-                has_data = true;
-            }
-
-            // Clear stale buffer if motor is slowing/stopped
-            if (std::chrono::duration<double>(now - encoder.last_pulse_time).count() > 0.5) {
-                encoder.pulse_intervals.clear();
-            }
-        }
-
-        double rpm = 0.0;
-        if (has_data && ema_interval > 0.0) {
-            double frequency = 1.0 / ema_interval;
-            rpm = (frequency * 60.0) / PPR;
-            rpm = encoder.direction == 1 ? rpm : -rpm;
-        }
-
-        auto time_since_last_pulse = std::chrono::duration_cast<std::chrono::milliseconds>(now - encoder.last_pulse_time).count();
-        if (time_since_last_pulse > TIMEOUT_MS) {
-            rpm = 0.0;
-        }
-
-        return static_cast<float>(rpm);
-    }
-};
-
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
-    set_realtime_priority();
+    auto node = rclcpp::Node::make_shared("encoder_rpm_node");
+    auto pub = node->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
 
-    if (wiringPiSetup() == -1) {
-        std::cerr << "WiringPi Setup failed!" << std::endl;
+    pi = pigpio_start(nullptr, nullptr);
+    if (pi < 0) {
+        RCLCPP_ERROR(node->get_logger(), "Failed to connect to pigpio daemon");
         return 1;
     }
 
-    pinMode(encoder1.pin_a, INPUT);
-    pullUpDnControl(encoder1.pin_a, PUD_UP);
-    pinMode(encoder1.pin_b, INPUT);
-    pullUpDnControl(encoder1.pin_b, PUD_UP);
+    set_mode(pi, A_PIN, PI_INPUT);
+    set_mode(pi, B_PIN, PI_INPUT);
+    set_pull_up_down(pi, A_PIN, PI_PUD_UP);
+    set_pull_up_down(pi, B_PIN, PI_PUD_UP);
+    set_glitch_filter(pi, A_PIN, 25);
+    set_glitch_filter(pi, B_PIN, 25);
+    set_watchdog(pi, A_PIN, 100);
 
-    pinMode(encoder2.pin_a, INPUT);
-    pullUpDnControl(encoder2.pin_a, PUD_UP);
-    pinMode(encoder2.pin_b, INPUT);
-    pullUpDnControl(encoder2.pin_b, PUD_UP);
+    enc.last_state.store(read_ab(pi));
 
-    if (wiringPiISR(encoder1.pin_a, INT_EDGE_FALLING, &handle_edge_encoder1) < 0 ||
-        wiringPiISR(encoder2.pin_a, INT_EDGE_FALLING, &handle_edge_encoder2) < 0) {
-        std::cerr << "Unable to set up interrupt!" << std::endl;
-        return 1;
-    }
+    callback_ex(pi, A_PIN, EITHER_EDGE, encoder_callback, nullptr);
+    callback_ex(pi, B_PIN, EITHER_EDGE, encoder_callback, nullptr);
 
-    auto node = std::make_shared<EncoderNode>();
+    auto timer = node->create_wall_timer(10ms, [&]() {
+        auto msg = sensors_pkg::msg::EncoderData();
+        double rpm = enc.rpm.load();
+        if (fabs(rpm) < 0.5) rpm = 0.0;
+        msg.rpm1 = rpm;
+        msg.rpm2 = rpm;
+        pub->publish(msg);
+    });
+
+    RCLCPP_INFO(node->get_logger(), "Quadrature encoder RPM node started");
     rclcpp::spin(node);
+
+    pigpio_stop(pi);
     rclcpp::shutdown();
     return 0;
 }
