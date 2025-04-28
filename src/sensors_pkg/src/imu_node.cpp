@@ -6,13 +6,14 @@
 #include "rclcpp/rclcpp.hpp"
 #include "RTIMULib.h" // Include the main header which brings in all necessary components
 #include "sensors_pkg/msg/imu_data.hpp"
-#include <pigpio.h>
 
 using namespace std::chrono_literals;
 
+int pi;  // pigpio daemon handle
+
 void set_realtime_priority() {
     struct sched_param sched;
-    sched.sched_priority = 80;
+    sched.sched_priority = 79;
     if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sched) != 0) {
         std::cerr << "Failed to set realtime priority" << std::endl;
     }
@@ -24,11 +25,6 @@ public:
     IMUNode()
         : Node("imu_node")
     {
-        int init_status = gpioInitialise();
-        if (init_status < 0 && init_status != PI_INIT_FAILED) {
-            throw std::runtime_error("pigpio initialization failed");
-        }
-        RCLCPP_INFO(this->get_logger(), "Initializing RTIMULib2 Fusion with pigpio...");
         
         // Create settings
         settings = new RTIMUSettings("RTIMULib");
@@ -76,8 +72,7 @@ private:
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<sensors_pkg::msg::IMUData>::SharedPtr publisher_;
 
-    void sensor_loop()
-    {
+    void sensor_loop() {
         if (imu->IMURead()) {
             // IMURead() will update the internal data and run the fusion algorithm
             RTIMU_DATA imuData = imu->getIMUData();
