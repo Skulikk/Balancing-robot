@@ -1,107 +1,129 @@
-#include <pigpiod_if2.h>
+
 #include <rclcpp/rclcpp.hpp>
-#include "sensors_pkg/msg/encoder_data.hpp"
-#include <chrono>
+#include <gpiod.h>
 #include <atomic>
-#include <cmath>
-using namespace std::chrono_literals;
+#include <vector>
+#include <chrono>
+#include <mutex>
+#include <thread>
+#include "sensors_pkg/msg/encoder_data.hpp"
 
-const unsigned A_PIN = 17;  // Channel A (BCM)
-const unsigned B_PIN = 27;  // Channel B (BCM)
-const int PPR = 734;        // Pulses per revolution
-const double EMA_ALPHA = 0.2;  // EMA smoothing factor
+std::atomic<bool> running(true);
 
-struct EncoderData {
-    std::atomic<int> position{0};
-    std::atomic<double> rpm{0.0};
-    std::atomic<uint32_t> last_tick{0};
-    std::atomic<uint8_t> last_state{0};
+struct Encoder {
+    int pin_a;
+    int pin_b;
+    std::atomic<int> click_count{0};
+    int last_state_b = -1;
+    int direction = 0;
+
+    Encoder(int a, int b) : pin_a(a), pin_b(b) {}
 };
 
-// Global encoder instance
-EncoderData enc;
-int pi;
+Encoder encoder1(17, 27);
+Encoder encoder2(22, 23);
 
-// Lookup table for quadrature decoding
-const int8_t QUAD_LOOKUP[16] = {
-     0, -1,  1,  0,
-     1,  0,  0, -1,
-    -1,  0,  0,  1,
-     0,  1, -1,  0
-};
+constexpr const char* CHIP_NAME = "gpiochip0";
 
-uint8_t read_ab(int pi) {
-    int a = gpio_read(pi, A_PIN);
-    int b = gpio_read(pi, B_PIN);
-    return (a << 1) | b;
+gpiod_line* get_line(gpiod_chip* chip, int pin) {
+    auto line = gpiod_chip_get_line(chip, pin);
+    if (!line) {
+        throw std::runtime_error("Failed to get GPIO line");
+    }
+    return line;
 }
 
-void encoder_callback(int pi, unsigned gpio, unsigned level, uint32_t tick, void* user) {
-    if (level == PI_TIMEOUT) {
-        enc.rpm.store(0.0);
-        return;
-    }
+void encoder_loop(Encoder* enc, gpiod_line* line_a, gpiod_line* line_b) {
+    gpiod_line_event event;
+    while (running.load()) {
+        struct timespec timeout;
+        timeout.tv_sec = 0;
+        timeout.tv_nsec = 100 * 1000000;  // 100ms timeout
 
-    uint8_t curr_ab = read_ab(pi);
-    uint8_t last_ab = enc.last_state.load();
-    uint8_t transition = (last_ab << 2) | curr_ab;
-    enc.last_state.store(curr_ab);
-
-    int8_t movement = QUAD_LOOKUP[transition];
-    if (movement != 0) {
-        enc.position.fetch_add(movement);
-
-        if (enc.last_tick.load() != 0) {
-            uint32_t dt = tick - enc.last_tick.load();
-            if (dt > 0 && dt < 100000) {
-                double freq = 1e6 / dt;  // Hz
-                double inst_rpm = (freq / (PPR * 4.0)) * 60.0 * movement;
-                double prev = enc.rpm.load();
-                double filtered = EMA_ALPHA * inst_rpm + (1 - EMA_ALPHA) * prev;
-                enc.rpm.store(filtered);
+        int ret = gpiod_line_event_wait(line_a, &timeout);
+        if (ret == 1 && gpiod_line_event_read(line_a, &event) == 0) {
+            if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
+                int state_b = gpiod_line_get_value(line_b);
+                if (state_b == 1) {
+                    enc->click_count++;
+                } else {
+                    enc->click_count--;
+                }
             }
         }
-        enc.last_tick.store(tick);
     }
 }
 
-int main(int argc, char** argv) {
-    rclcpp::init(argc, argv);
-    auto node = rclcpp::Node::make_shared("encoder_rpm_node");
-    auto pub = node->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
+void set_realtime_priority() {
+    struct sched_param sched;
+    sched.sched_priority = 81;
+    if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sched)) {
+        perror("Failed to set real-time priority");
+    }
+}
 
-    pi = pigpio_start(nullptr, nullptr);
-    if (pi < 0) {
-        RCLCPP_ERROR(node->get_logger(), "Failed to connect to pigpio daemon");
+class EncoderNode : public rclcpp::Node {
+public:
+    EncoderNode() : Node("encoder_node") {
+        publisher_ = this->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
+        timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(10),
+            std::bind(&EncoderNode::publish_clicks, this)
+        );
+        RCLCPP_INFO(this->get_logger(), "ENCODER Initialized with libgpiod.");
+    }
+
+    void publish_clicks() {
+        auto msg = sensors_pkg::msg::EncoderData();
+        msg.rpm1 = static_cast<float>(encoder1.click_count.load());
+        msg.rpm2 = static_cast<float>(-(encoder2.click_count.load()));
+        publisher_->publish(msg);
+    }
+
+private:
+    rclcpp::Publisher<sensors_pkg::msg::EncoderData>::SharedPtr publisher_;
+    rclcpp::TimerBase::SharedPtr timer_;
+};
+
+int main(int argc, char **argv) {
+    rclcpp::init(argc, argv);
+    set_realtime_priority();
+
+    gpiod_chip* chip = gpiod_chip_open_by_name(CHIP_NAME);
+    if (!chip) {
+        std::cerr << "Failed to open gpiochip!" << std::endl;
         return 1;
     }
 
-    set_mode(pi, A_PIN, PI_INPUT);
-    set_mode(pi, B_PIN, PI_INPUT);
-    set_pull_up_down(pi, A_PIN, PI_PUD_UP);
-    set_pull_up_down(pi, B_PIN, PI_PUD_UP);
-    set_glitch_filter(pi, A_PIN, 25);
-    set_glitch_filter(pi, B_PIN, 25);
-    set_watchdog(pi, A_PIN, 100);
+    try {
+        auto line_a1 = get_line(chip, encoder1.pin_a);
+        auto line_b1 = get_line(chip, encoder1.pin_b);
+        auto line_a2 = get_line(chip, encoder2.pin_a);
+        auto line_b2 = get_line(chip, encoder2.pin_b);
 
-    enc.last_state.store(read_ab(pi));
+        // Request events
+        if (gpiod_line_request_falling_edge_events(line_a1, "encoder") < 0 ||
+            gpiod_line_request_input(line_b1, "encoder") < 0 ||
+            gpiod_line_request_falling_edge_events(line_a2, "encoder") < 0 ||
+            gpiod_line_request_input(line_b2, "encoder") < 0) {
+            std::cerr << "Failed to request GPIO lines." << std::endl;
+            return 1;
+        }
 
-    callback_ex(pi, A_PIN, EITHER_EDGE, encoder_callback, nullptr);
-    callback_ex(pi, B_PIN, EITHER_EDGE, encoder_callback, nullptr);
+        std::thread t1(encoder_loop, &encoder1, line_a1, line_b1);
+        std::thread t2(encoder_loop, &encoder2, line_a2, line_b2);
 
-    auto timer = node->create_wall_timer(10ms, [&]() {
-        auto msg = sensors_pkg::msg::EncoderData();
-        double rpm = enc.rpm.load();
-        if (fabs(rpm) < 0.5) rpm = 0.0;
-        msg.rpm1 = rpm;
-        msg.rpm2 = rpm;
-        pub->publish(msg);
-    });
+        auto node = std::make_shared<EncoderNode>();
+        rclcpp::spin(node);
+        running = false;        // Signal thread to exit
+        t1.join();
+        t2.join();
+    } catch (const std::exception& e) {
+        std::cerr << "Exception during encoder setup: " << e.what() << std::endl;
+    }
 
-    RCLCPP_INFO(node->get_logger(), "Quadrature encoder RPM node started");
-    rclcpp::spin(node);
-
-    pigpio_stop(pi);
+    gpiod_chip_close(chip);
+    
     rclcpp::shutdown();
     return 0;
 }
