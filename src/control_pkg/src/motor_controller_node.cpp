@@ -1,69 +1,94 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/float32.hpp"
 #include "std_msgs/msg/float32_multi_array.hpp"
+#include "std_msgs/msg/bool.hpp"
 #include "sensors_pkg/msg/encoder_data.hpp"
 #include "sensors_pkg/msg/imu_data.hpp"
 #include <iostream>
-#include <wiringPi.h>
 #include <vector>
 #include <numeric>
 #include <cmath>
+#include <array>
 #include <algorithm>
 #include <chrono>
 #include <csignal>
+#include <pigpiod_if2.h>
+#define PWM_PIN1 12
+#define PWM_PIN2 13
+#define IN1 6
+#define IN2 5
 
-#include <cmath> // for M_PI
+int pi;  // pigpio daemon handle
 
-#define PWM_PIN1 26
-#define PWM_PIN2 23
-#define IN1 22
-#define IN2 21
 
-constexpr double MAX_CONTROL_SIGNAL = 1.0;   // control range (tunable)
-constexpr int MAX_PWM = 1023;
-
-bool freeze = false;
-float pwm_right = 0.0f;
+void set_realtime_priority() {
+    struct sched_param sched;
+    sched.sched_priority = 79;
+    if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sched)) {
+        perror("Failed to set real-time priority");
+    }
+}
 
 void cleanup() {
-    pwmWrite(PWM_PIN1, 0);
-    pwmWrite(PWM_PIN2, 0);
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, HIGH);
-    
+    set_PWM_dutycycle(pi, PWM_PIN1, 0);
+    set_PWM_dutycycle(pi, PWM_PIN2, 0);
+    gpio_write(pi, IN1, 1);
+    gpio_write(pi, IN2, 1);
+
+    pigpio_stop(pi);
     std::cout << "Cleanup complete. Exiting program.\n";
     exit(0);
 }
 
-void setup(){
+void setup() {
     std::cout << std::fixed;
     std::cout << std::setprecision(2);
-    if (wiringPiSetup() == -1) {
-        std::cerr << "WiringPi Setup failed!" << std::endl;
+
+    pi = pigpio_start(nullptr, nullptr);  // connect to local pigpiod
+    if (pi < 0) {
+        std::cerr << "pigpio start failed!\n";
+        exit(1);
     }
 
-    pinMode(PWM_PIN1, PWM_OUTPUT);
-    pinMode(PWM_PIN2, PWM_OUTPUT);
-    pinMode(IN1, OUTPUT);
-    pinMode(IN2, OUTPUT);
+    set_mode(pi, PWM_PIN1, PI_OUTPUT);
+    set_mode(pi, PWM_PIN2, PI_OUTPUT);
+    set_mode(pi, IN1, PI_OUTPUT);
+    set_mode(pi, IN2, PI_OUTPUT);
 
-    digitalWrite(IN1, HIGH);
-    digitalWrite(IN2, HIGH);
-    pwmWrite(PWM_PIN1, 0);
-    pwmWrite(PWM_PIN2, 0);
+    gpio_write(pi, IN1, 1);
+    gpio_write(pi, IN2, 1);
+    set_PWM_frequency(pi, PWM_PIN1, 20000);
+    set_PWM_frequency(pi, PWM_PIN2, 20000);
+    set_PWM_dutycycle(pi, PWM_PIN1, 120);
+    set_PWM_dutycycle(pi, PWM_PIN2, 120);
+    for(int i = 0; i < 60; i++){
+        gpio_write(pi, IN1, 0);
+        gpio_write(pi, IN2, 0);
+        std::this_thread::sleep_for(std::chrono::microseconds(15));
+        gpio_write(pi, IN1, 1);
+        gpio_write(pi, IN2, 1);
+    }
+    std::this_thread::sleep_for(std::chrono::microseconds(400));
+    for(int i = 0; i < 60; i++){
+        gpio_write(pi, IN1, 0);
+        gpio_write(pi, IN2, 0);
+        std::this_thread::sleep_for(std::chrono::microseconds(15));
+        gpio_write(pi, IN1, 1);
+        gpio_write(pi, IN2, 1);
+    }
+    set_PWM_dutycycle(pi, PWM_PIN1, 0);
+    set_PWM_dutycycle(pi, PWM_PIN2, 0);
 }
 
-class OuterPIDController {
+class InnerPIDController {
     public:
-        OuterPIDController(double kp, double ki, double kd, double ke, double rpm_limit)
-            : Kp(kp), Ki(ki), Kd(kd), Ke(ke), rpm_limit(rpm_limit),
-              rpm_target(0.0),
-              integral_error(0.0) {
+        InnerPIDController(double kp, double ki, double kd)
+            : Kp(kp), Ki(ki), Kd(kd){
             last_update_time = std::chrono::steady_clock::now();  // Initialize timestamp
         }
     
         double update(float angle, float angular_velocity) {
-            // Measure elapsed time since last update
+            // Measure elapsed time since last update;
             auto now = std::chrono::steady_clock::now();
             std::chrono::duration<double> elapsed = now - last_update_time;
             double dt = elapsed.count();  // Convert to seconds
@@ -83,18 +108,15 @@ class OuterPIDController {
                 error_sign = -1;
             }
 
-            float proportional = error;
-
+            float proportional = std::pow(std::abs(error+0.5), 1.3) * error_sign; // Proportional term
 
             // Movement trend changes => slowly decrease integral
             if ((error_sign * -(angular_velocity) < -4 && std::abs(integral_error) > 1)) {  
                 integral_error *= 0.98;
-                std::cout << "Integral error decay" << std::endl;
             } else if (error_sign * integral_error < -0.5){
-                integral_error *= 0.7;  // Reduce it instead of completely resetting
-                std::cout << "Integral error destruction" << std::endl;
-            } else if (std::abs(error) > 0.4) {
-                integral_error += error * dt * 1.5;
+                integral_error *= 0.85;  // Reduce it instead of completely resetting
+            } else {
+                integral_error += error * dt * 2.8;
             }
 
             integral_error = std::clamp(integral_error, -10.0, 10.0);  // Anti-windup clamping
@@ -102,75 +124,25 @@ class OuterPIDController {
             // Startup procedure - no I
             if(std::abs(error) > 20.0){
                 integral_error = 0.0;  // Reset integral error if large error
-                timeInPersistentError = 0.0;
-            }
-    
-            float exponential = 0;
-            
-            if(std::abs(error) > 3.05) {
-                exponential = error * std::abs(error);  // Exponential term for non-linear response (a little offset for faster kick-in)
             }
 
             float derivative = -(angular_velocity);
-            //float derivative = (error - last_error) / dt;
 
-            // apply lowpass filter to derivative
-            float alpha = 0.45;
+            // smooth derivative
+            float alpha = 0.9;
             derivative = alpha * derivative + (1 - alpha) * last_derivative;
-            derivative = std::clamp(derivative, -200.0f, 200.0f);
+            derivative = std::clamp(derivative, -150.0f, 150.0f);
             
             // PID calculation (now includes the Integral term)
-            float output = Kp * proportional + Ki * integral_error + Kd * derivative + Ke * exponential;
+            float output = Kp * proportional + Ki * integral_error + Kd * derivative;
     
             // Clamp final RPM target
-            output = std::clamp(output, -1023.0f, 1023.0f);
+            output = std::clamp(output, -255.0f, 255.0f);
 
-            double limit = 500.0;
+            //std::cout << "COEF: " << Kp << " : " << Ki << " : " << Kd << " Err/Vel/Off: " << " : " << error << " : " << angular_velocity << " : " << Offset << " | OUT " << output  << " | P: " << Kp * proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
 
-            // Only allow slow rate of change when correcting (possible motor-IMU feedback)
-            if(error * angular_velocity < 0){
-                limit = 70.0;
-            } else if(std::abs(output) > std::abs(last_target)){
-                output = last_target;
-            }
-
-            // Clamp the RPM delta
-            double PWM_delta = std::clamp(output - last_target, -limit, limit);
-            
-            // Update target
-            output = last_target + PWM_delta;
-
-            float abs_error = std::abs(error);
-            
-            float deadzone = 0.1;
-            float blendzone_width = 0.2;
-            float min_rpm = 65.0;
-
-            output += 45.0 * error_sign; // Add a base speed to the output
-            
-            if (abs_error < deadzone) {
-                // Inside deadzone: just float (low pwm, but the motor doesnt block)
-                output = min_rpm * error_sign;
-            } else if (abs_error < deadzone + blendzone_width) {
-                float blend_factor = (abs_error - deadzone) / blendzone_width;
-                float blended_rpm = (1.0 - blend_factor) * (min_rpm) + blend_factor * std::abs(output);
-                output = blended_rpm * error_sign;
-            }
-
-            //std::cout << "COEF: " << Kp << " : " << Ki << " : " << Kd << " : " << Ke << " Err-b/Err/Vel/Off: " << -angle << " : " << error << " : " << angular_velocity << " : " << Offset << " | OUT " << output  << " | P: " << Kp * proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << " | E: " << Ke * exponential << std::endl;
-            last_error = -angle;
-            last_target = output;
             last_derivative = derivative;
             return output; 
- 
-        }
-    
-
-
-        void update_pid(double kp, double ki, double kd) {
-            Kp = kp;
-            Ki = ki;
-            Kd = kd;
         }
 
         void set_angle(double offset) {
@@ -178,138 +150,231 @@ class OuterPIDController {
         }
     
     private:
-
-        double Kp, Ki, Kd, Ke;
-        double rpm_limit;
-        double max_rpm_change_per_cycle = 100.0;
+        double Kp, Ki, Kd;
         double rpm_target;
-        double last_target = 0;
         double integral_error = 0;
-        double persistentErrorThreshold = 1.5; // degrees
-        double persistentErrorTime = 0.1; // seconds
-        double timeInPersistentError = 0.0;
-        double last_error = 0.0;
         double Offset = 0.0;
-
         double last_derivative;
-    
-        std::chrono::steady_clock::time_point last_update_time;  // Timestamp for time tracking
-
-
-        float long_term_bias = 0.0;
-        float error_accumulator = 0.0;
-        const float ERROR_DECAY = 0.995;      // Slow decay to detect persistent errors
-        const float BIAS_ADJUSTMENT = 0.0004; // Very small adjustment factor
-        const float MAX_BIAS = 2.5;           // Maximum angle correction
-        const float DIRECTION_SENSITIVITY = 0.15; // How quickly we respond to direction changes
-        const float TRANSITION_ACCEL = 1.5; 
+        std::chrono::steady_clock::time_point last_update_time;
         
 };
 
-class InnerLoop {
+class OuterPIDController {
     public:
-        InnerLoop(float kp, float ki)
-            : kp_(kp), ki_(ki) {
-            integral_ = 0.0f;
-            pwm_output_ = 0.0f;
-            previous_pwm_ = 0.0f; // Store previous PWM for ramp limiting
-            max_pwm_ = 1023.0f;
-            integral_limit_ = 150.0f;
-            alpha_ = 0.6f;
-            max_pwm_change_per_cycle_ = 4.0f;
+    OuterPIDController(double kp, double ki, double kd)
+            : Kp(kp), Ki(ki), Kd(kd){
+            last_update_time = std::chrono::steady_clock::now();  // Initialize timestamp
+        }
     
-            // --------- FeedForward Table (fill manually later) --------
-            rpm_table_ = {0, 10,  11,  14,  16.5, 20.5, 24,  29,  34,  39,  48,  57,  70,  81,  88,  95,  101, 108, 115, 120, 126, 131, 137, 144};
-            ff_table_ =  {0, 100, 110, 130, 150,  180,  220, 260, 300, 340, 380, 420, 470, 520, 570, 620, 670, 720, 770, 820, 870, 920, 970, 1023};
-        }
-        void freeze(bool state) {
-            freeze_ = state;
-        }
+        double update(float pulses, float angle, float PWM) {
+            // Measure elapsed time since last update;
+            auto now = std::chrono::steady_clock::now();
+            std::chrono::duration<double> elapsed = now - last_update_time;
+            double dt = elapsed.count();  // Convert to seconds
+            last_update_time = now;  // Update timestamp for next iteration
 
-        void update(float target_rpm, float measured_rpm) {
-            float max_rpm_change_per_cycle = freeze_ ? 0.0f : 400.0f;
-        
-            // --- Feedforward Term ---
-            float ff_term = interpolate_ff(std::abs(target_rpm)) * (target_rpm >= 0 ? 1.0f : -1.0f);
-        
-            // --- Low-pass Filtering ---
-            float raw_pwm = ff_term;
-            float filtered_pwm = raw_pwm;//alpha_ * previous_pwm_ + (1.0f - alpha_) * raw_pwm;
-        
-            // --- Ramp Limit ---
-            float pwm_delta = std::clamp(filtered_pwm - previous_pwm_, -max_rpm_change_per_cycle, max_rpm_change_per_cycle);
-        
-            pwm_output_ = previous_pwm_ + pwm_delta;
-            previous_pwm_ = pwm_output_;
-            if(pwm_output_ > 0.0f){
-                sign = 1.0;
-            } else {
-                sign = -1.0;
+            if(speed){
+                Offset += speed;
             }
-        
-            // --- Clamp Output ---
-            pwm_output_ = std::clamp(pwm_output_, -max_pwm_, max_pwm_);
+
+            if(stop_flag){
+                Offset = -pulses;
+            }
+
+            // Limit dt to prevent large jumps at the start
+            if (dt > 0.02 || dt < 1e-6) {
+                dt = 0.01;
+            }
+
+            float error = -(pulses + Offset);
+
+            int error_sign;
+            if(error > 0){
+                error_sign = 1;
+            } else {
+                error_sign = -1;
+            }
+
+            double alpha = 0.9;
+            double raw_derivative = (error - last_error) / dt;
+            
+            // Apply nonlinear scaling (power-based) while keeping the sign
+            double scaled_derivative = std::copysign(std::pow(std::abs(raw_derivative), 1.13), raw_derivative);
+            
+            // Low-pass filter the nonlinear derivative
+            double derivative = alpha * last_derivative + (1 - alpha) * scaled_derivative;
+
+            if(stop_flag){
+                derivative = 0;
+                stop_flag = false;
+                recenter_flag = true;
+            }
+
+            if(recenter_flag && (derivative * last_derivative < -0.1)){
+                Offset = -pulses;
+                recenter_flag = false;
+                error = 0;
+            }
+
+            if ((error_sign * derivative < -0.1 && std::abs(integral_error) > 0.2)) {  
+                integral_error *= 0.99;
+            } else if (error_sign * integral_error < -0.1){
+                integral_error *= 0.83;
+            } else {
+                integral_error += error * dt;
+            }
+
+            double proportional = Kp * error;
+            proportional = std::clamp(proportional, -0.5, 0.5);  // Anti-windup clamping
+
+            integral_error = std::clamp(integral_error, -600.0, 600.0);  // Anti-windup clamping
+            
+            // PID calculation (now includes the Integral term)
+            float output = Kp * error + Ki * integral_error + Kd * derivative;
+    
+            // Clamp final RPM target
+            output = std::clamp(output, -7.5f, 7.5f);
+
+            if(counter == 2){
+                //std::cout << "Err: " << error << " | Pul: " << pulses << " | Off: " << Offset << " | OUT " << output << " | ANG " << angle << " | PWM " << PWM  << " | P: " << proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
+                counter = 0;
+            }
+            counter++;
+
+            last_error = error;
+            last_derivative = derivative;
+            return output; 
         }
 
-        void update_prms(float rate) {
-            max_pwm_change_per_cycle_ = rate;
+        void set_speed(double offset) {
+            speed = offset;
         }
-    
-        float getPWM() {
-            return pwm_output_;
+
+        void stop() {
+            speed = 0;
+            stop_flag = true;
         }
     
     private:
-        float kp_, ki_;
-        float dt_;
-        float integral_;
-        float pwm_output_;
-        float previous_pwm_;  // For ramp-up/ramp-down limiting
-        float max_pwm_;
-        float integral_limit_;
-        float alpha_;
-        float max_pwm_change_per_cycle_;
-        float deadzone_threshold_ = 50.0f;  // Tune this to match your motor's behavior
-
-        bool freeze_ = false;
-        int sign = 1.0;
+        double Kp, Ki, Kd;
+        double rpm_target;
+        double integral_error = 0;
+        double timeInPersistentError = 0.0;
+        double last_error = 0.0;
+        double last_derivative = 0.0;
+        int counter = 2;
+        double Offset = 0.0;
+        double speed = 0.0;
+        bool stop_flag = false;
+        bool recenter_flag = false;
     
-        std::vector<float> rpm_table_;
-        std::vector<float> ff_table_;
-    
-        float interpolate_ff(float rpm) {
-            if (rpm <= rpm_table_.front()) return ff_table_.front();
-            if (rpm >= rpm_table_.back()) return ff_table_.back();
-    
-            for (size_t i = 0; i < rpm_table_.size() - 1; ++i) {
-                if (rpm >= rpm_table_[i] && rpm <= rpm_table_[i + 1]) {
-                    float ratio = (rpm - rpm_table_[i]) / (rpm_table_[i + 1] - rpm_table_[i]);
-                    return ff_table_[i] + ratio * (ff_table_[i + 1] - ff_table_[i]);
-                }
-            }
-            return 0.0f;
-        }
+        std::chrono::steady_clock::time_point last_update_time;
 };
+
+class DifferentialController {
+    public:
+    DifferentialController(double kp, double ki, double kd)
+            : Kp(kp), Ki(ki), Kd(kd){
+            last_update_time = std::chrono::steady_clock::now();  // Initialize timestamp
+        }
     
+        double update(float pulses1, float pulses2) {
+            // Measure elapsed time since last update;
+            auto now = std::chrono::steady_clock::now();
+            std::chrono::duration<double> elapsed = now - last_update_time;
+            double dt = elapsed.count();  // Convert to seconds
+            last_update_time = now;  // Update timestamp for next iteration
+
+            if(diff){
+                Offset += diff;
+            }
+
+            if(stop_flag){
+                Offset = -(pulses1 - pulses2);
+                stop_flag = false;
+            }
+
+            // Limit dt to prevent large jumps at the start
+            if (dt > 0.02 || dt < 1e-6) {
+                dt = 0.01;
+            }
+
+            double error = pulses1 - pulses2 + Offset;
+
+            int error_sign;
+            if(error > 0){
+                error_sign = 1;
+            } else {
+                error_sign = -1;
+            }
+
+            double alpha = 0.9;
+            double derivative = (error - last_error) / dt;
+
+            derivative = alpha * last_derivative + (1 - alpha) * derivative;
+            if(stop_flag){
+                derivative = 0;
+                stop_flag = false;
+            }
+
+            integral_error += error * dt;
+
+            if ((error_sign * derivative < -0.1 && std::abs(integral_error) > 0.2)) {  
+                integral_error *= 0.9;
+            } else if (error_sign * integral_error < -0.1){
+                integral_error *= 0.75;
+            } else {
+                integral_error += error * dt;
+            }
+
+            double output = Kp * error + Ki * integral_error + Kd * derivative;
+
+            //std::cout << "Err: " << error << " | Off: " << Offset << " | OUT " << output  << " | P: " << error * Kp << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
+
+            last_error = error;
+            last_derivative = derivative;
+            return output; 
+        }
+
+        void turn(double offset) {
+            diff = offset;
+        }
+
+        void stop() {
+            diff = 0;
+            stop_flag = true;
+        }
+    
+    private:
+        double Kp, Ki, Kd;
+        double rpm_target;
+        double integral_error = 0;
+        double timeInPersistentError = 0.0;
+        double last_error = 0.0;
+        double last_derivative = 0.0;
+        int counter = 2;
+        bool stop_flag = false;
+
+        double Offset = 0.0;
+        double diff = 0.0;
+    
+        std::chrono::steady_clock::time_point last_update_time;
+};
 
 // ===== ROS2 Node =====
 class MotorControlNode : public rclcpp::Node
 {
 public:
-    MotorControlNode() 
-        : Node("motor_control_node"),
-          imu_received_(false),
-          encoder_received_(false),
-          motor1(0.0, 0.00),
-          motor2(0.0, 0.00)
+    MotorControlNode() : Node("motor_control_node")
     {
+        auto qos = rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_sensor_data));
         imu_subscription_ = this->create_subscription<sensors_pkg::msg::IMUData>(
-            "imu_data", 10, 
+            "imu_data", qos, 
             std::bind(&MotorControlNode::imu_callback, this, std::placeholders::_1)
         );
 
         encoder_subscription_ = this->create_subscription<sensors_pkg::msg::EncoderData>(
-            "encoder_data", 10,
+            "encoder_data", qos,
             std::bind(&MotorControlNode::encoder_callback, this, std::placeholders::_1)
         );
 
@@ -317,6 +382,16 @@ public:
             "bluetooth_data", 10,
             std::bind(&MotorControlNode::bluetooth_callback, this, std::placeholders::_1)
         );
+
+        ultrasonic_subscription_ = this->create_subscription<std_msgs::msg::Float32>(
+            "ultrasonic_distance", 10,
+            std::bind(&MotorControlNode::ultrasonic_callback, this, std::placeholders::_1)
+        );
+
+
+        IMU_status_publisher_ = this->create_publisher<std_msgs::msg::Bool>("IMU_status", 10);
+        encoder_status_publisher_ = this->create_publisher<std_msgs::msg::Bool>("encoder_status", 10);
+        ultra_s_status_publisher_ = this->create_publisher<std_msgs::msg::Bool>("ultra_s_status", 10);
 
         timer_ = this->create_wall_timer(
             std::chrono::milliseconds(10),
@@ -327,109 +402,163 @@ public:
     }
 
 private:
-    void imu_callback(const sensors_pkg::msg::IMUData::SharedPtr msg){
-        imu_angle_ = msg->tilt + 3.00;
-        angular_velocity_ = msg->velo;
-        imu_received_ = true;
-    }
+void imu_callback(const sensors_pkg::msg::IMUData::SharedPtr msg){
+    imu_angle_ = msg->tilt;
+    angular_velocity_ = msg->velo;
+    imu_received_ = true;
+
+    std_msgs::msg::Bool status_msg;
+    status_msg.data = true;
+    IMU_status_publisher_->publish(status_msg);
+}
 
     void encoder_callback(const sensors_pkg::msg::EncoderData::SharedPtr msg){
         rpm1_ = msg->rpm1;
         rpm2_ = msg->rpm2;
         encoder_received_ = true;
+
+        std_msgs::msg::Bool status_msg;
+        status_msg.data = true;
+        encoder_status_publisher_->publish(status_msg);
+    }
+
+    void ultrasonic_callback(const std_msgs::msg::Float32::SharedPtr msg){
+        distance_received_ = true;
+        distance_ = msg->data;
+
+        std_msgs::msg::Bool status_msg;
+        status_msg.data = true;
+        ultra_s_status_publisher_->publish(status_msg);
     }
 
     void bluetooth_callback(const std_msgs::msg::Float32MultiArray::SharedPtr msg) {
-        if (msg->data.size() == 2) {
-            float angle = msg->data[0];
-            float distance = msg->data[1];
-
-            float offset = distance * 4.0;
-            side_ = 0;
-
-            if (angle < -135 || angle > 135) {
-                offset = -offset;
-                outer_pid_.set_angle(offset);
-            }
-            if (angle > 45 && angle < 135) {
-                side_ = 1;
-            }
-            if (angle < -45 && angle > -135) {
-                side_ = -1;
-            } else {
-                outer_pid_.set_angle(offset);
-            }
-
-        } else if (msg->data.size() == 4) {
-            float p = msg->data[0];
-            float i = msg->data[1];
-            float d = msg->data[2];
-            float rate = msg->data[3];
-            outer_pid_.update_pid(p, i, d);
-            if (rate > 0.5f){
-                startup_mode_ = true;
+        if (msg->data[0] == 250.0f) {
+            if(msg->data[1] > 0){
                 start_received_ = true;
+                startup_mode_ = true;
+            } else {
+                start_received_ = false;
             }
-
+        } else if (msg->data[0] == 260.0f){
+            if(msg->data[1] > 0){
+                auto_mode_ = true;
+            } else {
+                auto_mode_ = false;
+            }
         } else {
-            RCLCPP_WARN(this->get_logger(), "Received invalid data");
+            float angle_deg = msg->data[0];
+            float distance = msg->data[1];
+            
+            if (distance && angle_deg) {
+                float angle_rad = angle_deg * (M_PI / 180.0f);
+                float x = distance * sinf(angle_rad);  // Left/right
+                float y = distance * cosf(angle_rad);  // Forward/backward
+            
+                // Apply exponential scaling (preserves sign)
+                auto exponential_scale = [](float val) {
+                    float sign = (val >= 0) ? 1.0f : -1.0f;
+                    float abs_val = std::abs(val);
+                    return sign * (abs_val < 0.5f ? abs_val * abs_val * 2.0f : 1.0f - powf(1.0f - abs_val, 2.0f) * 2.0f);
+                };
+            
+                float scaled_x = exponential_scale(x);
+                float scaled_y = exponential_scale(y);
+            
+                // Scale to your robot’s range
+                float max_speed = 5.5f;
+                float max_turn = 10.5f;
+            
+                outer_pid_.set_speed(-scaled_y * max_speed);
+                diff_pid_.turn(-scaled_x * max_turn);
+            } else {
+                outer_pid_.stop();
+                diff_pid_.stop();
+            }
         }
     }
 
-    void timer_callback() {
-        if (start_received_) {
+    double apply_pwm_with_deadzone(double value) {
+        double pwm = std::abs(value) + 14.0;
+        if (pwm > 255.0) {
+            pwm = 255.0;
+        }
+        return pwm;
+    }
 
+    void timer_callback() {
+        if (start_received_ && encoder_received_ && imu_received_) {
+
+            float tmp = (rpm1_+rpm2_)/2;
 
             if (startup_mode_) {
                 startup_counter_++;
                 if (startup_counter_ > 35) {
                     startup_mode_ = false;
                     startup_counter_ = 0;
+                    outer_pid_.stop();
                 }
-            }
-
-            rpm_target_ = outer_pid_.update(imu_angle_, angular_velocity_);
-            //rpm_target_ = outer_pid_.smc(imu_angle_, angular_velocity_);
-            //rpm_target_ = -outer_pid_.calculateTargetRPM(imu_angle_, angular_velocity_);
-
-            RCLCPP_INFO(this->get_logger(), "ANGLE: %.3f | Angle velo: %.3f | RPM: %.2f | TARGET: %.2f", imu_angle_, angular_velocity_, rpm1_, rpm_target_);
-            //RCLCPP_INFO(this->get_logger(), "RPM: %.2f | PREV RPM: %.2f | TARGET: %.2f | PREV TARGET: %.2f", rpm_target_, prev_rpm_target_, pwm_right, prev_pwm_right_);
-
-
-
-            //motor1.update(rpm_target_, rpm1_);
-            //motor2.update(rpm_target_, rpm2_);
-    
-            //float pwm_left = motor1.getPWM();
-            //pwm_right = motor2.getPWM();
-    
-            if(startup_mode_ && std::abs(imu_angle_) > 45.0f){
-                if (rpm_target_ < 0){
-                    digitalWrite(IN1, LOW);
-                    digitalWrite(IN2, LOW);
-                } else {
-                    digitalWrite(IN1, HIGH);
-                    digitalWrite(IN2, HIGH);
-                }
+                correction_ = 0;
             } else {
-                if (rpm_target_ < 0){
-                    digitalWrite(IN1, HIGH);
-                    digitalWrite(IN2, HIGH);
-                } else {
-                    digitalWrite(IN1, LOW);
-                    digitalWrite(IN2, LOW);
-                }
+                correction_ = outer_pid_.update(tmp, imu_angle_, rpm_target_l_);
             }
-    
-            pwmWrite(PWM_PIN1, std::abs(rpm_target_));
-            pwmWrite(PWM_PIN2, std::abs(rpm_target_));
+            //std::cout << startup_mode_ << " " << startup_counter_ << std::endl;
+
+            inner_pid_.set_angle(correction_);
+
+            float base_pwm = inner_pid_.update(imu_angle_, angular_velocity_);
+
+            int diff = diff_pid_.update(rpm1_, rpm2_);
+            
+            // Limit rotational influence based on current balance effort
+            float balance_magnitude = std::abs(base_pwm);
+            float rotation_scale = std::clamp(1.0f - (balance_magnitude / 100.0f), 0.0f, 1.0f); 
+            float turn_offset = diff * 0.5f * rotation_scale;
+            
+            if (startup_mode_ && std::abs(imu_angle_) > 45.0f) {
+                base_pwm = imu_angle_ < 0 ? -255.0f : 255.0f;
+                rpm_target_l_ = base_pwm;
+                rpm_target_r_ = base_pwm;
+            } else if (std::abs(imu_angle_) > 45.0f){
+                rpm_target_l_ = 0;
+                rpm_target_r_ = 0;
+            } else {
+                rpm_target_l_ = base_pwm + turn_offset;
+                rpm_target_r_ = base_pwm - turn_offset;
+            }
+            
+
+            if (rpm_target_l_ < 0){
+                gpio_write(pi, IN1, 1);
+            } else {
+                gpio_write(pi, IN1, 0);
+            }
+            if (rpm_target_r_ < 0){
+                gpio_write(pi, IN2, 1);
+            } else {
+                gpio_write(pi, IN2, 0);
+            }
+
+            
+            std::cout << "ANG: " << imu_angle_ << " | BASE: " << base_pwm << " | CORR: " << correction_ << " | TargetL: " << rpm_target_l_ << " | TargetR: " << rpm_target_r_ << std::endl; 
+
+            set_PWM_dutycycle(pi, PWM_PIN1, apply_pwm_with_deadzone(rpm_target_l_));
+            set_PWM_dutycycle(pi, PWM_PIN2, apply_pwm_with_deadzone(rpm_target_r_));
+        } else {
+            set_PWM_dutycycle(pi, PWM_PIN1, 0);
+            set_PWM_dutycycle(pi, PWM_PIN2, 0);
         }
     }
 
     // Subscriptions & Timers
     rclcpp::Subscription<sensors_pkg::msg::IMUData>::SharedPtr imu_subscription_;
+    rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr ultrasonic_subscription_;
     rclcpp::Subscription<sensors_pkg::msg::EncoderData>::SharedPtr encoder_subscription_;
     rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr bluetooth_subscription_;
+
+    rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr IMU_status_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr encoder_status_publisher_;
+    rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr ultra_s_status_publisher_;
+
     rclcpp::TimerBase::SharedPtr timer_;
 
     // Data
@@ -437,13 +566,17 @@ private:
     float imu_angle_;
     float rpm1_;
     float rpm2_;
-    bool imu_received_;
+    float distance_;
+    bool imu_received_ = false;
+    bool distance_received_ = false;
     bool encoder_received_;
-    bool start_received_;
+    bool start_received_ = false;
     int counter_ = 5;
-    double rpm_target_ = 0;
+    double rpm_target_l_ = 0;
+    double rpm_target_r_ = 0;
     int side_ = 0;
     bool startup_mode_ = false;
+    bool auto_mode_ = false;
     int startup_counter_ = 0;
 
     float prev_rpm_target_ = 0.0f;
@@ -451,14 +584,17 @@ private:
     float prev_pwm_left_ = 0.0f;
     float prev_pwm_right_ = 0.0f;
 
-    OuterPIDController outer_pid_{10.0, 0.0, 0.2, 1.8, 150.0};
-    InnerLoop motor1;
-    InnerLoop motor2;
+    double correction_;
+
+    InnerPIDController inner_pid_{15.0, 7.0, 0.2};
+    OuterPIDController outer_pid_{0.0007, 0.0031, 0.0045};
+    DifferentialController diff_pid_{0.8, 0.12, 0.2};
 };
 
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
+    set_realtime_priority();
     setup();
     auto node = std::make_shared<MotorControlNode>();
     rclcpp::spin(node);
