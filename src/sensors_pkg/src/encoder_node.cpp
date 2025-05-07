@@ -1,4 +1,3 @@
-
 #include <rclcpp/rclcpp.hpp>
 #include <gpiod.h>
 #include <atomic>
@@ -65,7 +64,8 @@ void set_realtime_priority() {
 class EncoderNode : public rclcpp::Node {
 public:
     EncoderNode() : Node("encoder_node") {
-        publisher_ = this->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", 10);
+        auto qos = rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_sensor_data));
+        publisher_ = this->create_publisher<sensors_pkg::msg::EncoderData>("encoder_data", qos);
         timer_ = this->create_wall_timer(
             std::chrono::milliseconds(10),
             std::bind(&EncoderNode::publish_clicks, this)
