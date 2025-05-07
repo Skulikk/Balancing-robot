@@ -1,185 +1,167 @@
-#!/usr/bin/env python3
-
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Float32MultiArray, Bool
 from bluedot import BlueDot
 from signal import pause
 import time
 import threading
+
 
 class BlueDotJoystickPublisher(Node):
     def __init__(self):
         super().__init__('bluedot_joystick_publisher')
         self.get_logger().info('Starting BlueDot Joystick Publisher...')
         self.publisher_ = self.create_publisher(Float32MultiArray, 'bluetooth_data', 10)
-        
-        # Initialize state variables
+
+        # Subscriptions to status topics
+        self.create_subscription(Bool, 'IMU_status', self.imu_status_callback, 10)
+        self.create_subscription(Bool, 'encoder_status', self.encoder_status_callback, 10)
+        self.create_subscription(Bool, 'ultra_s_status', self.ultra_s_status_callback, 10)
+
         self.mode = "dpad"
         self.bd = None
 
-        self.p = 65.0
-        self.d = 0.5
-        self.i = 36.5
-        self.rate = 0.0
-        
-        # Set up the initial D-pad interface
+        self.imu_status = False
+        self.encoder_status = False
+        self.ultra_s_status = False
+        self.balancing_status = False
+        self.auto_status = False
+
         self.setup_dpad()
-        
         self.get_logger().info("Joystick ready. Waiting for Bluetooth client...")
-    
+
     def setup_dpad(self):
-        self.get_logger().info("Setting up D-pad mode...")
         self.mode = "dpad"
-        
-        # Clean up existing BlueDot instance if any
+
         self.cleanup_bluedot()
-        
-        # Create a fresh BlueDot instance with grid layout
         self.bd = BlueDot(cols=3, rows=5)
         self.bd.visible = False
-        
-        # Configure D-pad buttons
-        self.bd[0,0].visible = True
-        self.bd[0,0].when_pressed = lambda: self.update_prms("p-")
 
-        self.bd[0,1].visible = True
-        self.bd[0,1].when_pressed = lambda: self.update_prms("i-")
-        
-        self.bd[0,2].visible = True
-        self.bd[0,2].when_pressed = lambda: self.update_prms("d-")
+        self.bd[0, 0].visible = True
+        self.bd[0, 0].color = 'green' if self.imu_status else 'red'
 
-        self.bd[2,0].visible = True
-        self.bd[2,0].when_pressed = lambda: self.update_prms("p+")
+        self.bd[1, 0].visible = True
+        self.bd[1, 0].color = 'green' if self.encoder_status else 'red'
 
-        self.bd[2,1].visible = True
-        self.bd[2,1].when_pressed = lambda: self.update_prms("i+")
-        
-        self.bd[2,2].visible = True
-        self.bd[2,2].when_pressed = lambda: self.update_prms("d+")
+        self.bd[2, 0].visible = True
+        self.bd[2, 0].color = 'green' if self.ultra_s_status else 'red'
 
-        self.bd[1,3].visible = True
-        self.bd[1,3].when_pressed = lambda: self.update_prms("r+")
+        self.bd[1, 1].visible = True
+        self.bd[1, 1].color = "black"
+        self.bd[1, 1].when_pressed = lambda: self.restart()
 
-        
-        
-        # Add a switch mode button
-        self.bd[1,4].visible = True
-        self.bd[1,4].color = "red"
-        self.bd[1,4].when_pressed = lambda: self.switch_to_joystick()
-        
-        # Configure Bluetooth events
-        self.bd.when_client_connects = lambda: self.get_logger().info("Client connected to D-pad")
-        self.bd.when_client_disconnects = lambda: self.get_logger().info("Client disconnected from D-pad")
-    
+        self.bd[1, 2].visible = True
+        self.bd[1, 2].color = "green" if self.balancing_status else 'red'
+        self.bd[1, 2].when_pressed = lambda: self.balance()
+
+        self.bd[1, 3].visible = True
+        self.bd[1, 3].color = "green" if self.auto_status else 'yellow'
+        self.bd[1, 3].when_pressed = lambda: self.auto()
+
+        self.bd[1, 4].visible = True
+        self.bd[1, 4].color = "black"
+        self.bd[1, 4].when_pressed = lambda: self.switch_to_joystick()
+
+    def imu_status_callback(self, msg):
+        self.imu_status = msg.data
+        if self.bd and self.mode == "dpad":
+           self.bd[0,0].color = 'green' if msg.data else 'red'
+
+    def encoder_status_callback(self, msg):
+        self.encoder_status = msg.data
+        if self.bd and self.mode == "dpad":
+            self.bd[1,0].color = 'green' if msg.data else 'red'
+
+    def ultra_s_status_callback(self, msg):
+        self.ultra_s_status = msg.data
+        if self.bd and self.mode == "dpad":
+            self.bd[2,0].color = 'green' if msg.data else 'red'
+
     def setup_joystick(self):
-        self.get_logger().info("Setting up joystick mode...")
         self.mode = "joystick"
-        
-        # Clean up existing BlueDot instance if any
+
         self.cleanup_bluedot()
-        
-        # Create a new BlueDot instance
         self.bd = BlueDot()
-        
-        # Attach joystick handlers
+
         self.bd.when_moved = self.handle_joystick
         self.bd.when_released = self.joystick_released
-        self.bd.when_pressed = lambda pos: self.get_logger().info("Joystick pressed")
-        
-        # Add a double-press handler to switch back to D-pad
         self.bd.when_double_pressed = lambda: self.switch_to_dpad()
-        
-        # Configure Bluetooth events
-        self.bd.when_client_connects = lambda: self.get_logger().info("Client connected to joystick")
-        self.bd.when_client_disconnects = lambda: self.get_logger().info("Client disconnected from joystick")
-    
+
     def switch_to_joystick(self):
-        self.get_logger().info("Switching to joystick mode")
-        # Delay to allow button release to complete
         threading.Timer(0.5, self.setup_joystick).start()
-    
+
+    def restart(self):
+        self.get_logger().info("Restart")
+
+    def balance(self):
+        msg = Float32MultiArray()
+        if self.balancing_status:
+            msg.data = [250.0, 0.0]
+            self.balancing_status = False
+            self.bd[1,2].color = 'red'
+        else:
+            msg.data = [250.0, 1.0]
+            self.balancing_status = True
+            self.bd[1,2].color = 'green'
+        self.publisher_.publish(msg)
+
+    def auto(self):
+        msg = Float32MultiArray()
+        if self.auto_status:
+            msg.data = [260.0, 0.0]
+            self.auto_status = False
+            self.bd[1,3].color = 'yellow'
+        else:
+            msg.data = [260.0, 1.0]
+            self.auto_status = True
+            self.bd[1,3].color = 'green'
+        self.publisher_.publish(msg)
+
     def switch_to_dpad(self):
-        self.get_logger().info("Switching to D-pad mode")
-        # Delay to allow double-press detection to complete
         threading.Timer(0.5, self.setup_dpad).start()
-    
+
     def cleanup_bluedot(self):
         if self.bd is not None:
             try:
-                self.get_logger().info("Cleaning up existing BlueDot instance")
                 self.bd.stop()
-                time.sleep(0.5)  # Give more time for cleanup
+                time.sleep(0.5)
             except Exception as e:
                 self.get_logger().warn(f"Error stopping BlueDot: {e}")
             finally:
                 self.bd = None
-    
-    def update_prms(self, p_type):
-        #self.get_logger().info(f"D-pad: {type}")
-        
-        if p_type == "p+":
-            self.p += 1.0
-            self.p = round(self.p, 2)
-        elif p_type == "p-":
-            self.p -= 1.0
-            self.p = round(self.p, 2)
-        elif p_type == "i+":
-            self.i += 0.5
-            self.i = round(self.i, 2)
-        elif p_type == "i-":
-            self.i -= 0.5
-            self.i = round(self.i, 2)
-        elif p_type == "d+":
-            self.d += 0.1
-            self.d = round(self.d, 2)
-        elif p_type == "d-":
-            self.d -= 0.1
-            self.d = round(self.d, 2)
-        elif p_type == "r+":
-            self.rate += 1.0
-            self.rate = round(self.rate, 2)
 
-        msg = Float32MultiArray()
-        msg.data = [self.p, self.i, self.d, self.rate]
-        self.get_logger().info(f"Updated parameters: p={self.p}, i={self.i}, d={self.d}, rate={self.rate}")
-        self.publisher_.publish(msg)
-    
     def handle_joystick(self, pos):
         angle = float(round(pos.angle, 2)) if pos.angle is not None else 0.0
         distance = float(round(pos.distance, 2)) if pos.distance is not None else 0.0
-        
-        #self.get_logger().info(f"Joystick moved: angle={angle}, dist={distance}")
-        
         msg = Float32MultiArray()
         msg.data = [angle, distance]
         self.publisher_.publish(msg)
-    
+
     def joystick_released(self):
         msg = Float32MultiArray()
         msg.data = [0.0, 0.0]
         self.publisher_.publish(msg)
-        #self.get_logger().info("Joystick released")
+
 
 def main(args=None):
     rclpy.init(args=args)
     node = BlueDotJoystickPublisher()
-    
-    # Run ROS2 in a separate thread so BlueDot can run alongside
-    executor_thread = threading.Thread(target=rclpy.spin, args=(node,), daemon=True)
+
+    executor_thread = threading.Thread(target=rclpy.spin, args=(node,))
     executor_thread.start()
-    
+
     try:
-        # Keep the main thread alive
         while rclpy.ok():
             time.sleep(0.1)
     except KeyboardInterrupt:
         pass
-    
-    # Clean up
-    node.cleanup_bluedot()
-    node.destroy_node()
-    rclpy.shutdown()
+    finally:
+        node.get_logger().info("Shutting down...")
+        node.cleanup_bluedot()
+        rclpy.shutdown()
+        executor_thread.join()
+        node.destroy_node()
+
 
 if __name__ == '__main__':
     main()
