@@ -49,12 +49,13 @@ public:
         
         // Start timer to poll the sensor
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(5),
+            std::chrono::milliseconds(1),
             std::bind(&IMUNode::sensor_loop, this)
         );
         
         // Create publisher
-        publisher_ = this->create_publisher<sensors_pkg::msg::IMUData>("imu_data", 10);
+        auto qos = rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_sensor_data));
+        publisher_ = this->create_publisher<sensors_pkg::msg::IMUData>("imu_data", qos);
         
         RCLCPP_INFO(this->get_logger(), "IMU initialized successfully");
     }
@@ -86,7 +87,7 @@ private:
             
             // Create and publish message
             auto msg = sensors_pkg::msg::IMUData();
-            msg.tilt = roll;
+            msg.tilt = roll + 4.6; //CoM offset
             msg.velo = gyrox;
             publisher_->publish(msg);
         }
