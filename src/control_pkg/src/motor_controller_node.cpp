@@ -20,6 +20,9 @@
 
 int pi;  // pigpio daemon handle
 
+std::vector<float> pulse_history;
+const size_t pulse_history_size = 5;
+double filtered_speed = 0.0;
 
 void set_realtime_priority() {
     struct sched_param sched;
@@ -87,7 +90,7 @@ class InnerPIDController {
             last_update_time = std::chrono::steady_clock::now();  // Initialize timestamp
         }
     
-        double update(float angle, float angular_velocity) {
+        double update(float angle, float angular_velocity, float pulse) {
             // Measure elapsed time since last update;
             auto now = std::chrono::steady_clock::now();
             std::chrono::duration<double> elapsed = now - last_update_time;
@@ -108,7 +111,7 @@ class InnerPIDController {
                 error_sign = -1;
             }
 
-            float proportional = std::pow(std::abs(error+0.5), 1.3) * error_sign; // Proportional term
+            float proportional = std::pow(std::abs(error+0.5), 1.12) * error_sign; // Proportional term
 
             // Movement trend changes => slowly decrease integral
             if ((error_sign * -(angular_velocity) < -4 && std::abs(integral_error) > 1)) {  
@@ -116,7 +119,7 @@ class InnerPIDController {
             } else if (error_sign * integral_error < -0.5){
                 integral_error *= 0.85;  // Reduce it instead of completely resetting
             } else {
-                integral_error += error * dt * 2.8;
+                integral_error += error * dt * 3.3;
             }
 
             integral_error = std::clamp(integral_error, -10.0, 10.0);  // Anti-windup clamping
@@ -139,7 +142,7 @@ class InnerPIDController {
             // Clamp final RPM target
             output = std::clamp(output, -255.0f, 255.0f);
 
-            //std::cout << "COEF: " << Kp << " : " << Ki << " : " << Kd << " Err/Vel/Off: " << " : " << error << " : " << angular_velocity << " : " << Offset << " | OUT " << output  << " | P: " << Kp * proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
+            //std::cout << "COEF: " << Kp << " : " << Ki << " : " << Kd << " Err/Vel/Off/PLS: " << " : " << error << " : " << angular_velocity << " : " << Offset << " : " << pulse << " | OUT " << output  << " | P: " << Kp * proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
 
             last_derivative = derivative;
             return output; 
@@ -172,6 +175,20 @@ class OuterPIDController {
             std::chrono::duration<double> elapsed = now - last_update_time;
             double dt = elapsed.count();  // Convert to seconds
             last_update_time = now;  // Update timestamp for next iteration
+
+            pulse_history.push_back(pulses);
+            if (pulse_history.size() > pulse_history_size) {
+                pulse_history.erase(pulse_history.begin());  // remove oldest
+            }
+
+            double raw_speed = 0;
+            if (pulse_history.size() >= 2) {
+                raw_speed = (pulse_history.back() - pulse_history.front()) / (dt * (pulse_history.size() - 1));
+            }
+
+            // Filter the speed (simple low-pass)
+            double alpha_speed = 0.7;  // adjust for smoother or faster response
+            filtered_speed = alpha_speed * filtered_speed + (1 - alpha_speed) * raw_speed;
 
             if(speed){
                 Offset += speed;
@@ -235,8 +252,14 @@ class OuterPIDController {
             // Clamp final RPM target
             output = std::clamp(output, -7.5f, 7.5f);
 
+            if (output * filtered_speed > 0) {
+                // Moving and correcting in the same direction → apply limiter
+                double speed_limit_factor = std::clamp(1.0 - std::abs(filtered_speed) / 1000.0, 0.3, 1.0);
+                output *= speed_limit_factor;
+            }
+
             if(counter == 2){
-                //std::cout << "Err: " << error << " | Pul: " << pulses << " | Off: " << Offset << " | OUT " << output << " | ANG " << angle << " | PWM " << PWM  << " | P: " << proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
+                std::cout << "Err: " << error << " | SPD: " << filtered_speed << " | Pul: " << pulses << " | Off: " << Offset << " | OUT " << output << " | ANG " << -(angle + output) << " | PWM " << PWM  << " | P: " << proportional << "| I: " << Ki * integral_error << " | D: " << Kd * derivative << std::endl;
                 counter = 0;
             }
             counter++;
@@ -505,7 +528,7 @@ void imu_callback(const sensors_pkg::msg::IMUData::SharedPtr msg){
 
             inner_pid_.set_angle(correction_);
 
-            float base_pwm = inner_pid_.update(imu_angle_, angular_velocity_);
+            float base_pwm = inner_pid_.update(imu_angle_, angular_velocity_, tmp);
 
             int diff = diff_pid_.update(rpm1_, rpm2_);
             
@@ -539,7 +562,9 @@ void imu_callback(const sensors_pkg::msg::IMUData::SharedPtr msg){
             }
 
             
-            std::cout << "ANG: " << imu_angle_ << " | BASE: " << base_pwm << " | CORR: " << correction_ << " | TargetL: " << rpm_target_l_ << " | TargetR: " << rpm_target_r_ << std::endl; 
+            //std::cout << "ANG: " << imu_angle_ << " | PWM: " << rpm_target_l_ << " | CORR: " << correction_ << " | TargetL: " << rpm_target_l_ << " | TargetR: " << rpm_target_r_ << std::endl; 
+            //std::cout << "ANG: " << imu_angle_ << " | PWM: " << rpm_target_l_ << " | DIST: " << tmp << std::endl; 
+            //RCLCPP_INFO(this->get_logger(), "ANG: %f | PWM: %f | DIST: %f | COR: %f", imu_angle_, rpm_target_l_, tmp, correction_);
 
             set_PWM_dutycycle(pi, PWM_PIN1, apply_pwm_with_deadzone(rpm_target_l_));
             set_PWM_dutycycle(pi, PWM_PIN2, apply_pwm_with_deadzone(rpm_target_r_));
@@ -586,8 +611,8 @@ void imu_callback(const sensors_pkg::msg::IMUData::SharedPtr msg){
 
     double correction_;
 
-    InnerPIDController inner_pid_{15.0, 7.0, 0.2};
-    OuterPIDController outer_pid_{0.0007, 0.0031, 0.0045};
+    InnerPIDController inner_pid_{15.0, 7.5, 0.2};
+    OuterPIDController outer_pid_{0.006, 0.008, 0.007};
     DifferentialController diff_pid_{0.8, 0.12, 0.2};
 };
 
