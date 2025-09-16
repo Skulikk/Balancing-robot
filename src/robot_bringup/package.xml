@@ -3,8 +3,8 @@
   <name>robot_bringup</name>
   <version>0.0.1</version>
   <description>Launch package for robot nodes</description>
-  <maintainer email="you@example.com">Your Name</maintainer>
-  <license>Apache License 2.0</license>
+  <maintainer email="xskole01@vutbr.cz">Tomáš Skolek</maintainer>
+  <license>Unlicense</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>ament_python</buildtool_depend>

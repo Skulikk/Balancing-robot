@@ -1,10 +1,15 @@
+/*
+Bakalarska prace - Balancujici robot
+author: Tomas Skolek (xskole01)
+*/
+
 #include <chrono>
 #include <memory>
 #include <cmath>
 #include <sched.h>
 #include <pthread.h>
 #include "rclcpp/rclcpp.hpp"
-#include "RTIMULib.h" // Include the main header which brings in all necessary components
+#include "RTIMULib.h"
 #include "sensors_pkg/msg/imu_data.hpp"
 
 using namespace std::chrono_literals;
@@ -12,6 +17,8 @@ using namespace std::chrono_literals;
 int pi;  // pigpio daemon handle
 
 void set_realtime_priority() {
+// Set realtime priority of this node
+
     struct sched_param sched;
     sched.sched_priority = 79;
     if (pthread_setschedparam(pthread_self(), SCHED_FIFO, &sched) != 0) {
@@ -26,10 +33,8 @@ public:
         : Node("imu_node")
     {
         
-        // Create settings
         settings = new RTIMUSettings("RTIMULib");
 
-        // Create IMU object
         imu = RTIMU::createIMU(settings);
 
         if (imu == nullptr) {
@@ -53,11 +58,9 @@ public:
             std::bind(&IMUNode::sensor_loop, this)
         );
         
-        // Create publisher
+        // Create publisher + QoS setting
         auto qos = rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(rmw_qos_profile_sensor_data));
         publisher_ = this->create_publisher<sensors_pkg::msg::IMUData>("imu_data", qos);
-        
-        RCLCPP_INFO(this->get_logger(), "IMU initialized successfully");
     }
 
     ~IMUNode()
@@ -78,16 +81,16 @@ private:
             // IMURead() will update the internal data and run the fusion algorithm
             RTIMU_DATA imuData = imu->getIMUData();
             
-            // Get Euler angles (roll, pitch, yaw) in radians and convert to degrees
+            // Get data and convert it to deg/s
             RTVector3 fusionPose = imuData.fusionPose;
-            float roll = fusionPose.x() * 180.0f / M_PI; ;  // Roll (x-axis rotation)
+            float roll = fusionPose.x() * 180.0f / M_PI;
             
-            // Get angular velocity (gyro data) in rad/s and convert to degrees per second
-            float gyrox = imuData.gyro.x() * 180.0f / M_PI; ;
+            
+            float gyrox = imuData.gyro.x() * 180.0f / M_PI;
             
             // Create and publish message
             auto msg = sensors_pkg::msg::IMUData();
-            msg.tilt = roll + 4.6; //CoM offset
+            msg.tilt = roll + 4.6; // Center of mass offset
             msg.velo = gyrox;
             publisher_->publish(msg);
         }

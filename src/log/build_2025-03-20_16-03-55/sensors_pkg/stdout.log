@@ -1,3 +1,0 @@
-[ 25%] [32mBuilding CXX object CMakeFiles/imu_node.dir/src/imu_node.cpp.o[0m
-[ 75%] Built target encoder_node
-[100%] [32m[1mLinking CXX executable imu_node[0m

@@ -1,2 +1,0 @@
-Invoking command in '/home/skulikk/robot/src/build/imu_package': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/imu_package -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/install/imu_package
-Invoked command in '/home/skulikk/robot/src/build/imu_package' returned '1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/skulikk/robot/src/imu_package -DCMAKE_INSTALL_PREFIX=/home/skulikk/robot/src/install/imu_package

@@ -1,3 +1,8 @@
+/*
+Bakalarska prace - Balancujici robot
+author: Tomas Skolek (xskole01)
+*/
+
 #include <chrono>
 #include <memory>
 #include <rclcpp/rclcpp.hpp>
@@ -59,7 +64,7 @@ private:
     void measure_and_publish() {
         float distance = measure_distance();
         if (distance < 0.0f) {
-            return;
+            publish_distance(-1.0);
         }
 
         float filtered = get_filtered_distance(distance);
@@ -113,17 +118,20 @@ private:
     }
 
     float get_filtered_distance(float new_val) {
-        const size_t MAX_SIZE = 5;
+        const size_t MAX_SIZE = 10;
         const float SPIKE_THRESHOLD = 80.0f;
     
         if (!distance_buffer.empty()) {
             float last = distance_buffer.back();
     
-            // Only filter *extreme* changes (> 80 cm), not normal differences
-            /*if (std::abs(new_val - last) > SPIKE_THRESHOLD) {
-                RCLCPP_WARN(this->get_logger(), "Large spike filtered: %.2f -> %.2f", last, new_val);
+            // Only filter large changes (> 80 cm)
+            if (std::abs(new_val - last) > SPIKE_THRESHOLD) {
+                distance_buffer.push_back(new_val);
+                if (distance_buffer.size() > MAX_SIZE) {
+                    distance_buffer.pop_front();
+                }
                 return last;
-            }*/
+            }
         }
     
         // Maintain rolling buffer
@@ -132,6 +140,7 @@ private:
             distance_buffer.pop_front();
         }
     
+        // Return the average
         std::deque<float> temp = distance_buffer;
         std::sort(temp.begin(), temp.end());
         return temp[temp.size() / 2];

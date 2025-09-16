@@ -1,3 +1,6 @@
+# Bakalarska prace - Balancujici robot
+# author: Tomas Skolek (xskole01)
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray, Bool
@@ -5,6 +8,7 @@ from bluedot import BlueDot
 from signal import pause
 import time
 import threading
+import subprocess
 
 
 class BlueDotJoystickPublisher(Node):
@@ -21,6 +25,7 @@ class BlueDotJoystickPublisher(Node):
         self.mode = "dpad"
         self.bd = None
 
+        # Sensor status
         self.imu_status = False
         self.encoder_status = False
         self.ultra_s_status = False
@@ -28,9 +33,10 @@ class BlueDotJoystickPublisher(Node):
         self.auto_status = False
 
         self.setup_dpad()
-        self.get_logger().info("Joystick ready. Waiting for Bluetooth client...")
 
     def setup_dpad(self):
+        # Default screen - buttons
+
         self.mode = "dpad"
 
         self.cleanup_bluedot()
@@ -62,6 +68,7 @@ class BlueDotJoystickPublisher(Node):
         self.bd[1, 4].color = "black"
         self.bd[1, 4].when_pressed = lambda: self.switch_to_joystick()
 
+    # Subscriptions callbacks - button color changing
     def imu_status_callback(self, msg):
         self.imu_status = msg.data
         if self.bd and self.mode == "dpad":
@@ -78,6 +85,8 @@ class BlueDotJoystickPublisher(Node):
             self.bd[2,0].color = 'green' if msg.data else 'red'
 
     def setup_joystick(self):
+        # Joystick manual control mode
+
         self.mode = "joystick"
 
         self.cleanup_bluedot()
@@ -91,9 +100,16 @@ class BlueDotJoystickPublisher(Node):
         threading.Timer(0.5, self.setup_joystick).start()
 
     def restart(self):
-        self.get_logger().info("Restart")
+        # Call the script and exit immediately
+        subprocess.Popen(["/home/skolek/restart.sh"], 
+                    shell=True, 
+                    start_new_session=True)
+        time.sleep(1)
+
+    # Publishing control data for balancing and authonomy
 
     def balance(self):
+        
         msg = Float32MultiArray()
         if self.balancing_status:
             msg.data = [250.0, 0.0]
@@ -130,7 +146,9 @@ class BlueDotJoystickPublisher(Node):
             finally:
                 self.bd = None
 
+
     def handle_joystick(self, pos):
+        # Send joystick X and Y coordinates
         angle = float(round(pos.angle, 2)) if pos.angle is not None else 0.0
         distance = float(round(pos.distance, 2)) if pos.distance is not None else 0.0
         msg = Float32MultiArray()

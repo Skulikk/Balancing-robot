@@ -1,2 +1,0 @@
-Invoking command in '/home/skulikk/robot/src/build/imu_package': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/imu_package -- -j4 -l4
-Invoked command in '/home/skulikk/robot/src/build/imu_package' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/skulikk/robot/src/build/imu_package -- -j4 -l4

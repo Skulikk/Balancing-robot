@@ -3,9 +3,9 @@
 <package format="3">
   <name>bluetooth_pkg</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="skulikk@todo.todo">skulikk</maintainer>
-  <license>Apache-2.0</license>
+  <description>Bluetooth package</description>
+  <maintainer email="xskole01@vutbr.cz">Tomáš Skolek</maintainer>
+  <license>Unlicense</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>

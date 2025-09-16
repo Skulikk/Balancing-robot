@@ -1,2 +1,2 @@
-float32 rpm1
-float32 rpm2
+float32 count1
+float32 count2
