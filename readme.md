@@ -1,9 +1,14 @@
 # Two wheeled balancing robot
 
-_Author: Bc. Tomáš Skolek
-_Supervisor: doc. Ing. Vladimír Janoušek, Ph.D.
-_Affiliation: Department of Intelligent Systems, Faculty of Information Technology, Brno University of Technology
-_Date: May 2025
+Author: Bc. Tomáš Skolek
+
+Supervisor: doc. Ing. Vladimír Janoušek, Ph.D.
+
+Affiliation: Department of Intelligent Systems, Faculty of Information Technology, Brno University of Technology
+
+Date: May 2025
+
+---
 
 ## Abstract
 The thesis objective is to design, construct and program a two-wheeled balancing robot. The thesis describes the selection of suitable components, the construction of the robot and its programming. The control of the robot is provided by a Raspberry PI 4B running Ubuntu 22.04 Server operating system. The control program is built in the Robot Operating System 2 (ROS2) framework, which caters for the modularity and scalability of the system. The balancing mechanism is catered by a PID controller which calculates the required motor response based on the actual data from the IMU and encoders. The resulting robot is capable of lifting from a stable position, remote control by mobile phone and autonomous movement with obstacle avoidance.
