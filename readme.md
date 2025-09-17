@@ -1,16 +1,31 @@
 # Two wheeled balancing robot
 
-Author: Bc. Tomáš Skolek
+- **Author:** Bc. Tomáš Skolek
 
-Supervisor: doc. Ing. Vladimír Janoušek, Ph.D.
+- **Supervisor:** doc. Ing. Vladimír Janoušek, Ph.D.
 
-Affiliation: Department of Intelligent Systems, Faculty of Information Technology, Brno University of Technology
-Date: May 2025
+- **Affiliation:** Department of Intelligent Systems, Faculty of Information Technology, Brno University of Technology
+
+- **Date:** May 2025
 
 ---
 
 ## Abstract
-The thesis objective is to design, construct and program a two-wheeled balancing robot. The thesis describes the selection of suitable components, the construction of the robot and its programming. The control of the robot is provided by a Raspberry PI 4B running Ubuntu 22.04 Server operating system. The control program is built in the Robot Operating System 2 (ROS2) framework, which caters for the modularity and scalability of the system. The balancing mechanism is catered by a PID controller which calculates the required motor response based on the actual data from the IMU and encoders. The resulting robot is capable of lifting from a stable position, remote control by mobile phone and autonomous movement with obstacle avoidance.
+This project presents a self-constructed two-wheeled balancing robot controlled solely by a Raspberry Pi, without the use of auxiliary microcontrollers. Exploiting the real-time properties of Linux, the system employs three interconnected PID control loops, combining data from an IMU and wheel encoders to achieve stable and smooth balancing. Implemented in C++ within the ROS2 Humble framework, the robot is capable of standing up from rest, maintaining balance, driving under remote control, and executing in-place turns. Additionally, an ultrasonic sensor enables simple autonomous navigation through obstacle avoidance. This work demonstrates the feasibility of robust real-time control in mobile robotics using only general-purpose computing hardware.
+
+---
+
+## Construction
+- **Chassis**: chassis of the robot is 3D printed with PLA. Parts were tailored to perfectly fit choosen mechanical parts.
+- **Control unit**: Raspberry PI 4B 4 GB with Ubuntu 22.04 Server and preempt_rt kernel. No auxiliary microcontrollers are used (so Raspberry directly controls the motors and reads sensor data in real time).
+- **Drivetrain**: 2x 12V brushed DC motor, each with 0,55 Nm torque and 143 max RPM.
+- **Motor driver**: CYTRON MDD20A with two 20 A channels controlled via PWM. 7A/160W Dual H-Bridge was used originaly, but failed twice, so overkill MDD20A was choosen.
+- **Sensors**: 663 PPM Hall effect encoder on each motor. MPU-6050 gyroscope and accelerometer and HC-SR04 ultrasonic sensor.
+- **Power Supply**: Self made power pack with 6 18650 batteries in 3S2P configuration, BMS and USB-C connector supporting Power Delivery 3.0 standart.
+
+## Robot wiring diagram
+!(thesis-src/obrazky-figures/circ.png)
+blablabla
 
 ## Requriments
 
