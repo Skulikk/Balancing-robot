@@ -1,14 +1,12 @@
-# README
+# Two wheeled balancing robot
 
-# Demonstrační video
+_Author: Bc. Tomáš Skolek
+_Supervisor: doc. Ing. Vladimír Janoušek, Ph.D.
+_Affiliation: Department of Intelligent Systems, Faculty of Information Technology, Brno University of Technology
+_Date: May 2025
 
-Ve složce na Nextcloud jsou dvě videa - **demonstrace_projektu.mp4** a **demonstrace_projektu_auto.mp4**.
-
-První jmenované ukazuje schopnost robota zdvihnout se ze země, jezdit, zatáčet a reagovat na postrčení.
-
-Druhé video ukazuje autonomní jízdu. Jak je popsáno v bakalářské práci, kvůli zvolenému senzoru vzdálenosti není autonomní jízda dokonalá. Robot se z důvodu nekvalitních dat ze senzoru musí pohybovat velmi pomalu a několikrát zastavit a ujistit se o vzdálenosti.
-
-# Instalace
+## Abstract
+The thesis objective is to design, construct and program a two-wheeled balancing robot. The thesis describes the selection of suitable components, the construction of the robot and its programming. The control of the robot is provided by a Raspberry PI 4B running Ubuntu 22.04 Server operating system. The control program is built in the Robot Operating System 2 (ROS2) framework, which caters for the modularity and scalability of the system. The balancing mechanism is catered by a PID controller which calculates the required motor response based on the actual data from the IMU and encoders. The resulting robot is capable of lifting from a stable position, remote control by mobile phone and autonomous movement with obstacle avoidance.
 
 ## Požadavky
 
