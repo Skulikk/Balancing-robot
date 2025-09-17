@@ -8,11 +8,13 @@
 
 - **Date:** May 2025
 
+- **Link:** https://www.vut.cz/studenti/zav-prace/detail/159326
+
 ---
 
 ## Abstract
 This project presents a self-constructed two-wheeled balancing robot controlled solely by a Raspberry Pi, without the use of auxiliary microcontrollers. Exploiting the real-time properties of Linux, the system employs three interconnected PID control loops, combining data from an IMU and wheel encoders to achieve stable and smooth balancing. Implemented in C++ within the ROS2 Humble framework, the robot is capable of standing up from rest, maintaining balance, driving under remote control, and executing in-place turns. Additionally, an ultrasonic sensor enables simple autonomous navigation through obstacle avoidance. This work demonstrates the feasibility of robust real-time control in mobile robotics using only general-purpose computing hardware.
-
+![alt text](https://github.com/Skulikk/Balancing-robot/blob/master/thesis-src/obrazky-figures/front.jpg?raw=true)
 ---
 
 ## Construction
@@ -24,7 +26,7 @@ This project presents a self-constructed two-wheeled balancing robot controlled 
 - **Power Supply**: Self made power pack with 6 18650 batteries in 3S2P configuration, BMS and USB-C connector supporting Power Delivery 3.0 standart.
 
 ## Robot wiring diagram
-!(thesis-src/obrazky-figures/circ.png)
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 blablabla
 
 ## Requriments
