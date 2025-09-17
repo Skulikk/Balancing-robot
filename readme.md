@@ -5,7 +5,6 @@ Author: Bc. Tomáš Skolek
 Supervisor: doc. Ing. Vladimír Janoušek, Ph.D.
 
 Affiliation: Department of Intelligent Systems, Faculty of Information Technology, Brno University of Technology
-
 Date: May 2025
 
 ---
@@ -13,23 +12,19 @@ Date: May 2025
 ## Abstract
 The thesis objective is to design, construct and program a two-wheeled balancing robot. The thesis describes the selection of suitable components, the construction of the robot and its programming. The control of the robot is provided by a Raspberry PI 4B running Ubuntu 22.04 Server operating system. The control program is built in the Robot Operating System 2 (ROS2) framework, which caters for the modularity and scalability of the system. The balancing mechanism is catered by a PID controller which calculates the required motor response based on the actual data from the IMU and encoders. The resulting robot is capable of lifting from a stable position, remote control by mobile phone and autonomous movement with obstacle avoidance.
 
-## Požadavky
+## Requriments
 
-Pro použití ROS2 Humble je vyžadován systém Ubuntu 22.04. Pro správný běh programu je vhodné, aby měl operační systém kernel preempt_rt.
+The project is designed to run on Raspberry PI 4B. Older versions may run into performance issues.
+Ubuntu 22.04 Server with preempt_rt kernel patch is recomanded [https://github.com/RPi-Distro/RTIMULib]. 
 
-## Knihovny
+Before compiling, following libraries are required:
 
-Před kompilací programu je nutné nainstalovat následující knihovny a balíčky:
-
+- ROS2 Humble
 - pigpio
 - RTIMULib
 - gpiod
 - BlueDot
 - ROS2 Humble
-
-## Kompilace
-
-Projekt se kompiluje příkazem **colcon build**. Ten se volá v kořenové složce projektu.
 
 # Spuštění
 
