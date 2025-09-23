@@ -9,6 +9,8 @@
 - **Date:** May 2025
 
 - **Link:** https://www.vut.cz/studenti/zav-prace/detail/159326
+  
+- **Video:** https://www.youtube.com/watch?v=L-kLkO1EeRI
 
 ---
 
