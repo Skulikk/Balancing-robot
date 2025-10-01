@@ -32,12 +32,19 @@ This project presents a self-constructed two-wheeled balancing robot controlled 
 
 ## Robot wiring diagram
 ![diagram](https://github.com/Skulikk/Balancing-robot/blob/master/thesis-src/obrazky-figures/circ.png?raw=true)
-Black wire 0 V, orange wire 12 V, red wire 3-5 V, blue wire data.
+**Black wire** 0 V, **orange wire** 12 V, **red wire** 3-5 V, blue wire data.
 **A**: battery pack, **B**: step-up converter, **C**: USB-C, **D**: motors, **E**: motor and encoder adapter, **F**: step-down converter, **G**: motor driver, **H**: Raspberry Pi 4, **I**: IMU, **J**: ultrasonic sensor 
 
 ## Movement
 To ensure smooth movement and balancing, the robot encorporates three cooperating PID loops.
-Inner loop reads current tilt angle from IMU, which is used to calculate P and I terms. D term is calculated directly from angle velocity (which is derivation of tilt angle). It outputs PWM value. That itself isnt enough for good balancing, so robot also has outer loop, which reads how many encoder pulses is the robot from its default position. Using this data the outer PID loop changes tilt angle inputed into the inner one, so it corrects any unwanted motion. This loop has high D term so it can quickly react to events like pushing the robot. On the other hand P and I terms are limited, so the robot doesnt overcorrect at high encoder pulse deviaton.
+
+### Inner loop
+Inner loop reads current tilt angle from IMU, which is used to calculate P and I terms. D term is calculated directly from angle velocity (which is derivation of tilt angle). It outputs PWM value.
+
+### Outer loop
+That itself isnt enough for good balancing, so robot also has outer loop, which reads how many encoder pulses is the robot from its default position. Using this data the outer PID loop changes tilt angle inputed into the inner one, so it corrects any unwanted motion. This loop has high D term so it can quickly react to events like pushing the robot. On the other hand P and I terms are limited, so the robot doesnt overcorrect at high encoder pulse deviaton.
+
+### Directional loop
 Last PID loop is directional. It reads a difference between both encoder counts and slightly alters PWM signal in a way that corrects any unwanted turning motion - it is keeping the robot straight. It is also used for turning - encoder count offset is manually inserted to both encoder counts (with oposite signs) and the loop reacts with turning the robot.
 
 ## Requriments
