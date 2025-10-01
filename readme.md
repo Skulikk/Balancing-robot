@@ -53,7 +53,7 @@ Inner loop reads current tilt angle and angle velocity from IMU and outputs PWM 
 The inner loop itself isn't precise enough for good balancing, so the robot also has an outer loop, which reads how many encoder pulses the robot has from its default position. Using this data, the outer PID loop changes the tilt angle input into the inner one, so it corrects any unwanted motion. This loop has a high **D** term, so it can quickly react to events like pushing the robot. On the other hand, **P** and **I** terms are limited, so the robot doesn't overcorrect at high encoder pulse deviation.
 
 ### Directional loop
-The last PID loop is directional. It reads a difference between both encoder counts and slightly alters the PWM signal in a way that corrects any unwanted turning motion - it is keeping the robot straight. It is also used for turning - encoder count offset is manually inserted to both encoder counts (with opposite signs), and the loop reacts by turning the robot.
+The last PID loop is directional. It reads a difference between both encoder counts and slightly alters the PWM signal in a way that corrects any unwanted turning motion - it is keeping the robot straight. It is also used for turning - encoder count offset is manually inserted to both encoder counts (with opposite signs), and the loop reacts by turning the robot. Following equasion is used for precise turning. It calculates how big the inserted offset needs to be to turn the robot by desired angle. Equasion is derived from the encoder PPR, wheel radius, wheelbase and wheel circumference.
 
 $$
 \text{pulses} = \frac{1101\pi \cdot |\theta|}{842}
